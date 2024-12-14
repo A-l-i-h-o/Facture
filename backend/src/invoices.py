@@ -6,7 +6,7 @@ import uuid
 # In-memory "database" for invoices
 invoices_db = {}
 # Reference to the families_db from families.py
-from app.families import families_db
+from families import families_db
 
 invoice_router = APIRouter()
 
