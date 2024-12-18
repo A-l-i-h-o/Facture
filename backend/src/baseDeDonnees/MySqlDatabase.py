@@ -85,7 +85,8 @@ class MySQLDatabase:
 
 # Example usage:
 if __name__ == "__main__":
-    db = MySQLDatabase(host="localhost", user="root", password="password", database="test_db")
+    # default xamp server configuration
+    db = MySQLDatabase(host="localhost", user="root", password="", database="Facture")
     db.connect()
 
     # Example query execution
