@@ -1,6 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
 
+from Logger import logger
+
 class MySQLDatabase:
     def __init__(self, host, user, password, database=None):
         """
@@ -27,9 +29,9 @@ class MySQLDatabase:
                 database=self.database
             )
             if self.connection.is_connected():
-                print("Successfully connected to MySQL server")
+                logger.info("Successfully connected to MySQL server")
         except Error as e:
-            print(f"Error while connecting to MySQL: {e}")
+            logger.debug(f"Error while connecting to MySQL: {e}")
             self.connection = None
 
     def execute_query(self, query, params=None):
@@ -41,7 +43,7 @@ class MySQLDatabase:
         :return: The number of affected rows.
         """
         if self.connection is None or not self.connection.is_connected():
-            print("No connection to the database.")
+            logger.debug("No connection to the database.")
             return None
 
         try:
@@ -52,7 +54,7 @@ class MySQLDatabase:
             cursor.close()
             return affected_rows
         except Error as e:
-            print(f"Error executing query: {e}")
+            logger.debug(f"Error executing query: {e}")
             return None
 
     def fetch_query(self, query, params=None):
@@ -64,7 +66,7 @@ class MySQLDatabase:
         :return: The query results as a list of tuples.
         """
         if self.connection is None or not self.connection.is_connected():
-            print("No connection to the database.")
+            logger.debug("No connection to the database.")
             return None
 
         try:
@@ -74,14 +76,14 @@ class MySQLDatabase:
             cursor.close()
             return results
         except Error as e:
-            print(f"Error fetching query: {e}")
+            logger.debug(f"Error fetching query: {e}")
             return None
 
     def close_connection(self):
         """Close the connection to the MySQL server."""
         if self.connection and self.connection.is_connected():
             self.connection.close()
-            print("MySQL connection closed.")
+            logger.info("MySQL connection closed.")
 
 # Example usage:
 if __name__ == "__main__":
