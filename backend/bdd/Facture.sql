@@ -118,7 +118,8 @@ CREATE TABLE historique_facture(
 
 CREATE TABLE type_frais(
 	id_type_frais int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	libelle_type_frais VARCHAR(255) NOT NULL
+	libelle_type_frais VARCHAR(255) NOT NULL,
+	UNIQUE(libelle_type_frais)
 );
 
 CREATE TABLE frais(
