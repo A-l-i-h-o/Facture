@@ -21,7 +21,12 @@ class SessionID(BaseModel):
 
 class UserCreate(BaseModel):
     login: str
-    mdp: str 
+    mdp: str
+    first_name: str
+    last_name: str
+    address: str
+    email: str
+    id_statut_parent: int
     admin: bool
     session_id: str
 
@@ -65,15 +70,52 @@ async def create_user(user: UserCreate):
     verify_session(user.session_id)
     if not is_admin(user.session_id):
         raise HTTPException(status_code=403, detail="Admin privileges required")
+    
+    # Check if user already exists
     check_user_query = "SELECT * FROM utilisateur WHERE login = %s"
     results = mysql.fetch_query(check_user_query, (user.login,))
     if results:
         raise HTTPException(status_code=409, detail="User already exists")
+    
+    # Check if id_statut_parent exists
+    check_parent_query = "SELECT * FROM statut_parent WHERE id_statut_parent = %s"
+    results = mysql.fetch_query(check_parent_query, (user.id_statut_parent,))
+    if not results:
+        raise HTTPException(status_code=404, detail="Parent status not found")
+    
+    # Create user entry
     create_user_query = """
         INSERT INTO utilisateur (login, mdp, admin)
         VALUES (%s, %s, %s)
     """
     mysql.execute_query(create_user_query, (user.login, user.mdp, user.admin))
+    
+    # Create family entry
+    create_family_query = """
+        INSERT INTO famille (id_user)
+        VALUES (LAST_INSERT_ID())
+    """
+    mysql.execute_query(create_family_query)
+
+    # Retrieve the last inserted family ID
+    last_family_id_query = "SELECT LAST_INSERT_ID() as id_famille"
+    family_result = mysql.fetch_query(last_family_id_query)
+    id_famille = family_result[0][0]
+
+    # Create a parent entry
+    create_parent_query = """
+        INSERT INTO parent (id_statut_parent, nom_parent, prenom_parent, adresse_parent, adresse_email_parent)
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    mysql.execute_query(create_parent_query, (user.id_statut_parent, user.first_name, user.last_name, user.address, user.email))
+
+    # Link the parent to the family
+    create_liste_parent_query = """
+        INSERT INTO liste_parent (id_parent, id_famille)
+        VALUES (LAST_INSERT_ID(), %s)
+    """
+    mysql.execute_query(create_liste_parent_query, (id_famille))
+
     raise HTTPException(status_code=201, detail="User created")
 
 @user_router.delete("/")
