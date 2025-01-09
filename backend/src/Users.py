@@ -129,8 +129,8 @@ async def delete_user(user_del: UserDeletion):
 
 @user_router.post("/connect", response_model=SessionID)
 async def connect_user(user: UserConnect):
-    if user.login in session_db.values():
-        raise HTTPException(status_code=403, detail="User already connected")
+    if user.login in session_db.keys():
+        return SessionID(session_id=session_db[user.login])
     connect_user_query = """
         SELECT * FROM utilisateur WHERE login = %s AND mdp = %s
     """
@@ -140,7 +140,7 @@ async def connect_user(user: UserConnect):
     if not results:
         raise HTTPException(status_code=404, detail="User not found")
     session_id = str(uuid.uuid4())
-    session_db[session_id] = user.login
+    session_db[user.login] = session_id
     return SessionID(session_id=session_id)
 
 @user_router.post("/disconnect")
