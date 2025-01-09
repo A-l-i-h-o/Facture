@@ -5,5 +5,5 @@ Projet facturation. Ce projet est une application web conçue pour gérer les fa
 
 ```bash
 cd backend/src/
-uvicorn Application:app --host 0.0.0.0 --port 9392 --reload
+python -m uvicorn Application:app --host 0.0.0.0 --port 9392 --reload
 ```

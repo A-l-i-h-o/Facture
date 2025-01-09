@@ -1,2 +1,4 @@
-import sys, os
-sys.executable("pip install maxence")
+import os
+os.system("pip install uvicorn")
+os.system("pip install fastapi")
+os.system("pip install mysql-connector-python")
