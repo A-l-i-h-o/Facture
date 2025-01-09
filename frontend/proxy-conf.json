@@ -1,6 +1,8 @@
 {
-    "*": {
-       "target": "http://localhost:9876",
-       "secure": false
-    }
- }
+  "/users": {
+    "target": "http://localhost:9392",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

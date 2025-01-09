@@ -134,7 +134,9 @@ async def connect_user(user: UserConnect):
     connect_user_query = """
         SELECT * FROM utilisateur WHERE login = %s AND mdp = %s
     """
+    print(user.login, user.mdp)
     results = mysql.fetch_query(connect_user_query, (user.login, user.mdp))
+    print(results)
     if not results:
         raise HTTPException(status_code=404, detail="User not found")
     session_id = str(uuid.uuid4())

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FactureService {
-  private apiUrl = 'facture/'; 
+  private apiUrl = 'http://localhost:9392/'; 
 
   constructor(private http: HttpClient) {}
 
@@ -15,12 +15,19 @@ export class FactureService {
     return this.http.get(url, { observe: 'body', responseType: 'json'});
   }
 
-  httpLogin(login:string, mdp: string): Observable<any> {
+  httpLogin(login: string, mdp: string): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
-    return this.http.post<any>(this.apiUrl+"connexion?login="+login+"&mdp="+mdp, { headers: headers ,responseType: 'json'});
+  
+    const body = {
+      login: login,
+      mdp: mdp,
+    };
+  
+    return this.http.post<any>(`${this.apiUrl}users/connect`, body, { headers });
   }
+  
 
   //httpListeRecherchesJoueur(nomJoueur:string): Observable<any> {
   //   return this.fetchData(this.apiUrl+"listeRecherchesJoueur?nomJoueur=" + nomJoueur);
