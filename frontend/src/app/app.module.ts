@@ -13,13 +13,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageAccueilComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    FormulaireInscriptionComponent
     
   ],
   imports: [
@@ -28,7 +30,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DragAndDropModule,
     NgbModule,
     BrowserAnimationsModule
   ],
