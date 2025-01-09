@@ -22,4 +22,7 @@ export class FactureService {
     return this.http.post<any>(this.apiUrl+"connexion?login="+login+"&mdp="+mdp, { headers: headers ,responseType: 'json'});
   }
 
+  //httpListeRecherchesJoueur(nomJoueur:string): Observable<any> {
+  //   return this.fetchData(this.apiUrl+"listeRecherchesJoueur?nomJoueur=" + nomJoueur);
+  // }
 }
