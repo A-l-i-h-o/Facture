@@ -7,19 +7,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { PageAccueilComponent } from './pages/page-accueil/page-accueil.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccueilComponent } from './pages/accueil/accueil.component';
+import { FacturesComponent } from './pages/factures/factures.component';
+import { FamillesComponent } from './pages/familles/familles.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ReductionsComponent } from './pages/reductions/reductions.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageAccueilComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    AccueilComponent,
+    FacturesComponent,
+    FamillesComponent,
+    ServicesComponent,
+    ReductionsComponent
     
   ],
   imports: [

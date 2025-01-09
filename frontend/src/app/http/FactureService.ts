@@ -29,6 +29,14 @@ export class FactureService {
   }
   
 
+  getFactures(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}factures`);
+  }
+
+  getFamilles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}familles`);
+  }
+
   //httpListeRecherchesJoueur(nomJoueur:string): Observable<any> {
   //   return this.fetchData(this.apiUrl+"listeRecherchesJoueur?nomJoueur=" + nomJoueur);
   // }

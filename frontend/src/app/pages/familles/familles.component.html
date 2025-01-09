@@ -1,0 +1,29 @@
+<div class="famille-container">
+    <div class="header">
+      <h2>Nombre de familles: {{ familles.length }}</h2>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()"
+        placeholder="Rechercher par nom, prénom, email ou enfant..."
+        class="search-box"
+      />
+    </div>
+  
+    <div *ngIf="filteredFamilles.length > 0; else noFamilles">
+      <ul class="famille-list">
+        <li *ngFor="let famille of filteredFamilles" class="famille-item">
+          <span>{{ famille.nom }} {{ famille.prenom }}</span>
+          <span>{{ famille.email }}</span>
+          <span>
+            <strong>Enfants:</strong> 
+          </span>
+        </li>
+      </ul>
+    </div>
+    
+    <ng-template #noFamilles>
+      <p>Aucune famille trouvée.</p>
+    </ng-template>
+  </div>
+  
