@@ -1,9 +1,0 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div *ngFor="let key of form.controls | keyvalue">
-      <label [for]="key.key">{{ key.key | titlecase }}</label>
-      <input [formControlName]="key.key" [id]="key.key" />
-    </div>
-  
-    <button type="submit" [disabled]="form.invalid">Soumettre</button>
-  </form>
-  
