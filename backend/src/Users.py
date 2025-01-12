@@ -7,9 +7,9 @@ from Logger import logger
 
 from baseDeDonnees.MySqlDatabase import MySQLDatabase
 
-session_db = {}
-
 user_router = APIRouter()
+
+session_db = {}
 
 class User(BaseModel):
     login: str
