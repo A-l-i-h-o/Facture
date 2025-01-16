@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { DragAndDropModule } from 'angular-draggable-droppable';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -29,8 +27,7 @@ import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscrip
     FacturesComponent,
     FamillesComponent,
     ServicesComponent,
-    ReductionsComponent
-    PageAccueilComponent,
+    ReductionsComponent,
     FormulaireInscriptionComponent,
     FormulaireInscriptionEnfantComponent
     
