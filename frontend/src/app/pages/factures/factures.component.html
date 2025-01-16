@@ -1,0 +1,28 @@
+<div class="facture-container">
+    <div class="header">
+      <h2>Nombre de factures: {{ factures.length }}</h2>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()"
+        placeholder="Rechercher par description..."
+        class="search-box"
+      />
+    </div>
+  
+    <div *ngIf="filteredFactures.length > 0; else noFactures">
+      <ul class="facture-list">
+        <li *ngFor="let facture of filteredFactures" class="facture-item">
+          <span>{{ facture.date | date:'dd/MM/yyyy' }}</span>
+          <span>{{ facture.etat }}</span>
+          <span>{{ facture.montant | currency:'EUR' }}</span>
+          <span>{{ facture.description }}</span>
+        </li>
+      </ul>
+    </div>
+    
+    <ng-template #noFactures>
+      <p>Aucune facture trouvée.</p>
+    </ng-template>
+  </div>
+  
