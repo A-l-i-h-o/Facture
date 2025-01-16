@@ -17,7 +17,8 @@ export class FamillesComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupération des familles depuis l'API au chargement du composant
-    this.factureService.getFamilles().subscribe(
+    var session_id = localStorage.getItem('session_id');
+    this.factureService.getFamilles(session_id).subscribe(
       (data) => {
         this.familles = data;
         this.filteredFamilles = data; // Initialement, toutes les familles sont affichées

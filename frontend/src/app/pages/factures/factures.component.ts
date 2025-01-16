@@ -17,7 +17,8 @@ export class FacturesComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupération des factures depuis l'API au chargement du composant
-    this.factureService.getFactures().subscribe(
+    var session_id = localStorage.getItem('session_id');
+    this.factureService.getFactures(session_id).subscribe(
       (data) => {
         this.factures = data;
         this.filteredFactures = data; // Initialement, toutes les factures sont affichées
