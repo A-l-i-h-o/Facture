@@ -8,7 +8,7 @@ parent_db = {}
 
 parent_router = APIRouter()
 
-class Parent(BaseModel):
+class ParentAvecIdFamille(BaseModel):
     id_famille: int
     libelle_statut_parent : str
     nom: str
@@ -23,12 +23,27 @@ mysql.connect()
 
 @enfant_router.post("/{id_parent}", response_model=Parent)
 async def recuperation_parent(id_parent: int):
-    query = "SELECT * FROM parent WHERE id_parent=%q"
-    result = mysql.fetch_query(query)
-    return mysql.values()
+    
+    _,id_famille,libelle_statut_parent,nom_parent,prenom_parent,adresse_parent,adresse_email_parent = mysql.callproc(
+        "get_parent",(id_parent,0,0,0,0,0,0)
+    )
+
+    parent = ParentAvecIdFamille()
+    parent.id_famille=id_famille
+    parent.libelle_statut_parent=libelle_statut_parent
+    parent.nom=nom
+    parent.prenom=prenom
+    parent.adresse_parent=adresse_parent
+    parent.adresse_email_parent=adresse_email_parent
+    return parent
 
 
 @parent_router.post("/create", response_model=int)
-async def recuperation_id_parent(parent: Parent):
-    _,_,_,_,_,_,id_parent= mysql.callproc("recuperation_id_parent",(parent.id_famille, parent.libelle_statut_parent, parent.nom, parent.prenom, parent.adresse_parent, parent.adresse_email_parent, 0))
+async def create_parent(parent: ParentAvecIdFamille):
+    _,_,_,_,_,_,id_parent= mysql.callproc("create_parent",(parent.id_famille, parent.libelle_statut_parent, parent.nom, parent.prenom, parent.adresse_parent, parent.adresse_email_parent, 0))
     return id_parent
+
+@parent_router.post("/modification")
+async def modification_parent(parent: ParentAvecIdFamille):
+    
+    mysql.callproc("create_parent",(parent.id_famille, parent.libelle_statut_parent, parent.nom, parent.prenom, parent.adresse_parent, parent.adresse_email_parent))
