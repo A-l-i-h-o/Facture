@@ -20,8 +20,16 @@ mysql = MySQLDatabase(host="localhost", user="root", password="", database="Fact
 mysql.connect()
 
 
+@enfant_router.post("/{id_enfant}", response_model=Enfant)
+async def recuperation_enfant(id_enfant: int):
+    query = "SELECT * FROM enfant WHERE id_enfant=%q"
+    result = mysql.fetch_query(query)
+    return mysql.values()
 
-@enfant_router.post("/", response_model=int)
-async def recuperation_enfant(enfant: Enfant):
+
+@enfant_router.post("/creation", response_model=int)
+async def creation_enfant(enfant: Enfant):
     _,_,_,id_enfant= mysql.callproc("recuperation_id_enfant",(enfant.id_famille, enfant.nom, enfant.prenom, enfant.age, 0))
     return id_enfant
+
+
