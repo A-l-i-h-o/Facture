@@ -1,0 +1,13 @@
+<div class="header">
+    <button (click)="navigateTo('/accueil')" class="menu-btn">Menu</button>
+    <div class="date">{{ currentDate }}</div>
+    <div class="user-info">{{ nomPrenom }}</div>
+  </div>
+  
+  <div class="content">
+    <button (click)="navigateTo('/factures')" class="content-btn">Factures</button>
+    <button (click)="navigateTo('/familles')" class="content-btn">Familles</button>
+    <button (click)="navigateTo('/services')" class="content-btn">Service</button>
+    <button (click)="navigateTo('/reductions')" class="content-btn">Réduction</button>
+  </div>
+  
