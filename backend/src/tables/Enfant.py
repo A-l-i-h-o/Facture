@@ -8,11 +8,19 @@ enfant_db = {}
 
 enfant_router = APIRouter()
 
+class Reduction(BaseModel):
+    id_reduction: int
+    description_reduction: str
+    montant_reduction : float
+    pourcentage_reduction: float
+
+
 class Enfant(BaseModel):
     id_famille: int
     nom: str
     prenom: str
     age: int
+    liste_reduction: List[Reduction]
 
 
 # Database initialization
@@ -22,9 +30,23 @@ mysql.connect()
 
 @enfant_router.post("/{id_enfant}", response_model=Enfant)
 async def recuperation_enfant(id_enfant: int):
+    
     query = "SELECT * FROM enfant WHERE id_enfant=%q"
     result = mysql.fetch_query(query)
-    return mysql.values()
+    enfant = mysql.values()
+    
+    
+    query = "SELECT id_reduction FROM liste_reduction_enfant WHERE id_enfant=%d"
+    result = mysql.fetch_query(query, (id_enfant,))
+
+    for id_reduction_enfant in result.values():
+        
+        with httpx.AsyncClient() as client:
+            response = await client.get("http://localhost:4200/reduction", params={"id_reduction":id_reduction_enfant})
+            enfant.liste_reduction.append(response.values())
+            
+            
+    return enfant
 
 
 @enfant_router.post("/creation", response_model=int)

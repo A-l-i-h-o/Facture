@@ -9,6 +9,7 @@ parent_db = {}
 parent_router = APIRouter()
 
 class ParentAvecIdFamille(BaseModel):
+    id_parent: int
     id_famille: int
     libelle_statut_parent : str
     nom: str
@@ -29,6 +30,7 @@ async def recuperation_parent(id_parent: int):
     )
 
     parent = ParentAvecIdFamille()
+    parent.id_parent = id_parent
     parent.id_famille=id_famille
     parent.libelle_statut_parent=libelle_statut_parent
     parent.nom=nom
