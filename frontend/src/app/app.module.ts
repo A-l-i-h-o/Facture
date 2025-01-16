@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
+import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/f
     AppComponent,
     PageAccueilComponent,
     ConnexionComponent,
-    FormulaireInscriptionComponent
+    FormulaireInscriptionComponent,
+    FormulaireInscriptionEnfantComponent
     
   ],
   imports: [
