@@ -33,7 +33,13 @@ class MySQLDatabase:
         except Error as e:
             logger.debug(f"Error while connecting to MySQL: {e}")
             self.connection = None
+            
+    def callproc(self, procedure,arguments):
+        
+        cursor = self.connection.cursor()
+        return cursor.callproc(procedure, arguments)
 
+        
     def execute_query(self, query, params=None):
         """
         Execute a SQL query (e.g., INSERT, UPDATE, DELETE).
@@ -85,30 +91,3 @@ class MySQLDatabase:
             self.connection.close()
             logger.info("MySQL connection closed.")
 
-# Example usage:
-if __name__ == "__main__":
-    # default xamp server configuration
-    db = MySQLDatabase(host="localhost", user="root", password="", database="Facture")
-    db.connect()
-
-    # Example query execution
-    create_table_query = """
-    CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL
-    )
-    """
-    db.execute_query(create_table_query)
-
-    # Insert example
-    insert_query = "INSERT INTO users (name, email) VALUES (%s, %s)"
-    db.execute_query(insert_query, ("John Doe", "john@example.com"))
-
-    # Fetch example
-    select_query = "SELECT * FROM users"
-    results = db.fetch_query(select_query)
-    for row in results:
-        print(row)
-
-    db.close_connection()
