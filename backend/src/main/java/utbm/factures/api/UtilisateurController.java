@@ -18,7 +18,6 @@ import java.util.Map;
 
 /**
  * C'est un contrôlleur Rest.
- * Cet observeur réceptionne les requêtes GET, avec comme entête de requête "jeu/*".
  * Il renvoie les données sous forme de JSON.
  */
 @RestController
@@ -90,6 +89,25 @@ public class UtilisateurController {
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
 
+//    @PostMapping(value = "/supression")
+//    public JSONObject supression(@RequestBody Utilisateur utilisateur) {
+//
+//        if (!this.bdService.getAdmin()) {
+//            return messageErreurRetour("Un accès administrateur est nécessaire pour la suppression d'un compte utilisateur");
+//        }
+//
+//        if (this.bdService.getIdUtilisateur() == utilisateur.getId()) {
+//            return messageErreurRetour("Vous ne pouvez pas supprimer votre propre compte. Demandez à un autre administrateur de le faire.");
+//        }
+//
+//        String procedureCall = "{CALL suppression_utilisateur(?)}";
+//        Object[] entrees = {utilisateur.getLogin(), utilisateur.getMdp(), utilisateur.getAdmin()};
+//        int[] sorties = {Types.INTEGER};
+//        String[] nomSorties = {"id_utilisateur"};
+//
+//        return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
+//    }
+
     @PostMapping(value = "/ajout_famille")
     public JSONObject ajout_famille(@RequestBody Utilisateur utilisateur) {
 
@@ -110,19 +128,6 @@ public class UtilisateurController {
         result.put("error", message);
         return new JSONObject(result);
     }
-
-//
-//
-//    @GetMapping(value = "joueur")
-//    public JSONObject getPartie(@RequestParam(value = "civilisation") String civilisation, @RequestParam(value = "environnement") String environnement) {
-//        return Json.objectToJsonObject(this.dbService.getJeu().startPartie(civilisation, environnement).toMap());
-//    }
-//
-//
-//    @GetMapping(value = "checkRecherche")
-//    public boolean getSiRechercheRecherchable(@RequestParam(value = "nomJoueur") String nomJoueur, @RequestParam(value = "recherche") String nomRecherche) {
-//        return this.dbService.getJeu().getJoueur(nomJoueur).checkRecherche(nomRecherche);
-//    }
 }
 
 

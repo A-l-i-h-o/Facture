@@ -3,12 +3,14 @@ package utbm.factures.services;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import jakarta.annotation.PostConstruct;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 import utbm.factures.utils.Json;
 import utbm.factures.utils.Log;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,8 +83,7 @@ public class BDService {
             // Récupérer les valeurs des paramètres OUT
             for (int i = 0; i < sorties.length; i++) {
                 // Mettre dans le map avec le nom des paramètres de sortie
-                Object a = callableStatement.getObject(startPostRetour + i);
-                result.put(nomSorties[i], a);
+                result.put(nomSorties[i], callableStatement.getObject(startPostRetour + i));
             }
 
         } catch (SQLException e) {
@@ -93,6 +94,34 @@ public class BDService {
         return new JSONObject(result);
     }
 
+    public JSONArray select(String requete, String[] nomSorties) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(requete)) {
+
+            // Traitement des résultats
+            while (resultSet.next()) {
+                Map<String, Object> result = new HashMap<>();
+                for (int i = 0; i < nomSorties.length; i++) {
+                    result.put(nomSorties[i], resultSet.getObject(i + 1));  // i + 1 car les index de ResultSet commencent à 1
+                }
+                resultList.add(result); // Ajouter chaque ligne dans la liste de résultats
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de l'exécution de la requête SELECT : " + e.getMessage());
+        }
+
+        JSONArray jsonArray = new JSONArray();
+
+        // Ajouter chaque élément de la liste à JSONArray
+        for (Map<String, Object> map : resultList) {
+            JSONObject jsonObject = new JSONObject(map); // Convertir chaque Map en JSONObject
+            jsonArray.add(jsonObject); // Ajouter au JSONArray
+        }
+
+        return jsonArray;
+    }
 
     public Connection getConnection() {
         if (this.connection == null) {

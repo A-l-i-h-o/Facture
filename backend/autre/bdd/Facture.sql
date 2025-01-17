@@ -7,14 +7,18 @@ CREATE TABLE utilisateur(
 	id_user int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	mdp VARCHAR(255) NOT NULL,
 	login VARCHAR (255) NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	admin BOOLEAN DEFAULT NULL,
 	UNIQUE(login)
 );
+
+INSERT INTO utilisateur(login,mdp,admin) VALUES ("admin","admin",true);
 -- ************************** FIN - Gestion des comptes utilisateur ********************************* --
 -- ************************** DÉBUT - Gestion des familles********* ********************************** --
 CREATE TABLE famille(
 	id_famille int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	id_user int(11) NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	FOREIGN KEY (id_user) REFERENCES utilisateur(id_user),
 	UNIQUE (id_user)
 );
@@ -23,7 +27,8 @@ CREATE TABLE enfant(
 	id_enfant int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nom_enfant VARCHAR(255) NOT NULL,
 	prenom_enfant VARCHAR(255) NOT NULL,
-	age_enfant int NOT NULL
+	age_enfant int NOT NULL,
+	archive BOOL DEFAULT FALSE
 );
 
 CREATE TABLE liste_enfant(
@@ -46,6 +51,7 @@ CREATE TABLE parent(
 	prenom_parent VARCHAR(255) NOT NULL,
 	adresse_parent VARCHAR(255) NOT NULL,
 	adresse_email_parent VARCHAR(255) NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	FOREIGN KEY (id_statut_parent) REFERENCES statut_parent(id_statut_parent),
 	UNIQUE(adresse_email_parent)
 );
@@ -62,6 +68,7 @@ CREATE TABLE reduction(
 	id_reduction int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	description_reduction VARCHAR(2048) NOT NULL,
 	montant_reduction FLOAT NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	pourcentage_reduction FLOAT NOT NULL
 );
 
@@ -104,6 +111,7 @@ CREATE TABLE facture(
 	date_creation_facture DATE NOT NULL,
 	date_paiment_total_facture DATE DEFAULT NULL,
 	date_echeance_facture DATE NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	FOREIGN KEY (id_periode) REFERENCES periode(id_periode),
 	FOREIGN KEY (id_etat_paiement) REFERENCES etat_paiement(id_etat_paiement)
 );
@@ -129,6 +137,7 @@ CREATE TABLE frais(
 	date_creation_frais DATE NOT NULL,
 	montant_frais FLOAT NOT NULL,
 	description_frais VARCHAR(2048) NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	FOREIGN KEY(id_type_frais) REFERENCES type_frais(id_type_frais),
 	FOREIGN KEY(id_reduction) REFERENCES reduction(id_reduction)
 );
@@ -152,6 +161,7 @@ CREATE TABLE paiement(
 	date_paiement DATE NOT NULL,
 	montant_paiement FLOAT NOT NULL,
 	description_paiement VARCHAR(2048) NOT NULL,
+	archive BOOL DEFAULT FALSE,
 	FOREIGN KEY(id_type_paiement) REFERENCES type_paiement(id_type_paiement)
 );
 

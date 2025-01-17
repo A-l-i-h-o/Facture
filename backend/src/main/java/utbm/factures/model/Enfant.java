@@ -4,8 +4,8 @@ public class Enfant {
     private String nom;
     private String prenom;
     private String age;
+    private Integer idFamille;
     private Integer id;
-
     public String getNom() {
         return nom;
     }
@@ -36,5 +36,13 @@ public class Enfant {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getIdFamille() {
+        return idFamille;
+    }
+
+    public void setIdFamille(Integer idFamille) {
+        this.idFamille = idFamille;
     }
 }

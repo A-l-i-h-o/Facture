@@ -1,3 +1,5 @@
+USE facture;
+
 DROP PROCEDURE IF EXISTS connexion;
 
 DELIMITER //
@@ -120,6 +122,20 @@ BEGIN
     END IF;    
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS modification_enfant;
+
+DELIMITER //
+CREATE PROCEDURE modification_enfant(
+    IN v_id_enfant INT,
+	IN v_age INT
+)
+BEGIN
+	UPDATE enfant SET age_enfant=v_age WHERE id_enfant = v_id_enfant;
+END //
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS recuperation_id_parent;
 
 DELIMITER //

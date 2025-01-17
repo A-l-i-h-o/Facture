@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import utbm.factures.model.Enfant;
-import utbm.factures.model.Utilisateur;
+import utbm.factures.model.Parent;
 import utbm.factures.services.BDService;
 
 import java.sql.Types;
@@ -23,9 +23,9 @@ import java.util.Map;
  * Il renvoie les données sous forme de JSON.
  */
 @RestController
-@RequestMapping(value = "enfant/*", method = RequestMethod.GET,
+@RequestMapping(value = "parent/*", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-public class EnfantController {
+public class ParentController {
 
     private final BDService bdService;
 
@@ -33,21 +33,21 @@ public class EnfantController {
      * Spring Boot s'occupe de lier les instances pour qu'elles soient utilisables n'importe où.
      */
     @Autowired
-    public EnfantController(BDService bdService) {
+    public ParentController(BDService bdService) {
         this.bdService = bdService;
     }
 
     @PostMapping(value = "/creation")
-    public JSONObject creation(@RequestBody Enfant enfant) {
+    public JSONObject creation(@RequestBody Parent parent) {
 
         if (!this.bdService.getAdmin()) {
-            return messageErreurRetour("Un accès administrateur est nécessaire pour la création d'un enfant.");
+            return messageErreurRetour("Un accès administrateur est nécessaire pour la création d'un parent.");
         }
 
-        String procedureCall = "{CALL recuperation_id_enfant(?, ?, ?, ?, ?)}";
-        Object[] entrees = {enfant.getIdFamille(), enfant.getNom(), enfant.getPrenom(), enfant.getAge()};
+        String procedureCall = "{CALL recuperation_id_parent(?, ?, ?, ?, ?)}";
+        Object[] entrees = {parent.getIdFamille(), parent.getStatut(), parent.getNom(), parent.getPrenom(), parent.getAdresse(), parent.getAdresseEmail()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_enfant"};
+        String[] nomSorties = {"id_parent"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -68,9 +68,9 @@ public class EnfantController {
     }
 
     @PostMapping(value = "/")
-    public JSONObject get(@RequestParam(value = "id_enfant") String id_enfant) {
+    public JSONObject get(@RequestParam(value = "id_parent") String id_parent) {
 
-        String requete = "SELECT * FROM enfant WHERE id_enfant="+id_enfant;
+        String requete = "SELECT * FROM parent WHERE id_parent="+id_parent;
         String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
         return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
     }
