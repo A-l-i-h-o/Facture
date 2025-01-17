@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
 from baseDeDonnees.MySqlDatabase import MySQLDatabase
-from datetime import time
+from datetime import time, date
 import httpx
 
 # In-memory "database" for families
@@ -77,7 +77,7 @@ class Famille(BaseModel):
     liste_id_parents: List[Parent]
     liste_id_enfants: List[Enfant]
     liste_id_facture: List[Facture]
-    liste_id_reduction: Liste[Reduction]
+    liste_id_reduction: List[Reduction]
 
 
 
@@ -132,15 +132,26 @@ async def get_famille(id_famille:int):
 @famille_router.get("/allIdFamille", response_model=List[int])
 async def get_all_familles():
     query = "SELECT id_famille FROM famille"
-    result = mysql.fetch_query(query, (user_login,))
-    return list(mysql.values())
+    result = mysql.fetch_query(query)
+    return list(result.values())
 
 
-@famille_router.get("/famille", response_model=int)
+@famille_router.get("/{user_id}", response_model=int)
 async def get_family(user_id: int):
-    _,id_famille = mysql.callproc("creation_utilisateur",(user_id,0))
-    return id_famille
+    query = "SELECT id_famille FROM famille WHERE id_user=%d"
+    result = mysql.fetch_query(query, (user_id,))
+    return result
 
+@famille_router.post("/creation/", response_model=int)
+async def creation_family(user_id: int):
+    query = "INSERT INTO famille(id_user) VALUES (%s)"
+    r = mysql.fetch_query(query, (user_id,))  # Vérifiez que la requête s'exécute correctement
+    
+    print(f"ID famille créé : {r}")
+    # Vérifiez ce que retourne get_family avant de le renvoyer
+    family_id = await get_family(user_id)
+    print(f"ID famille créé : {family_id}")
+    return family_id
 
 @famille_router.post("/liaison_famille_facture")
 async def liaison_famille_facture(liaison: LiaisonFamilleFacture):

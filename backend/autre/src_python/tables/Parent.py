@@ -22,7 +22,7 @@ mysql = MySQLDatabase(host="localhost", user="root", password="", database="Fact
 mysql.connect()
 
 
-@enfant_router.post("/{id_parent}", response_model=Parent)
+@parent_router.post("/{id_parent}", response_model=ParentAvecIdFamille)
 async def recuperation_parent(id_parent: int):
     
     _,id_famille,libelle_statut_parent,nom_parent,prenom_parent,adresse_parent,adresse_email_parent = mysql.callproc(

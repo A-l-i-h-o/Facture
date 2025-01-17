@@ -24,7 +24,7 @@ mysql = MySQLDatabase(host="localhost", user="root", password="", database="Fact
 mysql.connect()
 
 
-@reduction_router.get("/type_paiement", response_model=List[str])
+@paiement_router.get("/type_paiement", response_model=List[str])
 async def get_all_type_paiement():
     query = "SELECT libelle_type_paiement FROM type_paiement"
     result = mysql.fetch_query(query)

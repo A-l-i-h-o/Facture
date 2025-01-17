@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
 from baseDeDonnees.MySqlDatabase import MySQLDatabase
-
+import httpx
 from datetime import date
 
 facture_db = {}
@@ -35,7 +35,7 @@ class Frais(BaseModel):
 class FactureEntree(BaseModel):
     
     libelle_periode: str
-    id_reduction: int,
+    id_reduction: int
     libelle_etat_paiement: str
     description_facture: str
     creancier: str
@@ -48,7 +48,7 @@ class Facture(BaseModel):
     
     id_facture: int
     libelle_periode: str
-    reduction: Reduction,
+    reduction: Reduction
     libelle_etat_paiement: str
     description_facture: str
     creancier: str

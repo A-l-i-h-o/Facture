@@ -4,7 +4,7 @@ DELIMITER //
 
 CREATE PROCEDURE connexion(
     IN v_login VARCHAR(255),
-    IN v_mdp VARCHAR(255) ,
+    IN v_mdp VARCHAR(255),
     OUT v_connexion BOOLEAN,
     OUT v_id_user INT,
     OUT v_admin BOOLEAN
@@ -24,7 +24,7 @@ BEGIN
         SET v_connexion = TRUE;
         
         -- Récupération des informations de l'utilisateur
-        SELECT id_user, admin 
+        SELECT id_user, admin
         INTO v_id_user, v_admin
         FROM utilisateur
         WHERE login = v_login AND mdp = v_mdp;

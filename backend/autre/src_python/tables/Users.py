@@ -77,7 +77,7 @@ async def disconnect_user(session_id: SessionID):
 
 
 
-@user_router.put("/modify")
+@user_router.post("/modify")
 async def modify_user(user_mod: UserModification):
     verify_session(user_mod.session_id)
     if not session_db[user.login][1]:
