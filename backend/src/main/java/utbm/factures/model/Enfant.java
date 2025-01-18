@@ -1,11 +1,11 @@
 package utbm.factures.model;
 
 public class Enfant {
-    private String nom;
-    private String prenom;
-    private String age;
-    private Integer idFamille;
-    private Integer id;
+    String nom;
+    String prenom;
+    String age;
+    Integer idFamille;
+    Integer id;
     public String getNom() {
         return nom;
     }

@@ -1,11 +1,11 @@
 package utbm.factures.model;
 
 public class Utilisateur {
-    private String login;
-    private String mdp;
-    private String newMdp;
-    private Boolean admin;
-    private Integer id;
+    String login;
+    String mdp;
+    String newMdp;
+    Boolean admin;
+    Integer id;
 
     // Getters et setters
     public String getLogin() {
