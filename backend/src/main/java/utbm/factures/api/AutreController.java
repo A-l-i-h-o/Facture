@@ -22,7 +22,7 @@ import java.util.Map;
  * Il renvoie les données sous forme de JSON.
  */
 @RestController
-@RequestMapping(value = "/*", method = RequestMethod.GET,
+@RequestMapping(value = "", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class AutreController {
 
