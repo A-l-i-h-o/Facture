@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import utbm.factures.model.Enfant;
 import utbm.factures.model.Utilisateur;
 import utbm.factures.services.BDService;
@@ -28,13 +29,15 @@ import java.util.Map;
 public class EnfantController {
 
     private final BDService bdService;
+    private final RestTemplate restTemplate;
 
     /**
      * Spring Boot s'occupe de lier les instances pour qu'elles soient utilisables n'importe où.
      */
     @Autowired
-    public EnfantController(BDService bdService) {
+    public EnfantController(BDService bdService, RestTemplate restTemplate) {
         this.bdService = bdService;
+        this.restTemplate = restTemplate;
     }
 
     @PostMapping(value = "/creation")
@@ -85,6 +88,29 @@ public class EnfantController {
         String requete = "SELECT * FROM enfant";
         String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
         return this.bdService.select(requete, nomSorties);
+    }
+
+    @PostMapping(value = "/all_info")
+    public JSONObject getAllInfo(@RequestParam(value = "id_enfant") String id_enfant) {
+
+        JSONObject enfant = get(id_enfant);
+
+        String requeteReduction = "SELECT id_reduction FROM liste_reduction_enfant WHERE id_enfant=" + id_enfant;
+        String[] nomSortiesReduction = {"id_reduction"};
+        JSONArray listeIdReduction = this.bdService.select(requeteReduction, nomSortiesReduction);
+
+        JSONArray listeReduction = new JSONArray();
+
+        for (int i = 0; i < listeIdReduction.size(); i++) {
+            JSONObject reduction = (JSONObject) listeIdReduction.get(i);
+            int idReduction = (int) reduction.get("id_reduction");
+
+            String url = "http://localhost:9392/reduction/?id_reduction=" + idReduction;
+            listeReduction.add(restTemplate.getForObject(url, JSONObject.class));
+        }
+
+        enfant.put("Liste reduction", listeReduction);
+        return enfant;
     }
 
     private JSONObject messageErreurRetour(String message) {

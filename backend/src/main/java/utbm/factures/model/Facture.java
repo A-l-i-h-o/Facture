@@ -18,6 +18,7 @@ public class Facture {
     Date datePaiementTotal;
     Date dateEcheance;
 
+
     public int getId() {
         return id;
     }
