@@ -1,5 +1,5 @@
 export interface Periode {
-    id: number;
-    labelle: string;
-    idReduction:number;
+    id?: number;
+    labelle?: string;
+    idReduction?:number;
 }

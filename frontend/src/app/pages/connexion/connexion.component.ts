@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FactureService } from 'src/app/http/FactureService';
-import { Router } from '@angular/router'; // Importez Router
+import { Router } from '@angular/router';
+import { Utilisateur } from 'src/app/model/Utilisateur.model';
 
 @Component({
   selector: 'app-connexion',
@@ -14,10 +15,11 @@ export class ConnexionComponent {
   errorMessage: string = '';
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private factureService: FactureService,
-    private router: Router // Ajoutez Router dans le constructeur
+    private router: Router
   ) {
+    // Initialisation du formulaire de connexion
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -26,21 +28,29 @@ export class ConnexionComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      // Récupérer les valeurs du formulaire
       const { username, password } = this.loginForm.value;
 
-      this.factureService.httpLogin(username, password).subscribe(
-        (response) => {
+      // Créer une instance de l'objet Utilisateur
+      const utilisateur: Utilisateur = {
+        login: username,
+        mdp: password,
+      };
+
+      // Appeler le service pour la connexion
+      this.factureService.connexion(utilisateur).subscribe(
+        (response: any) => { // Remplacez `any` par un type défini si possible
           console.log('Connexion réussie', response);
 
-          // Supposons que la clé retournée se trouve dans `response.token`
-          const session_id = response.session_id;
+          // Supposons que `response.id` contient le session_id
+          const session_id = response.id;
 
           if (session_id) {
-            // Sauvegardez le token dans le stockage local ou sessionStorage si nécessaire
+            // Sauvegarder le session_id dans localStorage
             localStorage.setItem('session_id', session_id);
 
-            // Rediriger vers une autre route après la connexion réussie
-            this.router.navigate(['/accueil']); // Modifiez '/dashboard' selon votre route cible
+            // Redirection vers la page d'accueil
+            this.router.navigate(['/accueil']);
           } else {
             this.errorMessage = 'Le session_id n\'a pas été trouvé dans la réponse.';
           }

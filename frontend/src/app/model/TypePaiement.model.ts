@@ -1,4 +1,4 @@
 export interface TypePaiement {
-    id: number;
-    labelle: string;
+    id?: number;
+    labelle?: string;
 }

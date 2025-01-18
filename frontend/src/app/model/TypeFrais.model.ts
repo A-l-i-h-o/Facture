@@ -1,4 +1,4 @@
 export interface TypeFrais {
-    id: number;
-    labelle: string;
+    id?: number;
+    labelle?: string;
 }

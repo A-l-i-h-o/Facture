@@ -16,16 +16,16 @@ export class FamillesComponent implements OnInit {
   constructor(private factureService: FactureService) { }
 
   ngOnInit(): void {
-    // Récupération des familles depuis l'API au chargement du composant
-    this.factureService.getFamilles().subscribe(
-      (data) => {
-        this.familles = data;
-        this.filteredFamilles = data; // Initialement, toutes les familles sont affichées
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des familles', error);
-      }
-    );
+    // // Récupération des familles depuis l'API au chargement du composant
+    // this.factureService.().subscribe(
+    //   (data) => {
+    //     this.familles = data;
+    //     this.filteredFamilles = data; // Initialement, toutes les familles sont affichées
+    //   },
+    //   (error) => {
+    //     console.error('Erreur lors de la récupération des familles', error);
+    //   }
+    // );
   }
 
   // Filtrage des familles en fonction du terme de recherche dans le nom, prénom ou mail

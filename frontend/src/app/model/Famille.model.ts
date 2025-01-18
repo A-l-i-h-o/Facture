@@ -4,9 +4,9 @@ import { Parent } from "./Parent.model";
 import { Reduction } from "./Reduction.model";
 
 export interface Famille {
-    id:number;
-    listeParent:Parent[];
-    listeEnfant:Enfant[];
-    listeReduction:Reduction[];
-    listeFacture:Facture[];
+    id?:number;
+    listeParent?:Parent[];
+    listeEnfant?:Enfant[];
+    listeReduction?:Reduction[];
+    listeFacture?:Facture[];
 }

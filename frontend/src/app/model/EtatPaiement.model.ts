@@ -1,4 +1,4 @@
 export interface EtatPaiement {
-    id: number;
-    labelle: string;
+    id?: number;
+    labelle?: string;
 }

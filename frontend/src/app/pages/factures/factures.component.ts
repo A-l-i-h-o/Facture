@@ -17,15 +17,15 @@ export class FacturesComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupération des factures depuis l'API au chargement du composant
-    this.factureService.getFactures().subscribe(
-      (data) => {
-        this.factures = data;
-        this.filteredFactures = data; // Initialement, toutes les factures sont affichées
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des factures', error);
-      }
-    );
+    // this.factureService.getFactures().subscribe(
+    //   (data) => {
+    //     this.factures = data;
+    //     this.filteredFactures = data; // Initialement, toutes les factures sont affichées
+    //   },
+    //   (error) => {
+    //     console.error('Erreur lors de la récupération des factures', error);
+    //   }
+    // );
   }
 
   // Filtrage des factures en fonction du terme de recherche dans les descriptions
