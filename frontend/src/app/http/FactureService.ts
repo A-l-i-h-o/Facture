@@ -9,6 +9,11 @@ import { Paiement } from '../model/Paiement.model';
 import { Frais } from '../model/Frais.model';
 import { Facture } from '../model/Facture.model';
 import { Famille } from '../model/Famille.model';
+import { TypePaiement } from '../model/TypePaiement.model';
+import { TypeFrais } from '../model/TypeFrais.model';
+import { StatutParent } from '../model/StatutParent.model';
+import { Periode } from '../model/Periode.model';
+import { EtatPaiement } from '../model/EtatPaiement.model';
 
 
 @Injectable({
@@ -178,6 +183,66 @@ export class FactureService {
   getFamilleAllInfo(id:number): Observable<Famille> {
     return this.http.get<Famille>(`${this.apiUrl}famille/all_info?id_famille=${id}`);
   } 
+
+  ///////////
+
+  // etat_paiement //
+
+  getEtatPaiement(id:number): Observable<EtatPaiement> {
+    return this.http.get<EtatPaiement>(`${this.apiUrl}etat_paiement/?id_etat_paiement=${id}`);
+  }
+
+  getAllEtatPaiement(): Observable<EtatPaiement[]> {
+    return this.http.get<EtatPaiement[]>(`${this.apiUrl}etat_paiement/all`);
+  }
+
+  ///////////
+
+  // periode //
+
+  getPeriode(id:number): Observable<Periode> {
+    return this.http.get<Periode>(`${this.apiUrl}periode/?id_periode=${id}`);
+  }
+  
+  getAllPeriode(): Observable<Periode[]> {
+    return this.http.get<Periode[]>(`${this.apiUrl}periode/all`);
+  }
+  
+  ///////////
+
+  // statut_parent //
+
+  getStatutParent(id:number): Observable<StatutParent> {
+    return this.http.get<StatutParent>(`${this.apiUrl}statut_parent/?id_statut_parent=${id}`);
+  }
+
+  getAllStatutParent(): Observable<StatutParent[]> {
+    return this.http.get<StatutParent[]>(`${this.apiUrl}statut_parent/all`);
+  }
+
+  ///////////
+
+  // type_frais //
+
+  getTypeFrais(id:number): Observable<TypeFrais> {
+    return this.http.get<TypeFrais>(`${this.apiUrl}type_frais/?id_type_frais=${id}`);
+  }
+  
+  getAllTypeFrais(): Observable<TypeFrais[]> {
+    return this.http.get<TypeFrais[]>(`${this.apiUrl}type_frais/all`);
+  }
+  
+  ///////////
+
+  // type_paiement //
+
+  getTypePaiement(id:number): Observable<TypePaiement> {
+    return this.http.get<TypePaiement>(`${this.apiUrl}type_paiement/?id_type_paiement=${id}`);
+  }
+
+  getAllTypePaiement(): Observable<TypePaiement[]> {
+    return this.http.get<TypePaiement[]>(`${this.apiUrl}type_paiement/all`);
+  }
 
   ///////////
 }
