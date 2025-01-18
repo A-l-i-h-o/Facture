@@ -5,6 +5,7 @@ import { Reduction } from "./Reduction.model";
 
 export interface Famille {
     id?:number;
+    idUtilisateur?:number;
     listeParent?:Parent[];
     listeEnfant?:Enfant[];
     listeReduction?:Reduction[];

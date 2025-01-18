@@ -39,6 +39,14 @@ public class FamilleController {
         this.restTemplate = restTemplate;
     }
 
+    @PostMapping(value = "/all")
+    public JSONArray get() {
+
+        String requete = "SELECT * FROM famille";
+        String[] nomSorties = {"id","idUtilisateur"};
+        return this.bdService.select(requete, nomSorties);
+    }
+
 
     @PostMapping(value = "/all_info")
     public JSONObject getAllInfo(@RequestParam(value = "id_famille") String id_famille) {

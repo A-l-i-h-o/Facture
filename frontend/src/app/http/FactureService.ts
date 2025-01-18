@@ -184,6 +184,10 @@ export class FactureService {
     return this.http.get<Famille>(`${this.apiUrl}famille/all_info?id_famille=${id}`);
   } 
 
+  getAllFamille(): Observable<Famille[]> {
+    return this.http.get<Famille[]>(`${this.apiUrl}famille/all`);
+  }
+
   ///////////
 
   // etat_paiement //
