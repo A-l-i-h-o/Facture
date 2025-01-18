@@ -11,9 +11,9 @@
     <organization>
         <name>UTBM</name>
     </organization>
-    <inceptionYear>2022</inceptionYear>
+    <inceptionYear>2025</inceptionYear>
     <groupId>utbm</groupId>
-    <artifactId>eternal-dynasties</artifactId>
+    <artifactId>facture</artifactId>
     <version>1.0.0</version>
     <name>facture</name>
     <description>facture</description>
