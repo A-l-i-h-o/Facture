@@ -47,7 +47,7 @@ public class FraisController {
         String procedureCall = "{CALL creation_frais(?, ?, ?, ?, ?, ?)}";
         Object[] entrees = {frais.getType(), frais.getIdReduction(), frais.getDateCreation(), frais.getMontant(), frais.getDescription()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_frais"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -71,7 +71,7 @@ public class FraisController {
     public JSONObject get(@RequestParam(value = "id_frais") String id_frais) {
 
         String requete = "SELECT * FROM frais WHERE id_frais="+id_frais;
-        String[] nomSorties = {"id_frais","id_type_frais","id_reduction","date_creation_frais","montant_frais","description_frais","archive"};
+        String[] nomSorties = {"id","idType","idReduction","dateCreation","montant","description","archive"};
         try {
             return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
         }catch (Exception e){
@@ -83,7 +83,7 @@ public class FraisController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM frais";
-        String[] nomSorties = {"id_frais","id_type_frais","id_reduction","date_creation_frais","montant_frais","description_frais","archive"};
+        String[] nomSorties = {"id","idType","idReduction","dateCreation","montant","description","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 

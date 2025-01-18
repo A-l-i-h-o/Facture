@@ -45,9 +45,9 @@ public class PaiementController {
         }
 
         String procedureCall = "{CALL creation_paiement(?, ?, ?, ?, ?, ?)}";
-        Object[] entrees = {paiement.getIdFacture(), paiement.getType(), paiement.getDate(),paiement.getMontant(),paiement.getDescription()};
+        Object[] entrees = {paiement.getIdFacture(), paiement.getType(), paiement.getDateCreation(),paiement.getMontant(),paiement.getDescription()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_paiement"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -56,7 +56,7 @@ public class PaiementController {
     public JSONObject get(@RequestParam(value = "id_paiement") String id_paiement) {
 
         String requete = "SELECT * FROM paiement WHERE id_paiement="+id_paiement;
-        String[] nomSorties = {"id_paiement", "id_type_paiement","date_paiement","montant_paiement","description_paiement","archive"};
+        String[] nomSorties = {"id", "idType","dateCreation","montant","description","archive"};
         try {
             return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
         }catch (Exception e){
@@ -68,7 +68,7 @@ public class PaiementController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM paiement";
-        String[] nomSorties = {"id_paiement", "id_type_paiement","date_paiement","montant_paiement","description_paiement","archive"};
+        String[] nomSorties = {"id", "idType","dateCreation","montant","description","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 

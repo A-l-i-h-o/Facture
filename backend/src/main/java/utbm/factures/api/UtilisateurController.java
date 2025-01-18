@@ -41,11 +41,11 @@ public class UtilisateurController {
         String procedureCall = "{CALL connexion(?, ?, ?, ?, ?)}";
         Object[] entrees = {utilisateur.getLogin(), utilisateur.getMdp()};
         int[] sorties = {Types.BOOLEAN, Types.INTEGER, Types.BOOLEAN};
-        String[] nomSorties = {"connexion", "id_utilisateur", "admin"};
+        String[] nomSorties = {"connexion", "id", "admin"};
 
         JSONObject result = this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
         try {
-            this.bdService.setIdUtilisateur((Integer) result.get("id_utilisateur"));
+            this.bdService.setIdUtilisateur((Integer) result.get("id"));
             this.bdService.setAdmin((Boolean) result.get("admin"));
         } catch (Exception e) {
         }
@@ -69,7 +69,7 @@ public class UtilisateurController {
         String procedureCall = "{CALL creation_utilisateur(?, ?, ?, ?)}";
         Object[] entrees = {utilisateur.getLogin(), utilisateur.getMdp(), utilisateur.getAdmin()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_utilisateur"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -84,29 +84,10 @@ public class UtilisateurController {
         String procedureCall = "{CALL modification_utilisateur(?, ?, ?, ?)}";
         Object[] entrees = {utilisateur.getLogin(), utilisateur.getMdp(), utilisateur.getNewMdp()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_utilisateur"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
-
-//    @PostMapping(value = "/supression")
-//    public JSONObject supression(@RequestBody Utilisateur utilisateur) {
-//
-//        if (!this.bdService.getAdmin()) {
-//            return messageErreurRetour("Un accès administrateur est nécessaire pour la suppression d'un compte utilisateur");
-//        }
-//
-//        if (this.bdService.getIdUtilisateur() == utilisateur.getId()) {
-//            return messageErreurRetour("Vous ne pouvez pas supprimer votre propre compte. Demandez à un autre administrateur de le faire.");
-//        }
-//
-//        String procedureCall = "{CALL suppression_utilisateur(?)}";
-//        Object[] entrees = {utilisateur.getLogin(), utilisateur.getMdp(), utilisateur.getAdmin()};
-//        int[] sorties = {Types.INTEGER};
-//        String[] nomSorties = {"id_utilisateur"};
-//
-//        return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
-//    }
 
     @PostMapping(value = "/ajout_famille")
     public JSONObject ajout_famille(@RequestBody Utilisateur utilisateur) {
@@ -118,7 +99,7 @@ public class UtilisateurController {
         String procedureCall = "{CALL recuperation_id_famille(?, ?)}";
         Object[] entrees = {utilisateur.getId()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_famille"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }

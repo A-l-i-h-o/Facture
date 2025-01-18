@@ -1,11 +1,12 @@
 package utbm.factures.model;
 
 public class Utilisateur {
+    Integer id;
     String login;
     String mdp;
     String newMdp;
     Boolean admin;
-    Integer id;
+    Integer idFamille;
 
     // Getters et setters
     public String getLogin() {
@@ -46,5 +47,13 @@ public class Utilisateur {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getIdFamille() {
+        return idFamille;
+    }
+
+    public void setIdFamille(Integer idFamille) {
+        this.idFamille = idFamille;
     }
 }

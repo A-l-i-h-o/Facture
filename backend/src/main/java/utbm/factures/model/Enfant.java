@@ -6,6 +6,7 @@ public class Enfant {
     String age;
     Integer idFamille;
     Integer id;
+    Boolean archive;
     public String getNom() {
         return nom;
     }
@@ -44,5 +45,13 @@ public class Enfant {
 
     public void setIdFamille(Integer idFamille) {
         this.idFamille = idFamille;
+    }
+
+    public Boolean getArchive() {
+        return archive;
+    }
+
+    public void setArchive(Boolean archive) {
+        this.archive = archive;
     }
 }

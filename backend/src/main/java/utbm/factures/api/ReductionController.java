@@ -47,7 +47,7 @@ public class ReductionController {
         String procedureCall = "{CALL ajout_reduction(?, ?, ?, ?)}";
         Object[] entrees = {reduction.getDescription(), reduction.getMontant(), reduction.getPourcentage()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_reduction"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -86,7 +86,7 @@ public class ReductionController {
     public JSONObject get(@RequestParam(value = "id_reduction") String id_reduction) {
 
         String requete = "SELECT * FROM reduction WHERE id_reduction="+id_reduction;
-        String[] nomSorties = {"id_reduction","description_reduction","montant_reduction","archive","pourcentage_reduction"};
+        String[] nomSorties = {"id","description","montant","archive","pourcentage"};
         try {
             return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
         }catch (Exception e){
@@ -98,7 +98,7 @@ public class ReductionController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM reduction";
-        String[] nomSorties = {"id_reduction","description_reduction","montant_reduction","archive","pourcentage_reduction"};
+        String[] nomSorties = {"id","description","montant","archive","pourcentage"};
         return this.bdService.select(requete, nomSorties);
     }
 

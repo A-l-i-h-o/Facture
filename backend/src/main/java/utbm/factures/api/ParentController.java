@@ -47,7 +47,7 @@ public class ParentController {
         String procedureCall = "{CALL recuperation_id_parent(?, ?, ?, ?, ?, ?, ?)}";
         Object[] entrees = {parent.getIdFamille(), parent.getStatut(), parent.getNom(), parent.getPrenom(), parent.getAdresse(), parent.getAdresseEmail()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_parent"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -71,7 +71,7 @@ public class ParentController {
     public JSONObject get(@RequestParam(value = "id_parent") String id_parent) {
 
         String requete = "SELECT * FROM parent WHERE id_parent="+id_parent;
-        String[] nomSorties = {"id_parent","id_statut_parent","nom_parent","prenom_parent","adresse_parent","adresse_email_parent","archive"};
+        String[] nomSorties = {"id","idStatut","nom","prenom","adresse","adresseEmail","archive"};
         try {
             return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
         }catch (Exception e){
@@ -83,7 +83,7 @@ public class ParentController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM parent";
-        String[] nomSorties = {"id_parent","id_statut_parent","nom_parent","prenom_parent","adresse_parent","adresse_email_parent","archive"};
+        String[] nomSorties = {"id","idStatut","nom","prenom","adresse","adresseEmail","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 

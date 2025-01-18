@@ -4,6 +4,7 @@ public class Parent {
     int id;
     int idFamille;
     String statut;
+    int idStatut;
     String nom;
     String prenom;
     String adresse;
@@ -72,5 +73,13 @@ public class Parent {
 
     public void setArchive(Boolean archive) {
         this.archive = archive;
+    }
+
+    public int getIdStatut() {
+        return idStatut;
+    }
+
+    public void setIdStatut(int idStatut) {
+        this.idStatut = idStatut;
     }
 }

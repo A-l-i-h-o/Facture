@@ -8,7 +8,7 @@ public class Paiement {
     String type;
     Integer id;
     Integer idFacture;
-    Date date;
+    Date dateCreation;
 
     public String getDescription() {
         return description;
@@ -50,11 +50,11 @@ public class Paiement {
         this.idFacture = idFacture;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateCreation() {
+        return dateCreation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
 }

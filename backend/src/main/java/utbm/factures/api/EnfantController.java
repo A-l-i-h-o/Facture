@@ -50,7 +50,7 @@ public class EnfantController {
         String procedureCall = "{CALL recuperation_id_enfant(?, ?, ?, ?, ?)}";
         Object[] entrees = {enfant.getIdFamille(), enfant.getNom(), enfant.getPrenom(), enfant.getAge()};
         int[] sorties = {Types.INTEGER};
-        String[] nomSorties = {"id_enfant"};
+        String[] nomSorties = {"id"};
 
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
@@ -74,7 +74,7 @@ public class EnfantController {
     public JSONObject get(@RequestParam(value = "id_enfant") String id_enfant) {
 
         String requete = "SELECT * FROM enfant WHERE id_enfant="+id_enfant;
-        String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
+        String[] nomSorties = {"id","nom","prenom","age","archive"};
         try {
             return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
         }catch (Exception e){
@@ -86,7 +86,7 @@ public class EnfantController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM enfant";
-        String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
+        String[] nomSorties = {"id","nom","prenom","age","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 
@@ -96,20 +96,20 @@ public class EnfantController {
         JSONObject enfant = get(id_enfant);
 
         String requeteReduction = "SELECT id_reduction FROM liste_reduction_enfant WHERE id_enfant=" + id_enfant;
-        String[] nomSortiesReduction = {"id_reduction"};
+        String[] nomSortiesReduction = {"idReduction"};
         JSONArray listeIdReduction = this.bdService.select(requeteReduction, nomSortiesReduction);
 
         JSONArray listeReduction = new JSONArray();
 
         for (int i = 0; i < listeIdReduction.size(); i++) {
             JSONObject reduction = (JSONObject) listeIdReduction.get(i);
-            int idReduction = (int) reduction.get("id_reduction");
+            int idReduction = (int) reduction.get("idReduction");
 
             String url = "http://localhost:9392/reduction/?id_reduction=" + idReduction;
             listeReduction.add(restTemplate.getForObject(url, JSONObject.class));
         }
 
-        enfant.put("Liste reduction", listeReduction);
+        enfant.put("listeReduction", listeReduction);
         return enfant;
     }
 

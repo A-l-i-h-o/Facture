@@ -4,6 +4,7 @@ import java.util.Date;
 public class Frais {
     int id;
     int idFacture;
+    int idType;
     String type;
     int idReduction;
     Date dateCreation;
@@ -73,5 +74,13 @@ public class Frais {
 
     public void setArchive(Boolean archive) {
         this.archive = archive;
+    }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
     }
 }

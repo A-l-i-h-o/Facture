@@ -46,70 +46,70 @@ public class FamilleController {
         JSONObject famille = new JSONObject();
 
         String requeteParent = "SELECT id_parent FROM liste_parent WHERE id_famille="+id_famille;
-        String[] nomSortiesParent  = {"id_parent"};
+        String[] nomSortiesParent  = {"id"};
         JSONArray listeIdParent=  this.bdService.select(requeteParent , nomSortiesParent);
 
         JSONArray listeParent = new JSONArray();
 
         for (int i = 0; i < listeIdParent.size(); i++) {
             JSONObject parent = (JSONObject) listeIdParent.get(i);
-            int idParent = (int) parent.get("id_parent");
+            int idParent = (int) parent.get("id");
 
             String url = "http://localhost:9392/parent/?id_parent=" + idParent;
             listeParent.add(restTemplate.getForObject(url, JSONObject.class));
         }
 
-        famille.put("Liste parents", listeParent);
+        famille.put("listeParent", listeParent);
 
         String requeteEnfant = "SELECT id_enfant FROM liste_enfant WHERE id_famille="+id_famille;
-        String[] nomSortiesEnfant = {"id_enfant"};
+        String[] nomSortiesEnfant = {"id"};
         JSONArray listeIdEnfant =  this.bdService.select(requeteEnfant, nomSortiesEnfant);
 
         JSONArray listeEnfant = new JSONArray();
 
         for (int i = 0; i < listeIdEnfant.size(); i++) {
             JSONObject enfant = (JSONObject) listeIdEnfant.get(i);
-            int idEnfant = (int) enfant.get("id_enfant");
+            int idEnfant = (int) enfant.get("id");
 
             String url = "http://localhost:9392/enfant/all_info?id_enfant=" + idEnfant;
             listeEnfant.add(restTemplate.getForObject(url, JSONObject.class));
         }
 
-        famille.put("Liste enfants", listeEnfant);
+        famille.put("listeEnfant", listeEnfant);
 
 
         String requeteReduction = "SELECT id_reduction FROM liste_reduction_famille WHERE id_famille="+id_famille;
-        String[] nomSortiesReduction = {"id_reduction"};
+        String[] nomSortiesReduction = {"id"};
         JSONArray listeIdReduction =  this.bdService.select(requeteReduction, nomSortiesReduction);
 
         JSONArray listeReduction = new JSONArray();
 
         for (int i = 0; i < listeIdReduction.size(); i++) {
             JSONObject reduction = (JSONObject) listeIdReduction.get(i);
-            int idReduction = (int) reduction.get("id_reduction");
+            int idReduction = (int) reduction.get("id");
 
             String url = "http://localhost:9392/reduction/?id_reduction=" + idReduction;
             listeReduction.add(restTemplate.getForObject(url, JSONObject.class));
         }
 
-        famille.put("Liste reduction", listeReduction);
+        famille.put("listeReduction", listeReduction);
 
 
         String requeteFacture = "SELECT id_facture FROM historique_facture WHERE id_famille="+id_famille;
-        String[] nomSortiesFacture= {"id_facture"};
+        String[] nomSortiesFacture= {"id"};
         JSONArray listeIdFacture =  this.bdService.select(requeteFacture, nomSortiesFacture);
 
         JSONArray listeFacture= new JSONArray();
 
         for (int i = 0; i < listeIdFacture.size(); i++) {
             JSONObject facture = (JSONObject) listeIdFacture.get(i);
-            int idFacture = (int) facture.get("id_facture");
+            int idFacture = (int) facture.get("id");
 
             String url = "http://localhost:9392/facture/all_info?id_facture=" + idFacture;
             listeFacture.add(restTemplate.getForObject(url, JSONObject.class));
         }
 
-        famille.put("Liste facture", listeFacture);
+        famille.put("listeFacture", listeFacture);
 
         return famille;
     }

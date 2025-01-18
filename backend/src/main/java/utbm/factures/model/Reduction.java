@@ -1,12 +1,13 @@
 package utbm.factures.model;
 
 public class Reduction {
-    String description;
-    String montant;
-    String pourcentage;
     Integer id;
     Integer idFamille;
     Integer idEnfant;
+    String description;
+    String montant;
+    String pourcentage;
+    Boolean archive;
 
     public String getDescription() {
         return description;
@@ -54,5 +55,13 @@ public class Reduction {
 
     public void setIdEnfant(Integer idEnfant) {
         this.idEnfant = idEnfant;
+    }
+
+    public Boolean getArchive() {
+        return archive;
+    }
+
+    public void setArchive(Boolean archive) {
+        this.archive = archive;
     }
 }
