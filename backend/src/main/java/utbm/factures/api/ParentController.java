@@ -44,7 +44,7 @@ public class ParentController {
             return messageErreurRetour("Un accès administrateur est nécessaire pour la création d'un parent.");
         }
 
-        String procedureCall = "{CALL recuperation_id_parent(?, ?, ?, ?, ?)}";
+        String procedureCall = "{CALL recuperation_id_parent(?, ?, ?, ?, ?, ?, ?)}";
         Object[] entrees = {parent.getIdFamille(), parent.getStatut(), parent.getNom(), parent.getPrenom(), parent.getAdresse(), parent.getAdresseEmail()};
         int[] sorties = {Types.INTEGER};
         String[] nomSorties = {"id_parent"};
@@ -53,14 +53,14 @@ public class ParentController {
     }
 
     @PostMapping(value = "/modification")
-    public JSONObject modification(@RequestBody Enfant enfant) {
+    public JSONObject modification(@RequestBody Parent parent) {
 
         if (!this.bdService.getAdmin()) {
-            return messageErreurRetour("Un accès administrateur est nécessaire pour la modification d'un enfant.");
+            return messageErreurRetour("Un accès administrateur est nécessaire pour la modification d'un parent.");
         }
 
-        String procedureCall = "{CALL modification_enfant(?, ?)}";
-        Object[] entrees = {enfant.getId(), enfant.getAge()};
+        String procedureCall = "{CALL modification_parent(?,?,?,?,?,?)}";
+        Object[] entrees = {parent.getId(), parent.getStatut(), parent.getNom(), parent.getPrenom(),parent.getAdresse(), parent.getAdresseEmail()};
         int[] sorties = {};
         String[] nomSorties = {};
 
@@ -71,15 +71,19 @@ public class ParentController {
     public JSONObject get(@RequestParam(value = "id_parent") String id_parent) {
 
         String requete = "SELECT * FROM parent WHERE id_parent="+id_parent;
-        String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
-        return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
+        String[] nomSorties = {"id_parent","id_statut_parent","nom_parent","prenom_parent","adresse_parent","adresse_email_parent","archive"};
+        try {
+            return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
+        }catch (Exception e){
+            return messageErreurRetour("Le parent n'existe pas.");
+        }
     }
 
     @PostMapping(value = "/all")
     public JSONArray get() {
 
-        String requete = "SELECT * FROM enfant";
-        String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
+        String requete = "SELECT * FROM parent";
+        String[] nomSorties = {"id_parent","id_statut_parent","nom_parent","prenom_parent","adresse_parent","adresse_email_parent","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 

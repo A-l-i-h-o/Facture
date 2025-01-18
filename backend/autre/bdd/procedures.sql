@@ -174,6 +174,34 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS modification_parent;
+
+DELIMITER //
+CREATE PROCEDURE modification_parent(
+	IN v_id_parent INT,
+    IN v_libelle_statut_parent VARCHAR(255) ,
+    IN v_nom_parent VARCHAR(255) ,
+    IN v_prenom_parent VARCHAR(255) ,
+    IN v_adresse_parent VARCHAR(255) ,
+    IN v_adresse_email_parent VARCHAR(255)
+)
+BEGIN
+    DECLARE v_id_statut_parent INT;
+	
+	IF NOT EXISTS (SELECT 1 FROM statut_parent WHERE libelle_statut_parent = v_libelle_statut_parent) THEN
+       INSERT INTO statut_parent(libelle_statut_parent) VALUES (v_libelle_statut_parent);
+    END IF;
+    SELECT id_statut_parent INTO v_id_statut_parent 
+    FROM statut_parent 
+    WHERE libelle_statut_parent = v_libelle_statut_parent;
+	
+	UPDATE parent 
+	SET id_statut_parent=v_id_statut_parent,nom_parent=v_nom_parent,prenom_parent=v_prenom_parent,adresse_parent=v_adresse_parent,adresse_email_parent=v_adresse_email_parent
+	WHERE id_parent=v_id_parent;
+
+END //
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS creation_frais;
 

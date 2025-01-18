@@ -72,7 +72,11 @@ public class EnfantController {
 
         String requete = "SELECT * FROM enfant WHERE id_enfant="+id_enfant;
         String[] nomSorties = {"id_enfant","nom_enfant","prenom_enfant","age_enfant","archive"};
-        return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
+        try {
+            return new JSONObject((Map) this.bdService.select(requete, nomSorties).get(0));
+        }catch (Exception e){
+            return messageErreurRetour("L'enfant n'existe pas.");
+        }
     }
 
     @PostMapping(value = "/all")
