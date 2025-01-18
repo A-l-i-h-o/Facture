@@ -304,15 +304,16 @@ END //
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS paiement;
+DROP PROCEDURE IF EXISTS creation_paiement;
 
 DELIMITER //
-CREATE PROCEDURE paiement(
+CREATE PROCEDURE creation_paiement(
     IN v_id_facture INT ,
     IN v_libelle_type_paiement VARCHAR(255),
     IN v_date_paiement DATE ,
     IN v_montant_paiement FLOAT ,
-    IN v_description_paiement VARCHAR(2048) 
+    IN v_description_paiement VARCHAR(2048),
+	OUT v_id_paiement INT
 )
 BEGIN    
     DECLARE v_id_type_paiement INT;
@@ -334,6 +335,9 @@ BEGIN
     VALUES (v_id_facture, v_id_paiement);
 END //
 DELIMITER ;
+
+
+
 
 
 DROP PROCEDURE IF EXISTS ajout_reduction;
