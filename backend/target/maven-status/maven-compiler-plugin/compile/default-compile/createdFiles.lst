@@ -1,4 +1,5 @@
 utbm\factures\api\FactureController.class
+utbm\factures\WebConfig.class
 utbm\factures\model\Parent.class
 utbm\factures\Application.class
 utbm\factures\model\Facture.class
