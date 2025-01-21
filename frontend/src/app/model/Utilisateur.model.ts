@@ -1,4 +1,9 @@
 export interface Utilisateur {
-    login: string;
-    mdp: string;
+    id?: number;
+    login?: string;
+    mdp?: string;
+    newMdp?: string;
+    admin?: boolean;
+    idFamille?: number;
+    connexion?:boolean;
 }

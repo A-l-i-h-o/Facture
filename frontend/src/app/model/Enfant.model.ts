@@ -1,4 +1,11 @@
+import { Reduction } from "./Reduction.model";
+
 export interface Enfant {
-    nom: string;
-    prenom: string;
+    id?:number;
+    nom?: string;
+    prenom?: string;
+    age?:number;
+    idFamille?:number;
+    archive?:boolean;
+    listeReduction?:Reduction[];
 }

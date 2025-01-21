@@ -1,0 +1,1 @@
+java -jar target/facture-1.0.0.jar
