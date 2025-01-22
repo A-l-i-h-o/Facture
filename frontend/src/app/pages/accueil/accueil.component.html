@@ -1,7 +1,10 @@
 <div class="header">
     <button (click)="navigateTo('/accueil')" class="menu-btn">Menu</button>
     <div class="date">{{ currentDate }}</div>
-    <div class="user-info">{{ nomPrenom }}</div>
+    <!--<div class="user-info">{{ nomPrenom }}</div>-->
+    <button (click)="logout()" class="logout-btn">
+      <span class="material-icons">logout</span> Déconnexion
+    </button>
   </div>
   
   <div class="content">

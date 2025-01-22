@@ -22,4 +22,13 @@ export class AccueilComponent {
   navigateTo(route: string): void {
     this.router.navigate([route]);
   }
+
+  logout(): void {
+    // Exemple : Suppression des données utilisateur stockées
+    localStorage.removeItem('user'); // Suppression de l'utilisateur connecté
+    // Redirection vers la page de connexion
+    this.router.navigate(['']);
+
+    console.log('Utilisateur déconnecté, redirigé vers la page de connexion');
+  }
 }

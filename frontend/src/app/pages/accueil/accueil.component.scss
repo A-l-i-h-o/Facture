@@ -96,3 +96,24 @@ body {
     margin: 10px 0;
   }
 }
+
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espace entre l'icône et le texte */
+  transition: color 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ff4d4d; /* Rouge clair pour indiquer une action critique */
+}
+
+.logout-btn .material-icons {
+  font-size: 22px;
+}
