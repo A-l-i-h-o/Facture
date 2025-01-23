@@ -31,4 +31,8 @@ export class ListeReductionsComponent implements OnInit {
   archiver(){
     
   }
+
+  creation(){
+    
+  }
 }

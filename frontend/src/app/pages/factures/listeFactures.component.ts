@@ -21,7 +21,6 @@ export class ListeFacturesComponent implements OnInit {
 
         data.forEach(info=>{
           var id:number = +info["id"];
-          var idFamille: number = info["idFamille"] !== undefined ? +info["idFamille"] : -1;
 
           this.factureService.getFactureAllInfo(id).subscribe(
             (data2) => {
@@ -62,6 +61,10 @@ export class ListeFacturesComponent implements OnInit {
     this.router.navigate(["accueil"]);
   }
   archiver(){
+    
+  }
+
+  creation(){
     
   }
 }
