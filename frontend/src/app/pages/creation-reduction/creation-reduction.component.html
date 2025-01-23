@@ -1,0 +1,80 @@
+<form [formGroup]="reductionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="idFamille">Family ID</label>
+    <input 
+      type="number" 
+      id="idFamille" 
+      formControlName="idFamille" 
+      class="form-control" 
+      [class.is-invalid]="submitted && f['idFamille'].errors"
+    >
+    <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
+      <div *ngIf="f['idFamille'].errors['required']">Family ID is required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="idEnfant">Child ID (Optional)</label>
+    <input 
+      type="number" 
+      id="idEnfant" 
+      formControlName="idEnfant" 
+      class="form-control"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="pourcentage">Reduction Percentage</label>
+    <input 
+      type="number" 
+      id="pourcentage" 
+      formControlName="pourcentage" 
+      class="form-control" 
+      [class.is-invalid]="submitted && f['pourcentage'].errors"
+    >
+    <div *ngIf="submitted && f['pourcentage'].errors" class="invalid-feedback">
+      <div *ngIf="f['pourcentage'].errors['required']">Percentage is required</div>
+      <div *ngIf="f['pourcentage'].errors['min']">Percentage must be at least 0</div>
+      <div *ngIf="f['pourcentage'].errors['max']">Percentage cannot exceed 100</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="montant">Amount</label>
+    <input 
+      type="number" 
+      id="montant" 
+      formControlName="montant" 
+      class="form-control" 
+      [class.is-invalid]="submitted && f['montant'].errors"
+    >
+    <div *ngIf="submitted && f['montant'].errors" class="invalid-feedback">
+      <div *ngIf="f['montant'].errors['required']">Amount is required</div>
+      <div *ngIf="f['montant'].errors['min']">Amount must be at least 0</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea 
+      id="description" 
+      formControlName="description" 
+      class="form-control"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>
+      <input 
+        type="checkbox" 
+        formControlName="archive"
+      > Archive
+    </label>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Create Reduction</button>
+</form>

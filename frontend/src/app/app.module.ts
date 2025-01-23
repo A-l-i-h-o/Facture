@@ -15,6 +15,7 @@ import { FacturesComponent } from './pages/factures/factures.component';
 import { FamillesComponent } from './pages/familles/familles.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ReductionsComponent } from './pages/reductions/reductions.component';
+import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 
@@ -28,6 +29,7 @@ import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscrip
     FamillesComponent,
     ServicesComponent,
     ReductionsComponent,
+    CreationReductionComponent,
     FormulaireInscriptionComponent,
     FormulaireInscriptionEnfantComponent
     
