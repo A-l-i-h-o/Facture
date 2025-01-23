@@ -1,5 +1,5 @@
 export interface Frais {
-    id?:number;
+    id:number;
     montant?: number;
     description?: string;
     idType?:number;

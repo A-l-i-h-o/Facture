@@ -6,7 +6,7 @@ import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/f
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { FacturesComponent } from './pages/factures/factures.component';
-import { FamillesComponent } from './pages/familles/familles.component';
+import { ListeFamillesComponent } from './pages/familles/listeFamilles.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ReductionsComponent } from './pages/reductions/reductions.component';
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component: ConnexionComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'factures', component: FacturesComponent },
-  { path: 'familles', component: FamillesComponent },
+  { path: 'listeFamilles', component: ListeFamillesComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'reductions', component: ReductionsComponent },
   { path: 'creation-reduction', component: CreationReductionComponent },
