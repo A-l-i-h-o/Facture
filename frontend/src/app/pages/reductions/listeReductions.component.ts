@@ -3,20 +3,20 @@ import { Router } from '@angular/router';
 import { FactureService } from 'src/app/http/FactureService';
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+  selector: 'app-liste-reductions',
+  templateUrl: './listeReductions.component.html',
+  styleUrls: ['./listeReductions.component.scss']
 })
-export class ServicesComponent  implements OnInit {
+export class ListeReductionsComponent implements OnInit {
 
-  listeServices: any[] = [];
+  listeReductions: any[] = [];
 
   constructor(private factureService: FactureService,private router: Router) { }
   ngOnInit(): void {
     // Récupération des familles depuis l'API au chargement du composant
-    this.factureService.getAllTypeFrais().subscribe(
+    this.factureService.getAllReduction().subscribe(
       (data) => {
-        this.listeServices = data;
+        this.listeReductions = data;
       },
       (error) => {
         console.error('Erreur lors de la récupération des familles', error);

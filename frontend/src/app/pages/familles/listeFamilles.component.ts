@@ -4,7 +4,7 @@ import { FactureService } from 'src/app/http/FactureService'; // Import du servi
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-famille',
+  selector: 'app-liste-famille',
   templateUrl: './listeFamilles.component.html',
   styleUrls: ['./listeFamilles.component.scss']
 })

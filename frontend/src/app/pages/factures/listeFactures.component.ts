@@ -5,11 +5,11 @@ import { Facture } from 'src/app/model/Facture.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-facture',
-  templateUrl: './factures.component.html',
-  styleUrls: ['./factures.component.scss']
+  selector: 'app-liste-facture',
+  templateUrl: './listeFactures.component.html',
+  styleUrls: ['./listeFactures.component.scss']
 })
-export class FacturesComponent implements OnInit {
+export class ListeFacturesComponent implements OnInit {
 
   factures: Facture[] = []; // Liste des factures récupérées depuis l'API
 

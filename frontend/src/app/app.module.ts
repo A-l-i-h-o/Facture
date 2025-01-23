@@ -13,10 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccueilComponent } from './pages/accueil/accueil.component';
-import { FacturesComponent } from './pages/factures/factures.component';
 import { ListeFamillesComponent } from './pages/familles/listeFamilles.component';
-import { ServicesComponent } from './pages/services/services.component';
-import { ReductionsComponent } from './pages/reductions/reductions.component';
+import { ListeServicesComponent } from './pages/services/listeServices.component';
+import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
+import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
 
 
 @NgModule({
@@ -24,10 +24,10 @@ import { ReductionsComponent } from './pages/reductions/reductions.component';
     AppComponent,
     ConnexionComponent,
     AccueilComponent,
-    FacturesComponent,
+    ListeFacturesComponent,
     ListeFamillesComponent,
-    ServicesComponent,
-    ReductionsComponent
+    ListeServicesComponent,
+    ListeReductionsComponent
     
   ],
   imports: [
