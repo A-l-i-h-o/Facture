@@ -1,0 +1,33 @@
+<div class="famille-container">
+    <div class="header">
+      <h2>Nombre de familles: {{ listeFamilles.length }}</h2>
+    </div>
+  
+    <ul class="famille-list">
+      <li *ngFor="let famille of listeFamilles" class="famille-item">
+        <span><strong>Id Famille : <br>{{ famille.id }}</strong></span>
+        <span>
+          <strong>Parents:
+            <div *ngFor="let parent of famille.listeParent">
+              {{ parent.nom }}, {{ parent.prenom }}
+            </div>
+          </strong> 
+          </span>
+          <span>
+          <strong>Enfants:
+            <div *ngFor="let enfant of famille.listeEnfant">
+              {{ enfant.nom }}, {{ enfant.prenom }}
+            </div>
+          </strong> 
+        </span>
+        <button (OnClick)="choisir()">Selectionner</button>
+        <button (OnClick)="modifier()">Modifier</button>
+        <button (OnClick)="archiver()">Archiver</button>
+      </li>
+    </ul>
+    
+    <ng-template #noFamilles>
+      <p>Aucune famille trouvée.</p>
+    </ng-template>
+  </div>
+  

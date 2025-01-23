@@ -14,7 +14,7 @@ import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { FacturesComponent } from './pages/factures/factures.component';
-import { FamillesComponent } from './pages/familles/familles.component';
+import { ListeFamillesComponent } from './pages/familles/listeFamilles.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ReductionsComponent } from './pages/reductions/reductions.component';
 
@@ -25,7 +25,7 @@ import { ReductionsComponent } from './pages/reductions/reductions.component';
     ConnexionComponent,
     AccueilComponent,
     FacturesComponent,
-    FamillesComponent,
+    ListeFamillesComponent,
     ServicesComponent,
     ReductionsComponent
     
