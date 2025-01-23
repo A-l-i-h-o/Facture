@@ -1,1 +1,23 @@
-<p>reductions works!</p>
+<button class="menuBouton" (click)="retour()">Menu</button>
+
+<div class="reduction-container">
+    <div class="header">
+      <h2>Nombre de reductions: {{ listeReductions.length }}</h2>
+    </div>
+    
+    <ul class="reduction-list">
+      <li *ngFor="let reduction of listeReductions" class="reduction-item">
+        <span><strong>Id Reduction : <br>{{ reduction.id }}</strong></span>
+        <span><strong>Montant : <br>{{ reduction.montant | currency:'EUR'}} </strong></span>
+        <span><strong>Pourcentage : <br>{{ reduction.pourcentage }} %</strong></span>
+        <span><strong>Description : <br>{{ reduction.description }}</strong></span>
+
+        <button (click)="archiver()">Archiver</button>
+      </li>
+    </ul>
+    
+    <ng-template #noReductions>
+      <p>Aucune reduction trouvée.</p>
+    </ng-template>
+  </div>
+  
