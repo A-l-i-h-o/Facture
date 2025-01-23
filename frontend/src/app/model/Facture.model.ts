@@ -2,7 +2,7 @@ import { Frais } from "./Frais.model";
 import { Paiement } from "./Paiement.model";
 
 export interface Facture {
-    id?:number;
+    id:number;
     datePaimentTotal?: Date;
     description?: string;
     creancier?:string;

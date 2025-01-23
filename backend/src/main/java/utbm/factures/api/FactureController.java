@@ -84,8 +84,24 @@ public class FactureController {
     @PostMapping(value = "/all")
     public JSONArray get() {
 
-        String requete = "SELECT * FROM facture";
-        String[] nomSorties = {"id","idPeriode","idEtatPaiement","description","creancier","debiteur","dateCreation","datePaiementTotal","dateEcheance","archive"};
+        String requete = "SELECT " +
+                "f.id_facture AS id, " +
+                "h.id_Famille AS idFamille, " +
+                "f.id_periode AS idPeriode, " +
+                "f.id_etat_paiement AS idEtatPaiement, " +
+                "f.description_facture AS description, " +
+                "f.creancier AS creancier, " +
+                "f.debiteur AS debiteur, " +
+                "f.date_creation_facture AS dateCreation, " +
+                "f.date_paiment_total_facture AS datePaiementTotal, " +
+                "f.date_echeance_facture AS dateEcheance, " +
+                "f.archive AS archive " + // Ajout d'un espace ici
+                "FROM facture AS f " + // Ajout d'un espace après le mot "facture"
+                "JOIN historique_facture AS h " + // Utilisation de JOIN au lieu de la virgule
+                "ON f.id_facture = h.id_facture"; // Correction du nom de colonne pour la correspondance
+
+
+        String[] nomSorties = {"id","idFamille","idPeriode","idEtatPaiement","description","creancier","debiteur","dateCreation","datePaiementTotal","dateEcheance","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 

@@ -1,3 +1,5 @@
+<button class="menuBouton" (click)="retour()">Menu</button>
+
 <div class="famille-container">
     <div class="header">
       <h2>Nombre de familles: {{ listeFamilles.length }}</h2>
@@ -20,9 +22,9 @@
             </div>
           </strong> 
         </span>
-        <button (OnClick)="choisir()">Selectionner</button>
-        <button (OnClick)="modifier()">Modifier</button>
-        <button (OnClick)="archiver()">Archiver</button>
+        <button (click)="choisir()">Selectionner</button>
+        <button (click)="modifier()">Modifier</button>
+        <button (click)="archiver()">Archiver</button>
       </li>
     </ul>
     

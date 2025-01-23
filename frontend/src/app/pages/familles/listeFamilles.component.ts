@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/http/FactureService'; // Import du service
-import { Observable } from 'rxjs';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-famille',
@@ -11,7 +12,7 @@ export class ListeFamillesComponent implements OnInit {
 
   listeFamilles: any[] = []; // Liste des familles récupérées depuis l'API
 
-  constructor(private factureService: FactureService) { }
+  constructor(private factureService: FactureService,private router: Router) { }
 
   ngOnInit(): void {
     // Récupération des familles depuis l'API au chargement du composant
@@ -37,12 +38,16 @@ export class ListeFamillesComponent implements OnInit {
     );
   }
 
-  choisir(){
+  retour(){
+    this.router.navigate(["accueil"]);
+  }
 
+  choisir(){
+    this.router.navigate(["AfficherFamille"]);
   }
 
   modifier(){
-
+    this.router.navigate(["ModifierFamille"]);
   }
 
   archiver(){
