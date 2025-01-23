@@ -1,11 +1,15 @@
 <div class="header">
     <button (click)="navigateTo('/accueil')" class="menu-btn">Menu</button>
     <div class="date">{{ currentDate }}</div>
-    <div class="user-info">{{ nomPrenom }}</div>
+    <!--<div class="user-info">{{ nomPrenom }}</div>-->
+    <button (click)="logout()" class="logout-btn">
+      <span class="material-icons">logout</span> Déconnexion
+    </button>
   </div>
   
   <div class="content">
     <button (click)="navigateTo('/listeFactures')" class="content-btn">Factures</button>
+    <button (click)="navigateTo('/formulaire-inscription')" class="content-btn">Inscription</button>
     <button (click)="navigateTo('/listeFamilles')" class="content-btn">Familles</button>
     <button (click)="navigateTo('/listeServices')" class="content-btn">Service</button>
     <button (click)="navigateTo('/listeReductions')" class="content-btn">Réduction</button>
