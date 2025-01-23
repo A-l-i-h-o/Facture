@@ -15,6 +15,9 @@ import { ListeFamillesComponent } from './pages/familles/listeFamilles.component
 import { ListeServicesComponent } from './pages/services/listeServices.component';
 import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
+import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
+import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
+import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 
 
 @NgModule({
@@ -24,8 +27,8 @@ import { ListeReductionsComponent } from './pages/reductions/listeReductions.com
     AccueilComponent,
     ListeFacturesComponent,
     ListeFamillesComponent,
-    ServicesComponent,
-    ReductionsComponent,
+    ListeServicesComponent,
+    ListeReductionsComponent,
     CreationReductionComponent,
     FormulaireInscriptionComponent,
     FormulaireInscriptionEnfantComponent

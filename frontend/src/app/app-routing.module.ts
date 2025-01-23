@@ -7,7 +7,6 @@ import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscrip
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ListeFamillesComponent } from './pages/familles/listeFamilles.component';
 import { ListeServicesComponent } from './pages/services/listeServices.component';
-import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
 
