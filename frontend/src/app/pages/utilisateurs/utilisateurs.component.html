@@ -1,19 +1,43 @@
 <div class="utilisateur-container">
     <div class="header">
-      <h2>Nombre d'utilisateurs: {{ utilisateurs.length }}</h2>
+      <h2>Nombre d'utilisateurs: {{ utilisateursFiltres.length }}</h2>
       <button class="creation" (click)="creationUtilisateur()">Ajouter Utilisateur</button>
     </div>
   
+    <!-- Checkbox pour afficher uniquement les utilisateurs archivés -->
+    <div class="filter-section">
+      <label>
+        <input type="checkbox" [(ngModel)]="afficherArchives" (change)="filtrerUtilisateurs()">
+        Afficher les utilisateurs archivés
+      </label>
+    </div>
+  
+    <!-- Liste des utilisateurs -->
     <ul class="utilisateur-list">
-      <li *ngFor="let utilisateur of utilisateurs" class="utilisateur-item">
+      <li *ngFor="let utilisateur of utilisateursFiltres" 
+          class="utilisateur-item" 
+          [ngClass]="{'archived': utilisateur.archive}">
+        
         <span><strong>ID :</strong> {{ utilisateur.id }}</span>
         <span><strong>Login :</strong> {{ utilisateur.login }}</span>
         <span><strong>Admin :</strong> {{ utilisateur.admin ? 'Oui' : 'Non' }}</span>
-        <span><strong>ID Famille :</strong> {{ utilisateur.idFamille }}</span>
+        <span><strong>ID Famille :</strong> {{ utilisateur.idFamille ? utilisateur.idFamille : 'Aucune' }}</span>
+  
+        <!-- Message d'archivage -->
+        <div *ngIf="utilisateur.archive" class="archive-message">
+          Cet utilisateur est archivé.
+        </div>
   
         <!-- Boutons d'actions -->
-        <button class="modifier" (click)="modifierUtilisateur(utilisateur)">Modifier</button>
-        <button class="archiver" (click)="archiverUtilisateur(utilisateur)">Archiver</button>
+        <div class="action-buttons">
+          <button *ngIf="!utilisateur.archive" (click)="modifierUtilisateur(utilisateur)" class="modifier">Modifier</button>
+          <button *ngIf="!utilisateur.archive" (click)="confirmerArchivage(utilisateur)" class="archiver">Archiver</button>
+          <button *ngIf="!utilisateur.idFamille" (click)="creerFamille(utilisateur)" class="creation-famille">Créer une famille</button>
+          
+          <!-- Bouton de désarchivage uniquement si l'utilisateur est archivé -->
+          <button *ngIf="utilisateur.archive" (click)="desarchiverUtilisateur(utilisateur)" class="desarchiver">Désarchiver</button>
+        </div>
+        
       </li>
     </ul>
   

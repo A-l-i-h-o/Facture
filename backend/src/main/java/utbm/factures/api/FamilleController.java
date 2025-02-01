@@ -43,13 +43,14 @@ public class FamilleController {
     public JSONArray get() {
 
         String requete = "SELECT * FROM famille";
-        String[] nomSorties = {"id","idUtilisateur"};
+        String[] nomSorties = {"id","idUtilisateur","archive"};
         return this.bdService.select(requete, nomSorties);
     }
 
 
     @PostMapping(value = "/all_info")
     public JSONObject getAllInfo(@RequestParam(value = "id_famille") String id_famille) {
+
 
         JSONObject famille = new JSONObject();
 

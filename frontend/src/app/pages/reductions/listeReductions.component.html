@@ -3,15 +3,35 @@
     <h2>Nombre de réductions: {{ listeReductions.length }}</h2>
     <button class="creation" (click)="creation()">Créer une réduction</button>
   </div>
-  
+
+  <!-- Section de filtre -->
+  <div class="filter-section">
+    <label>
+      <input type="checkbox" [(ngModel)]="afficherArchives" (change)="filtrerReductions()">
+      Afficher uniquement les réductions archivées
+    </label>
+  </div>
+
   <ul class="reduction-list">
-    <li *ngFor="let reduction of listeReductions" class="reduction-item">
+    <li *ngFor="let reduction of listeReductionsFiltres" class="reduction-item" [ngClass]="{'archived': reduction.archive}">
       <span><strong>ID Réduction :</strong> <br>{{ reduction.id }}</span>
       <span><strong>Montant :</strong> <br>{{ reduction.montant | currency:'EUR' }}</span>
       <span><strong>Pourcentage :</strong> <br>{{ reduction.pourcentage }} %</span>
       <span><strong>Description :</strong> <br>{{ reduction.description }}</span>
-      
-      <button (click)="archiver()">Archiver</button>
+
+      <!-- Message d'archivage -->
+      <div *ngIf="reduction.archive" class="archive-message">
+        Cette réduction est archivée.
+      </div>
+
+      <!-- Boutons d'actions -->
+      <div class="action-buttons">
+        <!-- Bouton pour archiver une réduction -->
+        <button *ngIf="!reduction.archive" (click)="archiver(reduction)" class="archiver">Archiver</button>
+
+        <!-- Bouton pour désarchiver une réduction -->
+        <button *ngIf="reduction.archive" (click)="desarchiver(reduction)" class="desarchiver">Désarchiver</button>
+      </div>
     </li>
   </ul>
 

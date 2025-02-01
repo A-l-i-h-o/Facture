@@ -10,24 +10,61 @@ import { Utilisateur } from 'src/app/model/Utilisateur.model';
 export class UtilisateursComponent implements OnInit {
   utilisateurs: Utilisateur[] = [];
 
-  constructor(private factureService: FactureService) { }
+  afficherArchives: boolean = false;
+  utilisateursFiltres: Utilisateur[] = [];
+
+  constructor(private factureService: FactureService) {
+    
+   }
 
   ngOnInit(): void {
+    this.actualise();
+  }
+
+  actualise(){
     this.factureService.listeUtilisateurs().subscribe((data: Utilisateur[]) => {
       this.utilisateurs = data;
+      this.filtrerUtilisateurs(); // Filtrage initial
     });
   }
 
-  creationUtilisateur(){
-
+  // Fonction de filtrage dynamique des utilisateurs
+  filtrerUtilisateurs(): void {
+    this.utilisateursFiltres = this.utilisateurs.filter(u => this.afficherArchives ? u.archive : !u.archive);
   }
 
-  modifierUtilisateur(utilisateur: Utilisateur) {
-    console.log('Modifier utilisateur:', utilisateur);
+  // Fonction pour confirmer et effectuer l'archivage
+  confirmerArchivage(utilisateur: Utilisateur): void {
+    const confirmation = confirm(`Voulez-vous vraiment archiver ${utilisateur.login} ?`);
+    if (confirmation) {
+      this.factureService.archiverUtilisateur(utilisateur).subscribe((user:Utilisateur) => {
+        this.actualise();
+      });
+    }
   }
 
-  archiverUtilisateur(utilisateur: Utilisateur) {
-    console.log('Archiver utilisateur:', utilisateur);
+  desarchiverUtilisateur(utilisateur: any) {
+    const confirmation = confirm(`Voulez-vous vraiment désarchiver ${utilisateur.login} ?`);
+    if (confirmation) {
+      this.factureService.desarchiverUtilisateur(utilisateur).subscribe((user:Utilisateur) => {
+        this.actualise();
+      });
+    }
+  }
+
+  // Fonction pour modifier un utilisateur
+  modifierUtilisateur(utilisateur: Utilisateur): void {
+    alert(`Modification de ${utilisateur.login}`);
+  }
+
+  // Fonction pour créer une famille pour un utilisateur sans ID famille
+  creerFamille(utilisateur: Utilisateur): void {
+    alert(`Création d'une famille pour ${utilisateur.login}`);
+  }
+
+  // Fonction pour ajouter un nouvel utilisateur
+  creationUtilisateur(): void {
+    alert('Ajout d’un nouvel utilisateur');
   }
 
 }

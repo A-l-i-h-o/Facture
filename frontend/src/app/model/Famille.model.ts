@@ -10,4 +10,5 @@ export interface Famille {
     listeEnfant?:Enfant[];
     listeReduction?:Reduction[];
     listeFacture?:Facture[];
+    archive:boolean;
 }

@@ -6,4 +6,5 @@ export interface Utilisateur {
     admin?: boolean;
     idFamille?: number;
     connexion?:boolean;
+    archive?:boolean;
 }

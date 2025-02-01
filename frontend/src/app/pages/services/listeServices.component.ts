@@ -28,9 +28,6 @@ export class ListeServicesComponent  implements OnInit {
     this.router.navigate(["accueil"]);
   }
 
-  archiver(){
-    
-  }
 
   creation(){
     

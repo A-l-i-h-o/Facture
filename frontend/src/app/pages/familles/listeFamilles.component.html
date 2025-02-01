@@ -4,10 +4,17 @@
     <button class="creation" (click)="creation()">Créer une famille</button>
   </div>
 
+  <div class="filter-buttons">
+    <!-- Afficher toutes les familles -->
+    <button (click)="filtrerFamilles()">Toutes les familles</button>
+    <!-- Filtrer les familles archivées -->
+    <button (click)="filtrerFamilles(true)">Familles Archivées</button>
+  </div>
+
   <ul class="famille-list">
-    <li *ngFor="let famille of listeFamilles" class="famille-item">
+    <li *ngFor="let famille of listeFamillesFiltres" class="famille-item" [ngClass]="{'archived': famille.archive}">
       <span><strong>ID Famille :</strong> {{ famille.id }}</span>
-      
+
       <!-- Affichage des parents -->
       <span>
         <strong>Parents:</strong>
@@ -15,7 +22,7 @@
           {{ parent.nom }}, {{ parent.prenom }}
         </div>
       </span>
-      
+
       <!-- Affichage des enfants -->
       <span>
         <strong>Enfants:</strong>
@@ -23,12 +30,18 @@
           {{ enfant.nom }}, {{ enfant.prenom }}
         </div>
       </span>
-      
+
+      <!-- Message d'archivage -->
+      <div *ngIf="famille.archive" class="archive-message">
+        Cette famille est archivée.
+      </div>
+
       <!-- Boutons pour actions -->
       <div class="buttons">
         <button (click)="selectionnerFamille(famille)">Sélectionner</button>
         <button class="modifier" (click)="modifierFamille(famille)">Modifier</button>
-        <button class="archiver" (click)="archiverFamille(famille)">Archiver</button>
+        <button class="archiver" (click)="archiverFamille(famille)" *ngIf="!famille.archive">Archiver</button>
+        <button class="desarchiver" (click)="desarchiverFamille(famille)" *ngIf="famille.archive">Désarchiver</button>
       </div>
     </li>
   </ul>
