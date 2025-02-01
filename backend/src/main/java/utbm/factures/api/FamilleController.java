@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import utbm.factures.model.Facture;
 import utbm.factures.services.BDService;
 
-import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
 

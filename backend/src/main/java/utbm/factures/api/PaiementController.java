@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import utbm.factures.model.Paiement;
-import utbm.factures.model.Reduction;
 import utbm.factures.services.BDService;
 
 import java.sql.Types;

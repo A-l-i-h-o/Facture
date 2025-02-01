@@ -69,7 +69,6 @@ public class BDService {
             int startPostRetour = post;
 
             // Assigner les paramètres OUT
-            int a = sorties.length;
             for (int i = 0; i < sorties.length; i++) {
                 callableStatement.registerOutParameter(post, sorties[i]);
                 post++;
