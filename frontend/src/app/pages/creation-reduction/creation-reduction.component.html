@@ -2,31 +2,6 @@
   <h2 class="form-title">Créer une réduction</h2>
   
   <form [formGroup]="reductionForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="idFamille">ID de la famille</label>
-      <input 
-        type="number" 
-        id="idFamille" 
-        formControlName="idFamille" 
-        class="form-control" 
-        [class.is-invalid]="submitted && f['idFamille'].errors"
-        placeholder="Saisissez l'ID de la famille"
-      >
-      <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
-        <div *ngIf="f['idFamille'].errors['required']">L'ID de la famille est requis.</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="idEnfant">ID de l'enfant (optionnel)</label>
-      <input 
-        type="number" 
-        id="idEnfant" 
-        formControlName="idEnfant" 
-        class="form-control"
-        placeholder="Saisissez l'ID de l'enfant (si applicable)"
-      >
-    </div>
 
     <div class="form-group">
       <label for="pourcentage">Pourcentage de réduction (%)</label>
@@ -70,16 +45,6 @@
         rows="3"
         placeholder="Ajoutez une description..."
       ></textarea>
-    </div>
-
-    <div class="form-group form-check">
-      <input 
-        type="checkbox" 
-        id="archive" 
-        formControlName="archive" 
-        class="form-check-input"
-      >
-      <label class="form-check-label" for="archive">Archiver cette réduction</label>
     </div>
 
     <div *ngIf="error" class="alert alert-danger">
