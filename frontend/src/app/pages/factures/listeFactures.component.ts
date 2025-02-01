@@ -57,10 +57,17 @@ export class ListeFacturesComponent implements OnInit {
     });
     return valAPayer;
   }
+
+  // Fonction pour afficher les détails d'une facture
+  afficherDetail(id: number): void {
+    this.router.navigate(['/facture', id]); // Navigue vers la page de détail en passant l'ID de la facture
+  }
+  
+  
   retour(){
     this.router.navigate(["accueil"]);
   }
-  archiver(){
+  archiver(id:number){
     
   }
 

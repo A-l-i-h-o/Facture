@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/http/FactureService'; // Import du service
 
 import { Router } from '@angular/router';
+import { Famille } from 'src/app/model/Famille.model';
 
 @Component({
   selector: 'app-liste-famille',
@@ -42,18 +43,23 @@ export class ListeFamillesComponent implements OnInit {
     this.router.navigate(["accueil"]);
   }
 
-  choisir(){
-    this.router.navigate(["AfficherFamille"]);
+  // Créer une nouvelle famille
+  creation(): void {
+    this.router.navigate(['/famille/creation']);
   }
 
-  modifier(){
-    this.router.navigate(["ModifierFamille"]);
+  // Sélectionner une famille pour voir ses détails
+  selectionnerFamille(famille: Famille): void {
+    this.router.navigate(['/famille', famille.id]);
   }
 
-  archiver(){
-    
+  // Modifier les informations d'une famille
+  modifierFamille(famille: Famille): void {
+    this.router.navigate(['/famille/modifier', famille.id]);
   }
-  creation(){
+
+  // Archiver une famille
+  archiverFamille(famille: Famille): void {
     
   }
 }

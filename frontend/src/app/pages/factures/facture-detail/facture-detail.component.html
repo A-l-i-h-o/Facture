@@ -1,0 +1,79 @@
+<div *ngIf="facture" class="facture-container">
+    <h1 class="facture-title">Facture #{{ facture.id }}</h1>
+    
+    <button class="btn-back" (click)="retour()">Retour à la liste des factures</button>
+  
+    <div *ngIf="facture.description" class="facture-section">
+      <h3>Description</h3>
+      <p>{{ facture.description }}</p>
+    </div>
+  
+    <div *ngIf="facture.datePaimentTotal" class="facture-section">
+      <h3>Date de paiement total</h3>
+      <p>{{ facture.datePaimentTotal }}</p>
+    </div>
+  
+    <div *ngIf="facture.creancier" class="facture-section">
+      <h3>Créancier</h3>
+      <p>{{ facture.creancier }}</p>
+    </div>
+  
+    <div *ngIf="facture.debiteur" class="facture-section">
+      <h3>Débiteur</h3>
+      <p>{{ facture.debiteur }}</p>
+    </div>
+  
+    <div *ngIf="facture.dateCreation" class="facture-section">
+      <h3>Date de création</h3>
+      <p>{{ facture.dateCreation }}</p>
+    </div>
+  
+    <div *ngIf="facture.dateEcheance" class="facture-section">
+      <h3>Date d'échéance</h3>
+      <p>{{ facture.dateEcheance }}</p>
+    </div>
+  
+    <div *ngIf="facture.periode" class="facture-section">
+      <h3>Période</h3>
+      <p>{{ facture.periode }}</p>
+    </div>
+  
+    <div *ngIf="facture.listeFrais && facture.listeFrais.length > 0" class="facture-section">
+      <h3>Frais</h3>
+      <ul class="facture-list">
+        <li *ngFor="let frais of facture.listeFrais">
+          <div class="facture-item">
+            <strong>{{ frais.type }} :</strong> {{ frais.montant }} €
+            <div *ngIf="frais.description" class="facture-description">
+              <p>{{ frais.description }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="facture.listePaiement && facture.listePaiement.length > 0" class="facture-section">
+      <h3>Paiements</h3>
+      <ul class="facture-list">
+        <li *ngFor="let paiement of facture.listePaiement">
+          <div class="facture-item">
+            <strong>{{ paiement.type }} :</strong> {{ paiement.montant }} €
+            <div *ngIf="paiement.description" class="facture-description">
+              <p>{{ paiement.description }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="facture.etatPaiement" class="facture-section">
+      <h3>État du paiement</h3>
+      <p>{{ facture.etatPaiement }}</p>
+    </div>
+  
+    <div *ngIf="facture.archive" class="facture-section">
+      <h3>Archive</h3>
+      <p>{{ facture.archive ? 'Oui' : 'Non' }}</p>
+    </div>
+  </div>
+  

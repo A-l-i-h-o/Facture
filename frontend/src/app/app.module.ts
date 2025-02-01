@@ -19,6 +19,10 @@ import { CreationReductionComponent } from './pages/creation-reduction/creation-
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 
+import { FactureDetailComponent } from './pages/factures/facture-detail/facture-detail.component';
+import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
+import { EnteteComponent } from './pages/entete/entete.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/f
     ListeReductionsComponent,
     CreationReductionComponent,
     FormulaireInscriptionComponent,
-    FormulaireInscriptionEnfantComponent
+    FormulaireInscriptionEnfantComponent,
+    FactureDetailComponent,
+    FamilleDetailComponent,
+    EnteteComponent
     
   ],
   imports: [

@@ -1,36 +1,39 @@
-<button class="menuBouton" (click)="retour()">Menu</button>
-
 <div class="famille-container">
-    <div class="header">
-      <h2>Nombre de familles: {{ listeFamilles.length }}</h2>
-      <button class="creation" (click)="creation()">Creation</button>
-    </div>
-  
-    <ul class="famille-list">
-      <li *ngFor="let famille of listeFamilles" class="famille-item">
-        <span><strong>Id Famille : <br>{{ famille.id }}</strong></span>
-        <span>
-          <strong>Parents:
-            <div *ngFor="let parent of famille.listeParent">
-              {{ parent.nom }}, {{ parent.prenom }}
-            </div>
-          </strong> 
-          </span>
-          <span>
-          <strong>Enfants:
-            <div *ngFor="let enfant of famille.listeEnfant">
-              {{ enfant.nom }}, {{ enfant.prenom }}
-            </div>
-          </strong> 
-        </span>
-        <button (click)="choisir()">Selectionner</button>
-        <button (click)="modifier()">Modifier</button>
-        <button (click)="archiver()">Archiver</button>
-      </li>
-    </ul>
-    
-    <ng-template #noFamilles>
-      <p>Aucune famille trouvée.</p>
-    </ng-template>
+  <div class="header">
+    <h2>Nombre de familles: {{ listeFamilles.length }}</h2>
+    <button class="creation" (click)="creation()">Création</button>
   </div>
-  
+
+  <!-- Liste des familles -->
+  <ul class="famille-list">
+    <li *ngFor="let famille of listeFamilles" class="famille-item">
+      <span><strong>Id Famille :</strong> <br>{{ famille.id }}</span>
+      
+      <!-- Affichage des parents -->
+      <span>
+        <strong>Parents:</strong>
+        <div *ngFor="let parent of famille.listeParent">
+          {{ parent.nom }}, {{ parent.prenom }}
+        </div>
+      </span>
+      
+      <!-- Affichage des enfants -->
+      <span>
+        <strong>Enfants:</strong>
+        <div *ngFor="let enfant of famille.listeEnfant">
+          {{ enfant.nom }}, {{ enfant.prenom }}
+        </div>
+      </span>
+      
+      <!-- Boutons pour actions -->
+      <button (click)="selectionnerFamille(famille)">Sélectionner</button>
+      <button (click)="modifierFamille(famille)">Modifier</button>
+      <button (click)="archiverFamille(famille)">Archiver</button>
+    </li>
+  </ul>
+
+  <!-- Template pour afficher "Aucune famille trouvée" -->
+  <ng-template #noFamilles>
+    <p>Aucune famille trouvée.</p>
+  </ng-template>
+</div>
