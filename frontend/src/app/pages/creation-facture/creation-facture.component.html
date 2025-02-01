@@ -1,0 +1,92 @@
+<form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input 
+        type="text" 
+        id="description" 
+        formControlName="description" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['description'].errors"
+      >
+      <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+        <div *ngIf="f['description'].errors['required']">Description is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="creancier">Creditor</label>
+      <input 
+        type="text" 
+        id="creancier" 
+        formControlName="creancier" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['creancier'].errors"
+      >
+      <div *ngIf="submitted && f['creancier'].errors" class="invalid-feedback">
+        <div *ngIf="f['creancier'].errors['required']">Creditor is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="dateCreation">Creation Date</label>
+      <input 
+        type="date" 
+        id="dateCreation" 
+        formControlName="dateCreation" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['dateCreation'].errors"
+      >
+      <div *ngIf="submitted && f['dateCreation'].errors" class="invalid-feedback">
+        <div *ngIf="f['dateCreation'].errors['required']">Creation date is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="idPeriode">Period ID</label>
+      <input 
+        type="number" 
+        id="idPeriode" 
+        formControlName="idPeriode" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idPeriode'].errors"
+      >
+      <div *ngIf="submitted && f['idPeriode'].errors" class="invalid-feedback">
+        <div *ngIf="f['idPeriode'].errors['required']">Period ID is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="debiteur">Debtor</label>
+      <input 
+        type="text" 
+        id="debiteur" 
+        formControlName="debiteur" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['debiteur'].errors"
+      >
+      <div *ngIf="submitted && f['debiteur'].errors" class="invalid-feedback">
+        <div *ngIf="f['debiteur'].errors['required']">Debtor is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="dateEcheance">Due Date</label>
+      <input 
+        type="date" 
+        id="dateEcheance" 
+        formControlName="dateEcheance" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['dateEcheance'].errors"
+      >
+      <div *ngIf="submitted && f['dateEcheance'].errors" class="invalid-feedback">
+        <div *ngIf="f['dateEcheance'].errors['required']">Due date is required</div>
+      </div>
+    </div>
+  
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Create Invoice</button>
+  </form>
+  
