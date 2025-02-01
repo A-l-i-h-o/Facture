@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FactureService } from 'src/app/http/FactureService';
 import { Utilisateur } from 'src/app/model/Utilisateur.model';
 
@@ -13,7 +14,7 @@ export class UtilisateursComponent implements OnInit {
   afficherArchives: boolean = false;
   utilisateursFiltres: Utilisateur[] = [];
 
-  constructor(private factureService: FactureService) {
+  constructor(private factureService: FactureService, private router: Router) {
     
    }
 
@@ -64,7 +65,7 @@ export class UtilisateursComponent implements OnInit {
 
   // Fonction pour ajouter un nouvel utilisateur
   creationUtilisateur(): void {
-    alert('Ajout d’un nouvel utilisateur');
+    this.router.navigate(['/creation-utilisateur']);
   }
 
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { CreationFactureComponent } from './pages/creation-facture/creation-facture.component';
 import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
+import { CreationUtilisateurComponent } from './pages/creation-utilisateur/creation-utilisateur.component';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'listeReductions', component: ListeReductionsComponent },
   { path: 'creation-facture', component: CreationFactureComponent },
   { path: 'creation-reduction', component: CreationReductionComponent },
+  { path: 'creation-utilisateur', component: CreationUtilisateurComponent},
   { path: 'formulaire-inscription', component: FormulaireInscriptionComponent},
   { path: 'formulaire-inscription-enfant', component: FormulaireInscriptionEnfantComponent},
   { path: 'facture/:id', component: FactureDetailComponent },
