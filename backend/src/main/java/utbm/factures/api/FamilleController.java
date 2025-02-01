@@ -122,6 +122,32 @@ public class FamilleController {
         return famille;
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_famille") String id_famille) {
+
+        String requete = "UPDATE famille SET archive=1 WHERE id_famille=?";
+        Object[] params = {id_famille};
+        try {
+            this.bdService.update(requete, params);
+            return this.getAllInfo(id_famille);
+        }catch (Exception e){
+            return messageErreurRetour("La famille n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_famille") String id_famille) {
+
+        String requete = "UPDATE famille SET archive=0 WHERE id_famille=?";
+        Object[] params = {id_famille};
+        try {
+            this.bdService.update(requete, params);
+            return this.getAllInfo(id_famille);
+        }catch (Exception e){
+            return messageErreurRetour("La famille n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);

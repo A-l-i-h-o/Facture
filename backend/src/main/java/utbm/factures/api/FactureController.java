@@ -144,6 +144,32 @@ public class FactureController {
         return facture;
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_facture") String id_facture) {
+
+        String requete = "UPDATE facture SET archive=1 WHERE id_facture=?";
+        Object[] params = {id_facture};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_facture);
+        }catch (Exception e){
+            return messageErreurRetour("La facture n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_facture") String id_facture) {
+
+        String requete = "UPDATE facture SET archive=0 WHERE id_facture=?";
+        Object[] params = {id_facture};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_facture);
+        }catch (Exception e){
+            return messageErreurRetour("La facture n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);

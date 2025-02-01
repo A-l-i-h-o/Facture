@@ -104,6 +104,34 @@ public class UtilisateurController {
         return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestBody Utilisateur utilisateur) {
+
+        String requete = "UPDATE utilisateur SET archive=1 WHERE id_user=?";
+        Object[] params = {utilisateur.getId()};
+        try {
+            this.bdService.update(requete, params);
+            utilisateur.setArchive(true);
+            return utilisateur.toJSONObject();
+        }catch (Exception e){
+            return messageErreurRetour("L'utilisateur n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestBody Utilisateur utilisateur) {
+
+        String requete = "UPDATE utilisateur SET archive=0 WHERE id_user=?";
+        Object[] params = {utilisateur.getId()};
+        try {
+            this.bdService.update(requete, params);
+            utilisateur.setArchive(false);
+            return utilisateur.toJSONObject();
+        }catch (Exception e){
+            return messageErreurRetour("L'utilisateur n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);

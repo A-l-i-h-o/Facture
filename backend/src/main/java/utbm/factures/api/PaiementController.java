@@ -72,6 +72,32 @@ public class PaiementController {
         return this.bdService.select(requete, nomSorties);
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_paiement") String id_paiement) {
+
+        String requete = "UPDATE paiement SET archive=1 WHERE id_paiement=?";
+        Object[] params = {id_paiement};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_paiement);
+        }catch (Exception e){
+            return messageErreurRetour("Le paiement n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_paiement") String id_paiement) {
+
+        String requete = "UPDATE paiement SET archive=0 WHERE id_paiement=?";
+        Object[] params = {id_paiement};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_paiement);
+        }catch (Exception e){
+            return messageErreurRetour("Le paiement n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);

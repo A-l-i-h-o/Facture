@@ -87,6 +87,32 @@ public class FraisController {
         return this.bdService.select(requete, nomSorties);
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_frais") String id_frais) {
+
+        String requete = "UPDATE frais SET archive=1 WHERE id_frais=?";
+        Object[] params = {id_frais};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_frais);
+        }catch (Exception e){
+            return messageErreurRetour("Le frais n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_frais") String id_frais) {
+
+        String requete = "UPDATE frais SET archive=0 WHERE id_frais=?";
+        Object[] params = {id_frais};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_frais);
+        }catch (Exception e){
+            return messageErreurRetour("Le frais n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);

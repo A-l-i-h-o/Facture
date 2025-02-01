@@ -101,6 +101,32 @@ public class ReductionController {
         String[] nomSorties = {"id","description","montant","archive","pourcentage"};
         return this.bdService.select(requete, nomSorties);
     }
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_reduction") String id_reduction) {
+
+        String requete = "UPDATE reduction SET archive=1 WHERE id_reduction=?";
+        Object[] params = {id_reduction};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_reduction);
+        }catch (Exception e){
+            return messageErreurRetour("La réduction n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_reduction") String id_reduction) {
+
+        String requete = "UPDATE reduction SET archive=0 WHERE id_reduction=?";
+        Object[] params = {id_reduction};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_reduction);
+        }catch (Exception e){
+            return messageErreurRetour("La réduction n'existe pas.");
+        }
+    }
+
 
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();

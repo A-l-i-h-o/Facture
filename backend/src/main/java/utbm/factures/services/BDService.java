@@ -1,12 +1,9 @@
 package utbm.factures.services;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import jakarta.annotation.PostConstruct;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
-import utbm.factures.utils.Json;
 import utbm.factures.utils.Log;
 
 import java.sql.*;
@@ -95,20 +92,44 @@ public class BDService {
         return new JSONObject(result);
     }
 
+    public boolean update(String requete, Object[] parameters) {
+        boolean isUpdated = false;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(requete)) {
+
+            // Assigner les paramètres à la requête préparée
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setObject(i + 1, parameters[i]);  // i + 1 car les index des paramètres commencent à 1
+            }
+
+            // Exécuter la mise à jour
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                isUpdated = true;  // La mise à jour a réussi si le nombre de lignes affectées est supérieur à 0
+            }
+
+        } catch (SQLException e) {
+            Log.error("BDService", "Erreur lors de l'exécution de la requête UPDATE : " + e.getMessage());
+        }
+        return isUpdated;
+    }
+
+
     public JSONArray select(String requete, String[] nomSorties) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(requete)) {
 
             // Traitement des résultats
-            while (resultSet.next()) {
-                Map<String, Object> result = new HashMap<>();
-                for (int i = 0; i < nomSorties.length; i++) {
-                    result.put(nomSorties[i], resultSet.getObject(i + 1));  // i + 1 car les index de ResultSet commencent à 1
+            if (nomSorties.length > 0) {
+                while (resultSet.next()) {
+                    Map<String, Object> result = new HashMap<>();
+                    for (int i = 0; i < nomSorties.length; i++) {
+                        result.put(nomSorties[i], resultSet.getObject(i + 1));  // i + 1 car les index de ResultSet commencent à 1
+                    }
+                    resultList.add(result); // Ajouter chaque ligne dans la liste de résultats
                 }
-                resultList.add(result); // Ajouter chaque ligne dans la liste de résultats
             }
-
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'exécution de la requête SELECT : " + e.getMessage());
         }

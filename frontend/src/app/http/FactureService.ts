@@ -46,6 +46,14 @@ export class FactureService {
     return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/ajout_famille`,utilisateur,{ observe: 'body'});
   }
 
+  archiverUtilisateur(utilisateur:Utilisateur): Observable<Utilisateur> {
+    return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/archiver`,utilisateur,{ observe: 'body'});
+  }
+
+  desarchiverUtilisateur(utilisateur:Utilisateur): Observable<Utilisateur> {
+    return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/desarchiver`,utilisateur,{ observe: 'body'});
+  }
+
   ///////////
 
   // Enfant //
@@ -70,6 +78,14 @@ export class FactureService {
     return this.http.get<Enfant>(`${this.apiUrl}enfant/all_info?id_enfant=${id}`);
   }
 
+  archiverEnfant(id:number): Observable<Enfant> {
+    return this.http.get<Enfant>(`${this.apiUrl}enfant/archiver?id_enfant=${id}`);
+  }
+
+  desarchiverEnfant(id:number): Observable<Enfant> {
+    return this.http.get<Enfant>(`${this.apiUrl}enfant/desarchiver?id_enfant=${id}`);
+  }
+
   ///////////
 
   // Parent //
@@ -88,6 +104,14 @@ export class FactureService {
 
   getAllParent(): Observable<Parent[]> {
     return this.http.get<Parent[]>(`${this.apiUrl}parent/all`);
+  }
+
+  archiverParent(id:number): Observable<Parent> {
+    return this.http.get<Parent>(`${this.apiUrl}parent/archiver?id_parent=${id}`);
+  }
+
+  desarchiverParent(id:number): Observable<Parent> {
+    return this.http.get<Parent>(`${this.apiUrl}parent/desarchiver?id_parent=${id}`);
   }
 
   ///////////
@@ -114,6 +138,14 @@ export class FactureService {
     return this.http.get<Reduction[]>(`${this.apiUrl}reduction/all`);
   }
 
+  archiverReduction(id:number): Observable<Reduction> {
+    return this.http.get<Reduction>(`${this.apiUrl}reduction/archiver?id_reduction=${id}`);
+  }
+
+  desarchiverReduction(id:number): Observable<Reduction> {
+    return this.http.get<Reduction>(`${this.apiUrl}reduction/desarchiver?id_reduction=${id}`);
+  }
+
   ///////////
 
 
@@ -129,6 +161,14 @@ export class FactureService {
 
   getAllPaiement(): Observable<Paiement[]> {
     return this.http.get<Paiement[]>(`${this.apiUrl}paiement/all`);
+  }
+
+  archiverPaiement(id:number): Observable<Paiement> {
+    return this.http.get<Paiement>(`${this.apiUrl}paiement/archiver?id_paiement=${id}`);
+  }
+
+  desarchiverPaiement(id:number): Observable<Paiement> {
+    return this.http.get<Paiement>(`${this.apiUrl}paiement/desarchiver?id_paiement=${id}`);
   }
 
   ///////////
@@ -150,6 +190,14 @@ export class FactureService {
   
   liaisonFraisFacture(frais:Frais): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}frais/liaison_facture`,frais,{ observe: 'body'});
+  }
+
+  archiverFrais(id:number): Observable<Frais> {
+    return this.http.get<Frais>(`${this.apiUrl}frais/archiver?id_frais=${id}`);
+  }
+
+  desarchiverFrais(id:number): Observable<Frais> {
+    return this.http.get<Frais>(`${this.apiUrl}frais/desarchiver?id_frais=${id}`);
   }
   
   ///////////
@@ -175,6 +223,14 @@ export class FactureService {
   liaisonFamilleFacture(facture:Facture): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}facture/liaison_facture`,facture,{ observe: 'body'});
   }
+
+  archiverFacture(id:number): Observable<Facture> {
+    return this.http.get<Facture>(`${this.apiUrl}facture/archiver?id_facture=${id}`);
+  }
+
+  desarchiverFacture(id:number): Observable<Facture> {
+    return this.http.get<Facture>(`${this.apiUrl}facture/desarchiver?id_facture=${id}`);
+  }
     
   ///////////
 
@@ -186,6 +242,14 @@ export class FactureService {
 
   getAllFamille(): Observable<Famille[]> {
     return this.http.get<Famille[]>(`${this.apiUrl}famille/all`);
+  }
+
+  archiverFamille(id:number): Observable<Famille> {
+    return this.http.get<Famille>(`${this.apiUrl}famille/archiver?id_famille=${id}`);
+  }
+
+  desarchiverFamille(id:number): Observable<Famille> {
+    return this.http.get<Famille>(`${this.apiUrl}famille/desarchiver?id_famille=${id}`);
   }
 
   ///////////

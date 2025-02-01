@@ -87,6 +87,32 @@ public class ParentController {
         return this.bdService.select(requete, nomSorties);
     }
 
+    @PostMapping(value = "/archiver")
+    public JSONObject archiver(@RequestParam(value = "id_parent") String id_parent) {
+
+        String requete = "UPDATE parent SET archive=1 WHERE id_parent=?";
+        Object[] params = {id_parent};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_parent);
+        }catch (Exception e){
+            return messageErreurRetour("Le parent n'existe pas.");
+        }
+    }
+
+    @PostMapping(value = "/desarchiver")
+    public JSONObject desarchiver(@RequestParam(value = "id_parent") String id_parent) {
+
+        String requete = "UPDATE parent SET archive=0 WHERE id_parent=?";
+        Object[] params = {id_parent};
+        try {
+            this.bdService.update(requete, params);
+            return this.get(id_parent);
+        }catch (Exception e){
+            return messageErreurRetour("Le parent n'existe pas.");
+        }
+    }
+
     private JSONObject messageErreurRetour(String message) {
         Map<String, Object> result = new HashMap<>();
         result.put("error", message);
