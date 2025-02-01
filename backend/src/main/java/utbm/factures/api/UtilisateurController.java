@@ -5,6 +5,7 @@
 
 package utbm.factures.api;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -33,6 +34,14 @@ public class UtilisateurController {
     @Autowired
     public UtilisateurController(BDService bdService) {
         this.bdService = bdService;
+    }
+
+    @GetMapping(value = "/all")
+    public JSONArray getAll() {
+
+        String requete = "SELECT u.id_user as id, u.login as login, u.admin as admin, u.archive as archive, f.id_famille as idfamille FROM utilisateur as u, famille as f WHERE u.id_user = f.id_user";
+        String[] nomSorties = {"id","login","admin","archive","idFamille"};
+        return this.bdService.select(requete, nomSorties);
     }
 
     @PostMapping(value = "/connexion")

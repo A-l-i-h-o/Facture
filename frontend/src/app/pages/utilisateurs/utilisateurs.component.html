@@ -1,0 +1,25 @@
+<div class="utilisateur-container">
+    <div class="header">
+      <h2>Nombre d'utilisateurs: {{ utilisateurs.length }}</h2>
+      <button class="creation" (click)="creationUtilisateur()">Ajouter Utilisateur</button>
+    </div>
+  
+    <ul class="utilisateur-list">
+      <li *ngFor="let utilisateur of utilisateurs" class="utilisateur-item">
+        <span><strong>ID :</strong> {{ utilisateur.id }}</span>
+        <span><strong>Login :</strong> {{ utilisateur.login }}</span>
+        <span><strong>Admin :</strong> {{ utilisateur.admin ? 'Oui' : 'Non' }}</span>
+        <span><strong>ID Famille :</strong> {{ utilisateur.idFamille }}</span>
+  
+        <!-- Boutons d'actions -->
+        <button class="modifier" (click)="modifierUtilisateur(utilisateur)">Modifier</button>
+        <button class="archiver" (click)="archiverUtilisateur(utilisateur)">Archiver</button>
+      </li>
+    </ul>
+  
+    <!-- Message si aucun utilisateur trouvé -->
+    <ng-template #noUtilisateurs>
+      <p>Aucun utilisateur trouvé.</p>
+    </ng-template>
+  </div>
+  

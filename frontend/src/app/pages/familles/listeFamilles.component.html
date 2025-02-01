@@ -1,13 +1,12 @@
 <div class="famille-container">
   <div class="header">
     <h2>Nombre de familles: {{ listeFamilles.length }}</h2>
-    <button class="creation" (click)="creation()">Création</button>
+    <button class="creation" (click)="creation()">Créer une famille</button>
   </div>
 
-  <!-- Liste des familles -->
   <ul class="famille-list">
     <li *ngFor="let famille of listeFamilles" class="famille-item">
-      <span><strong>Id Famille :</strong> <br>{{ famille.id }}</span>
+      <span><strong>ID Famille :</strong> {{ famille.id }}</span>
       
       <!-- Affichage des parents -->
       <span>
@@ -26,13 +25,15 @@
       </span>
       
       <!-- Boutons pour actions -->
-      <button (click)="selectionnerFamille(famille)">Sélectionner</button>
-      <button (click)="modifierFamille(famille)">Modifier</button>
-      <button (click)="archiverFamille(famille)">Archiver</button>
+      <div class="buttons">
+        <button (click)="selectionnerFamille(famille)">Sélectionner</button>
+        <button class="modifier" (click)="modifierFamille(famille)">Modifier</button>
+        <button class="archiver" (click)="archiverFamille(famille)">Archiver</button>
+      </div>
     </li>
   </ul>
 
-  <!-- Template pour afficher "Aucune famille trouvée" -->
+  <!-- Message si aucune famille trouvée -->
   <ng-template #noFamilles>
     <p>Aucune famille trouvée.</p>
   </ng-template>

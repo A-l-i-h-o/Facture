@@ -22,6 +22,7 @@ import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/f
 import { FactureDetailComponent } from './pages/factures/facture-detail/facture-detail.component';
 import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
 import { EnteteComponent } from './pages/entete/entete.component';
+import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { EnteteComponent } from './pages/entete/entete.component';
     FormulaireInscriptionEnfantComponent,
     FactureDetailComponent,
     FamilleDetailComponent,
-    EnteteComponent
+    EnteteComponent,
+    UtilisateursComponent
     
   ],
   imports: [
