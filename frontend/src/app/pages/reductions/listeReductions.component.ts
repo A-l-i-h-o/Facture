@@ -77,6 +77,6 @@ export class ListeReductionsComponent implements OnInit {
 
   // Fonction pour créer une réduction
   creation(): void {
-    alert('Création d\'une nouvelle réduction');
+    this.router.navigate(['/creation-reduction']);
   }
 }
