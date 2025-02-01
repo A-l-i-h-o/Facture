@@ -10,10 +10,8 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import utbm.factures.model.Utilisateur;
 import utbm.factures.services.BDService;
 
-import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
 

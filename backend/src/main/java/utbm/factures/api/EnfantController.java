@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import utbm.factures.model.Enfant;
-import utbm.factures.model.Utilisateur;
 import utbm.factures.services.BDService;
 
 import java.sql.Types;
