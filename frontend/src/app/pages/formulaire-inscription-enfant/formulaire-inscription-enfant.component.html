@@ -29,29 +29,15 @@
       </div>
   
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="age">Age</label>
         <input
-          type="email"
-          id="email"
-          formControlName="email"
-          [class.invalid]="submitted && f['email'].errors"
+          type="number"
+          id="age"
+          formControlName="age"
+          [class.invalid]="submitted && f['age'].errors"
         />
-        <div *ngIf="submitted && f['email'].errors" class="error-message">
-          <span *ngIf="f['email'].errors['required']">L'email est requis.</span>
-          <span *ngIf="f['email'].errors['email']">L'email n'est pas valide.</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input
-          type="text"
-          id="adresse"
-          formControlName="address"
-          [class.invalid]="submitted && f['address'].errors"
-        />
-        <div *ngIf="submitted && f['address'].errors" class="error-message">
-          <span *ngIf="f['address'].errors['required']">L'adresse est requise.</span>
+        <div *ngIf="submitted && f['age'].errors" class="error-message">
+          <span *ngIf="f['age'].errors['required']">L'age est requis.</span>
         </div>
       </div>
   

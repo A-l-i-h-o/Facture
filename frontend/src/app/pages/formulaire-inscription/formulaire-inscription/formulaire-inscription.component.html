@@ -55,8 +55,26 @@
           <span *ngIf="f['address'].errors['required']">L'adresse est requise.</span>
         </div>
       </div>
+
+      <!-- Liste déroulante pour la situation -->
+    <div class="form-group">
+      <label for="situation">Situation</label>
+      <select
+        id="situation"
+        formControlName="situation"
+        [class.invalid]="submitted && f['situation'].errors"
+      >
+        <option value="" disabled selected>Choisissez une situation</option>
+        <option value="Marié">Marié</option>
+        <option value="Divorcé">Divorcé</option>
+        <option value="Veuve">Veuve</option>
+      </select>
+      <div *ngIf="submitted && f['situation'].errors" class="error-message">
+        <span *ngIf="f['situation'].errors['required']">La situation est requise.</span>
+      </div>
+    </div>
   
-      <button type="submit" routerLink='/formulaire-inscription-enfant'>Suivant</button>
+      <button type="submit">Suivant</button>
     </form>
   </div>
 <!--
