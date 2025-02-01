@@ -1,0 +1,132 @@
+.utilisateur-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .creation {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .creation:hover {
+    background-color: #0056b3;
+  }
+  
+  .filter-section {
+    margin-bottom: 20px;
+  }
+  
+  .filter-section label {
+    font-size: 1rem;
+  }
+  
+  .utilisateur-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .utilisateur-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .utilisateur-item.archived {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+    opacity: 0.9;
+  }
+  
+  .utilisateur-item.archived:hover {
+    background-color: #f1c0c6;
+    transform: scale(1.02);
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  button.archiver {
+    background-color: #dc3545;
+  }
+  
+  button.archiver:hover {
+    background-color: #a71d2a;
+  }
+  
+  button.modifier {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  button.modifier:hover {
+    background-color: #d39e00;
+  }
+  
+  button.creation-famille {
+    background-color: #007bff;
+    color: white;
+    margin-top: 5px;
+  }
+  
+  button.creation-famille:hover {
+    background-color: #0056b3;
+  }
+  
+  .archive-message {
+    color: #721c24;
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+  button.desarchiver {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  button.desarchiver:hover {
+    background-color: #d39e00;
+  }
+  

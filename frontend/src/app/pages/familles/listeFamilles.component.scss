@@ -1,62 +1,136 @@
-/* Style général de la page des familles */
 .famille-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-box {
-    padding: 10px;
-    width: 250px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .famille-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .famille-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    margin: 8px 0;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .famille-item span {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .famille-item span:nth-child(1) {
-    flex: 2;
-  }
-  
-  .famille-item span:nth-child(2) {
-    flex: 2;
-  }
-  
-  .famille-item span:nth-child(3) {
-    flex: 3;
-    color: #555;
-  }
-  
-  /* En cas d'absence de familles */
-  p {
-    text-align: center;
-    color: #888;
-  }
-  
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.creation {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.creation:hover {
+  background-color: #0056b3;
+}
+
+/* Liste des familles */
+.famille-list {
+  list-style: none;
+  padding: 0;
+}
+
+.famille-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.famille-item span {
+  font-size: 1rem;
+  margin: 3px 0;
+}
+
+.archive-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+button.archiver {
+  background-color: #dc3545;
+}
+
+button.archiver:hover {
+  background-color: #a71d2a;
+}
+
+button.modifier {
+  background-color: #ffc107;
+  color: black;
+}
+
+button.modifier:hover {
+  background-color: #d39e00;
+}
+
+button.desarchiver {
+  background-color: #007bff;
+}
+
+button.desarchiver:hover {
+  background-color: #0056b3;
+}
+
+/* Filtrage des familles */
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: #138496;
+}
+

@@ -1,23 +1,24 @@
 <div class="facture-container">
   <div class="header">
     <h2>Nombre de factures: {{ factures.length }}</h2>
-    <button class="creation" (click)="creation()">Creation</button>
+    <button class="creation" (click)="creation()">Créer une facture</button>
   </div>
 
   <ul class="facture-list">
     <li *ngFor="let facture of factures" class="facture-item">
-      <span>Id facture : {{ facture.id }}</span>
-      <span>Id famille : {{ facture.idFamille }}</span>
-      <span>Date de création : {{ facture.dateCreation }}</span>
-      <span>Créancier : {{ facture.creancier }}</span>
-      <span>Débiteur : {{ facture.debiteur }}</span>
-      <span>Montant total : {{ calculMontantTotal(facture) }} €</span>
-      <span>Montant restant à payer : {{ calculMontantRestant(facture) }} €</span>
-      <span>Déscription : {{ facture.description }}</span>
-      
-      <!-- Ajoutez un bouton pour naviguer vers le détail de la facture -->
-      <button (click)="afficherDetail(facture.id)">Voir Détail</button>
-      <button (click)="archiver(facture.id)">Archiver</button>
+      <span><strong>ID Facture :</strong> {{ facture.id }}</span>
+      <span><strong>ID Famille :</strong> {{ facture.idFamille }}</span>
+      <span><strong>Date de création :</strong> {{ facture.dateCreation }}</span>
+      <span><strong>Créancier :</strong> {{ facture.creancier }}</span>
+      <span><strong>Débiteur :</strong> {{ facture.debiteur }}</span>
+      <span><strong>Montant total :</strong> {{ calculMontantTotal(facture) }} €</span>
+      <span><strong>Montant restant :</strong> {{ calculMontantRestant(facture) }} €</span>
+      <span><strong>Description :</strong> {{ facture.description }}</span>
+
+      <div class="buttons">
+        <button (click)="afficherDetail(facture.id)">Voir Détail</button>
+        <button class="archiver" (click)="archiver(facture.id)">Archiver</button>
+      </div>
     </li>
   </ul>
 </div>

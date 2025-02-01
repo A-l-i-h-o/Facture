@@ -26,6 +26,10 @@ export class FactureService {
 
   // UTILISATEUR //
 
+  listeUtilisateurs(): Observable<Utilisateur[]> {
+    return this.http.get<Utilisateur[]>(`${this.apiUrl}utilisateur/all`);
+  }
+
   connexion(utilisateur:Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/connexion`, utilisateur,{ observe: 'body'});
   }

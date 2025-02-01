@@ -11,10 +11,12 @@ import { ListeFacturesComponent } from './pages/factures/listeFactures.component
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
 import { FactureDetailComponent } from './pages/factures/facture-detail/facture-detail.component';
 import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
+import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
 
 const routes: Routes = [
   { path: '', component: ConnexionComponent },
   { path: 'accueil', component: AccueilComponent },
+  { path: 'listeUtilisateurs', component: UtilisateursComponent },
   { path: 'listeFactures', component: ListeFacturesComponent },
   { path: 'listeFamilles', component: ListeFamillesComponent },
   { path: 'listeServices', component: ListeServicesComponent },
