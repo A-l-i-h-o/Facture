@@ -39,7 +39,7 @@ public class UtilisateurController {
     @GetMapping(value = "/all")
     public JSONArray getAll() {
 
-        String requete = "SELECT u.id_user as id, u.login as login, u.admin as admin, u.archive as archive, f.id_famille as idfamille FROM utilisateur as u, famille as f WHERE u.id_user = f.id_user";
+        String requete = "SELECT u.id_user AS id, u.login AS login, u.admin AS admin, u.archive AS archive, lf.id_famille AS idfamille FROM utilisateur AS u LEFT JOIN famille AS lf ON u.id_user = lf.id_user";
         String[] nomSorties = {"id","login","admin","archive","idFamille"};
         return this.bdService.select(requete, nomSorties);
     }

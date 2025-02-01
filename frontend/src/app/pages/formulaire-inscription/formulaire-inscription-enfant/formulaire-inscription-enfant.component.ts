@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-formulaire-inscription-enfant',
@@ -10,8 +11,10 @@ export class FormulaireInscriptionEnfantComponent {
 
   signupForm: FormGroup;
     submitted = false;
+    id_famille ?: number;
   
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+         private route: ActivatedRoute) {
       this.signupForm = this.formBuilder.group(
         {
           firstName: ['', Validators.required],
@@ -20,6 +23,10 @@ export class FormulaireInscriptionEnfantComponent {
           address: ['', Validators.required]
         }
       );
+    }
+
+    ngOnInit(): void {
+      this.id_famille = Number(this.route.snapshot.paramMap.get('id')); // Récupérer l'ID de l'user depuis l'URL
     }
   
     // Getter for easy access to form fields

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FactureService } from 'src/app/http/FactureService';
 import { Utilisateur } from 'src/app/model/Utilisateur.model';
 
@@ -13,7 +14,7 @@ export class UtilisateursComponent implements OnInit {
   afficherArchives: boolean = false;
   utilisateursFiltres: Utilisateur[] = [];
 
-  constructor(private factureService: FactureService) {
+  constructor(private factureService: FactureService, private router: Router) {
     
    }
 
@@ -59,7 +60,7 @@ export class UtilisateursComponent implements OnInit {
 
   // Fonction pour créer une famille pour un utilisateur sans ID famille
   creerFamille(utilisateur: Utilisateur): void {
-    alert(`Création d'une famille pour ${utilisateur.login}`);
+    this.router.navigate(['/formulaire-inscription', utilisateur.id]);
   }
 
   // Fonction pour ajouter un nouvel utilisateur

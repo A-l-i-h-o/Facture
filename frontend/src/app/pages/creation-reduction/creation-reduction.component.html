@@ -1,80 +1,91 @@
-<form [formGroup]="reductionForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="idFamille">Family ID</label>
-    <input 
-      type="number" 
-      id="idFamille" 
-      formControlName="idFamille" 
-      class="form-control" 
-      [class.is-invalid]="submitted && f['idFamille'].errors"
-    >
-    <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
-      <div *ngIf="f['idFamille'].errors['required']">Family ID is required</div>
+<div class="reduction-container">
+  <h2 class="form-title">Créer une réduction</h2>
+  
+  <form [formGroup]="reductionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="idFamille">ID de la famille</label>
+      <input 
+        type="number" 
+        id="idFamille" 
+        formControlName="idFamille" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idFamille'].errors"
+        placeholder="Saisissez l'ID de la famille"
+      >
+      <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
+        <div *ngIf="f['idFamille'].errors['required']">L'ID de la famille est requis.</div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="idEnfant">Child ID (Optional)</label>
-    <input 
-      type="number" 
-      id="idEnfant" 
-      formControlName="idEnfant" 
-      class="form-control"
-    >
-  </div>
-
-  <div class="form-group">
-    <label for="pourcentage">Reduction Percentage</label>
-    <input 
-      type="number" 
-      id="pourcentage" 
-      formControlName="pourcentage" 
-      class="form-control" 
-      [class.is-invalid]="submitted && f['pourcentage'].errors"
-    >
-    <div *ngIf="submitted && f['pourcentage'].errors" class="invalid-feedback">
-      <div *ngIf="f['pourcentage'].errors['required']">Percentage is required</div>
-      <div *ngIf="f['pourcentage'].errors['min']">Percentage must be at least 0</div>
-      <div *ngIf="f['pourcentage'].errors['max']">Percentage cannot exceed 100</div>
+    <div class="form-group">
+      <label for="idEnfant">ID de l'enfant (optionnel)</label>
+      <input 
+        type="number" 
+        id="idEnfant" 
+        formControlName="idEnfant" 
+        class="form-control"
+        placeholder="Saisissez l'ID de l'enfant (si applicable)"
+      >
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="montant">Amount</label>
-    <input 
-      type="number" 
-      id="montant" 
-      formControlName="montant" 
-      class="form-control" 
-      [class.is-invalid]="submitted && f['montant'].errors"
-    >
-    <div *ngIf="submitted && f['montant'].errors" class="invalid-feedback">
-      <div *ngIf="f['montant'].errors['required']">Amount is required</div>
-      <div *ngIf="f['montant'].errors['min']">Amount must be at least 0</div>
+    <div class="form-group">
+      <label for="pourcentage">Pourcentage de réduction (%)</label>
+      <input 
+        type="number" 
+        id="pourcentage" 
+        formControlName="pourcentage" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['pourcentage'].errors"
+        placeholder="Ex : 10"
+      >
+      <div *ngIf="submitted && f['pourcentage'].errors" class="invalid-feedback">
+        <div *ngIf="f['pourcentage'].errors['required']">Le pourcentage est requis.</div>
+        <div *ngIf="f['pourcentage'].errors['min']">Le pourcentage doit être au minimum de 0%.</div>
+        <div *ngIf="f['pourcentage'].errors['max']">Le pourcentage ne peut pas dépasser 100%.</div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea 
-      id="description" 
-      formControlName="description" 
-      class="form-control"
-    ></textarea>
-  </div>
+    <div class="form-group">
+      <label for="montant">Montant de la réduction (€)</label>
+      <input 
+        type="number" 
+        id="montant" 
+        formControlName="montant" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['montant'].errors"
+        placeholder="Ex : 50"
+      >
+      <div *ngIf="submitted && f['montant'].errors" class="invalid-feedback">
+        <div *ngIf="f['montant'].errors['required']">Le montant est requis.</div>
+        <div *ngIf="f['montant'].errors['min']">Le montant doit être positif.</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea 
+        id="description" 
+        formControlName="description" 
+        class="form-control"
+        rows="3"
+        placeholder="Ajoutez une description..."
+      ></textarea>
+    </div>
+
+    <div class="form-group form-check">
       <input 
         type="checkbox" 
-        formControlName="archive"
-      > Archive
-    </label>
-  </div>
+        id="archive" 
+        formControlName="archive" 
+        class="form-check-input"
+      >
+      <label class="form-check-label" for="archive">Archiver cette réduction</label>
+    </div>
 
-  <div *ngIf="error" class="alert alert-danger">
-    {{ error }}
-  </div>
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
 
-  <button type="submit" class="btn btn-primary">Create Reduction</button>
-</form>
+    <button type="submit" class="btn btn-primary">Créer la réduction</button>
+  </form>
+</div>

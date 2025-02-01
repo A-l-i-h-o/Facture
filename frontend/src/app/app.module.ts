@@ -16,7 +16,7 @@ import { ListeServicesComponent } from './pages/services/listeServices.component
 import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
 import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
-import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
+import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 
 import { FactureDetailComponent } from './pages/factures/facture-detail/facture-detail.component';
