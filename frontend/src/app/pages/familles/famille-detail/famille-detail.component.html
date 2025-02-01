@@ -1,0 +1,51 @@
+<div *ngIf="famille" class="famille-container">
+  <h1 class="famille-title">Famille #{{ famille.id }}</h1>
+  
+  <!-- Bouton de retour -->
+  <button class="btn-back" (click)="retour()">Retour à la liste des familles</button>
+  
+  <div *ngIf="famille.listeParent && famille.listeParent.length > 0" class="famille-section">
+    <h3>Parents</h3>
+    <ul class="famille-details">
+      <li *ngFor="let parent of famille.listeParent" class="famille-item">
+        <strong>{{ parent.prenom }} {{ parent.nom }}</strong>
+        <p><strong>Email :</strong> {{ parent.adresseEmail }}</p>
+        <p><strong>Statut :</strong> {{ parent.statut }}</p>
+        <p><strong>Adresse :</strong> {{ parent.adresse }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="famille.listeEnfant && famille.listeEnfant.length > 0" class="famille-section">
+    <h3>Enfants</h3>
+    <ul class="famille-details">
+      <li *ngFor="let enfant of famille.listeEnfant" class="famille-item">
+        <strong>{{ enfant.prenom }} {{ enfant.nom }}</strong>
+        <p><strong>Âge :</strong> {{ enfant.age }} ans</p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="famille.listeReduction && famille.listeReduction.length > 0" class="famille-section">
+    <h3>Réductions</h3>
+    <ul class="famille-details">
+      <li *ngFor="let reduction of famille.listeReduction" class="famille-item">
+        <strong>Description :</strong> {{ reduction.description }}<br />
+        <strong>Montant :</strong> {{ reduction.montant }} €<br />
+        <strong>Pourcentage :</strong> {{ reduction.pourcentage }}%
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="famille.listeFacture && famille.listeFacture.length > 0" class="famille-section">
+    <h3>Factures</h3>
+    <ul class="famille-details">
+      <li *ngFor="let facture of famille.listeFacture" class="famille-item">
+        <strong>Facture #{{ facture.id }}</strong><br />
+        <strong>Créancier :</strong> {{ facture.creancier }}<br />
+        <strong>Montant :</strong> {{ calculMontantTotal(facture) }} €
+        <button class="btn-detail" (click)="viewFactureDetail(facture.id)">Voir Détail</button>
+      </li>
+    </ul>
+  </div>
+</div>

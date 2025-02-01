@@ -1,0 +1,20 @@
+<div class="service-container">
+    <div class="header">
+      <h2>Nombre de services: {{ listeServices.length }}</h2>
+      <button class="creation" (click)="creation()">Creation</button>
+    </div>
+    
+    <ul class="service-list">
+      <li *ngFor="let service of listeServices" class="service-item">
+        <span><strong>Id Service : <br>{{ service.id }}</strong></span>
+        <span><strong>Description : <br>{{ service.libelle }} </strong></span>
+
+        <button (click)="archiver()">Archiver</button>
+      </li>
+    </ul>
+    
+    <ng-template #noServices>
+      <p>Aucune service trouvée.</p>
+    </ng-template>
+  </div>
+  

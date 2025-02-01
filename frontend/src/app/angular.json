@@ -1,0 +1,8 @@
+{
+"serve": {
+  "options": {
+    "proxyConfig": "proxy.conf.json"
+  }
+}
+}
+

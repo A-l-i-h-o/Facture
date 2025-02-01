@@ -1,0 +1,96 @@
+.btn-back {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .btn-back:hover {
+    background-color: #0056b3;
+  }
+  
+
+.facture-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .facture-title {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+  
+  .facture-section {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .facture-section h3 {
+    color: #555;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .facture-section p {
+    color: #777;
+    font-size: 1em;
+  }
+  
+  .facture-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .facture-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .facture-item strong {
+    font-weight: bold;
+  }
+  
+  .facture-description {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .facture-section h3 {
+    color: #4CAF50;
+  }
+  
+  .facture-section p {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .facture-container {
+      padding: 10px;
+    }
+  
+    .facture-title {
+      font-size: 1.5em;
+    }
+  }
+  
