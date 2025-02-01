@@ -1,72 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FactureService } from 'src/app/http/FactureService';
-import { Enfant } from 'src/app/model/Enfant.model'; // Modèle Enfant
-import { Router } from '@angular/router';
+import { Enfant } from 'src/app/model/Enfant.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulaire-inscription-enfant',
   templateUrl: './formulaire-inscription-enfant.component.html',
   styleUrls: ['./formulaire-inscription-enfant.component.scss']
 })
-export class FormulaireInscriptionEnfantComponent {
-
+export class FormulaireInscriptionEnfantComponent implements OnInit {
+  
   signupForm: FormGroup;
   submitted = false;
-  idFamille: number | undefined;
-  
-    constructor(
-      private fb: FormBuilder,
-      private router: Router,
-      private FactureService: FactureService
-    ) {
-      this.signupForm = this.fb.group(
-        {
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          age: ['', [Validators.required]],
-        }
-      );
-    }
+  idFamille!: number;
 
-    ngOnInit(): void {
-      this.id_famille = Number(this.route.snapshot.paramMap.get('id')); // Récupérer l'ID de l'user depuis l'URL
-    }
-  
-    // Getter for easy access to form fields
-    get f() {
-      return this.signupForm.controls;
-    }
-/*  
-    onSubmit() {
-      this.submitted = true;
-  
-      if (this.signupForm.invalid) {
-        return;
-      }
-  
-      console.log('Formulaire soumis avec succès', this.signupForm.value);
-    }
-  
-    mustMatch(controlName: string, matchingControlName: string) {
-      return (formGroup: FormGroup) => {
-        const control = formGroup.controls[controlName];
-        const matchingControl = formGroup.controls[matchingControlName];
-  
-        if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-          return;
-        }
-  
-        if (control.value !== matchingControl.value) {
-          matchingControl.setErrors({ mustMatch: true });
-        } else {
-          matchingControl.setErrors(null);
-        }
-      };
-    }
-*/
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private factureService: FactureService,
+    private route: ActivatedRoute
+  ) {
+    this.signupForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      age: ['', [Validators.required, Validators.min(0), Validators.max(18)]]
+    });
+  }
 
-// Méthode appelée lors de la soumission du formulaire
+  ngOnInit(): void {
+    this.idFamille = Number(this.route.snapshot.paramMap.get('id')) || 0;
+  }
+
+  // Getter for easy access to form fields
+  get f() {
+    return this.signupForm.controls;
+  }
+
+  // Méthode appelée lors de la soumission du formulaire
   onSubmit(): void {
     this.submitted = true;
 
@@ -79,30 +50,26 @@ export class FormulaireInscriptionEnfantComponent {
     const newEnfant: Enfant = {
       nom: this.signupForm.value.lastName,
       prenom: this.signupForm.value.firstName,
-      age: this.signupForm.value.age,
+      age: Number(this.signupForm.value.age),
+      idFamille: this.idFamille,
+      archive: false
     };
 
-    // Appel du service pour créer un parent via l'API
-    this.FactureService.creationEnfant(newEnfant).subscribe(
+    // Appel du service pour créer un enfant via l'API
+    this.factureService.creationEnfant(newEnfant).subscribe(
       (response) => {
         console.log('Enfant créé avec succès :', response);
 
-        // Affichage de l'ID de la famille dans la console
-      if (response.idFamille) {
-        console.log('ID Famille associé :', response.idFamille);
-        alert(`Enfant créé avec succès. ID Famille associé : ${response.idFamille}`);
-      }
+        if (this.idFamille) {
+          console.log('ID Famille associé :', this.idFamille);
+        }
 
-      this.idFamille = response.idFamille;
-
-        // Redirection vers la page suivante
-        //this.router.navigate(['/formulaire-inscription-enfant']); A décommenter
+        this.router.navigate(['/famille', this.idFamille]);
       },
       (error) => {
         console.error("Erreur lors de la création de l'enfant :", error);
-        alert('Une erreur est survenue lors de la création. Veuillez réessayer.');
+        alert("Une erreur est survenue lors de la création de l'enfant. Veuillez réessayer.");
       }
     );
   }
-
 }

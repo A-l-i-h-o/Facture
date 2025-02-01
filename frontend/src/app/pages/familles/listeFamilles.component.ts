@@ -53,7 +53,7 @@ export class ListeFamillesComponent implements OnInit {
 
   // Créer une nouvelle famille
   creation(): void {
-    this.router.navigate(['/famille/creation']);
+    this.router.navigate(['/formulaire-inscription']);
   }
 
   // Sélectionner une famille pour voir ses détails

@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'listeReductions', component: ListeReductionsComponent },
   { path: 'creation-reduction', component: CreationReductionComponent },
   { path: 'formulaire-inscription/:id', component: FormulaireInscriptionComponent},
+  { path: 'formulaire-inscription', component: FormulaireInscriptionComponent},
   { path: 'formulaire-inscription-enfant/:id', component: FormulaireInscriptionEnfantComponent},
   { path: 'facture/:id', component: FactureDetailComponent },
   { path: 'famille/:id', component: FamilleDetailComponent },

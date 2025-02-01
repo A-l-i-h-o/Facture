@@ -1,133 +1,129 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FactureService } from 'src/app/http/FactureService'; // Assurez-vous du chemin correct
-import { Parent } from 'src/app/model/Parent.model'; // Modèle Parent
+import { FactureService } from 'src/app/http/FactureService';
+import { Parent } from 'src/app/model/Parent.model';
 import { Utilisateur } from 'src/app/model/Utilisateur.model';
-/*
-@Component({
-  selector: 'app-formulaire-inscription',
-  templateUrl: './formulaire-inscription.component.html',
-  styleUrls: ['./formulaire-inscription.component.scss']
-})
-export class FormulaireInscriptionComponent {
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-formulaire-inscription',
   templateUrl: './formulaire-inscription.component.html',
   styleUrls: ['./formulaire-inscription.component.scss'],
 })
-export class FormulaireInscriptionComponent {
-  signupForm: FormGroup; // Formulaire réactif
-  submitted = false; // État de soumission
+export class FormulaireInscriptionComponent implements OnInit {
+  signupForm: FormGroup;
+  submitted = false;
   id_user!: number;
+  newUser!: Utilisateur;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private factureService: FactureService,
-     private route: ActivatedRoute
+    private route: ActivatedRoute
   ) {
-    // Initialisation du formulaire avec des validateurs
     this.signupForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
-      situation: ['', Validators.required], // Ajout du champ situation
+      situation: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.id_user = Number(this.route.snapshot.paramMap.get('id')); // Récupérer l'ID de l'user depuis l'URL
+    this.id_user = Number(this.route.snapshot.paramMap.get('id')) || 0;
   }
 
-  // Getter pour simplifier l'accès aux contrôles du formulaire
   get f() {
     return this.signupForm.controls;
   }
 
   generateRandomPassword(length: number): string {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let password = '';
-    for (let i = 0; i < length; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return password;
+    return Array.from({ length }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
   }
 
   generateUsername(firstName: string, lastName: string): string {
-    return (firstName.charAt(0) + lastName).toLowerCase();
+    return (firstName ? firstName.charAt(0) : '') + (lastName || '').toLowerCase();
   }
 
-  // Méthode appelée lors de la soumission du formulaire
   onSubmit(): void {
     this.submitted = true;
 
-    // Si le formulaire est invalide, on arrête ici
     if (this.signupForm.invalid) {
       return;
     }
 
-    // Création d'un objet Parent à partir des valeurs du formulaire
     const newParent: Parent = {
       nom: this.signupForm.value.lastName,
       prenom: this.signupForm.value.firstName,
       adresse: this.signupForm.value.address,
       adresseEmail: this.signupForm.value.email,
       statut: this.signupForm.value.situation,
+      archive: false,
     };
 
-    const user : Utilisateur = { id : this.id_user};
+    if (this.id_user === 0) {
+      const username = this.generateUsername(newParent.prenom, newParent.nom);
+      const password = this.generateRandomPassword(10);
 
-    this.factureService.ajoutFamille(user).subscribe(
-      (response) => {
-        newParent.idFamille = response.idFamille;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération de la famille :', error);
-      }
-    );
+      this.newUser = {
+        login: username,
+        mdp: password,
+        admin: false,
+      };
 
-    // Appel du service pour créer un parent via l'API
-    this.FactureService.creationParent(newParent).subscribe(
-      (parentResponse) => {
-        console.log('Parent créé avec succès :', parentResponse);
-
-        const username = this.generateUsername(newParent.prenom, newParent.nom);
-        const password = this.generateRandomPassword(10);
-
-        const newUser: Utilisateur = {
-          login: username,
-          mdp: password,
-          admin:false
-        };
-
-        this.FactureService.creationCompte(newUser).subscribe(
-          (userResponse) => {
+      this.factureService.creationCompte(this.newUser)
+        .pipe(
+          switchMap((userResponse) => {
             console.log('Compte utilisateur créé avec succès :', userResponse);
-            alert(`Compte créé avec succès !\nPseudo: ${username}\nMot de passe: ${password}`);
-            this.router.navigate(['/formulaire-inscription-enfant']);
+            this.newUser = userResponse;
+            return this.factureService.ajoutFamille(this.newUser);
+          }),
+          switchMap((response) => {
+            console.log('Famille ajoutée avec succès :', response);
+            this.newUser.idFamille = response.id;
+            newParent.idFamille = response.id;
+            return this.factureService.creationParent(newParent);
+          })
+        )
+        .subscribe(
+          (parentResponse) => {
+            console.log('Parent créé avec succès :', parentResponse);
+            this.router.navigate(['/formulaire-inscription-enfant', this.newUser.idFamille]);
           },
           (error) => {
-            console.error('Erreur lors de la création du compte utilisateur :', error);
-            alert('Une erreur est survenue lors de la création du compte utilisateur.');
+            console.error('Erreur lors du processus d’inscription :', error);
+            alert('Une erreur est survenue. Veuillez réessayer.');
           }
         );
-        // Redirection vers la page suivante
-        this.router.navigate(['/formulaire-inscription-enfant']);
-      },
-      (error) => {
-        console.error('Erreur lors de la création du parent :', error);
-        alert('Une erreur est survenue lors de la création. Veuillez réessayer.');
-      }
-    );
+    } else {
+      this.newUser = { id: this.id_user } as Utilisateur;
+      this.factureService.ajoutFamille(this.newUser)
+        .pipe(
+          switchMap((response) => {
+            console.log('Famille récupérée :', response);
+            this.newUser.idFamille = response.id;
+            newParent.idFamille = response.id;
+            return this.factureService.creationParent(newParent);
+          })
+        )
+        .subscribe(
+          (parentResponse) => {
+            console.log('Parent ajouté avec succès :', parentResponse);
+            this.router.navigate(['/formulaire-inscription-enfant', this.newUser.idFamille]);
+          },
+          (error) => {
+            console.error('Erreur lors de la création du parent :', error);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          }
+        );
+    }
   }
 
-
-
-  // Méthode pour revenir à la liste des familles
   retour(): void {
-    this.router.navigate(['/listeFamilles']); // Redirige vers la page des familles
+    this.router.navigate(['/listeFamilles']);
   }
 }

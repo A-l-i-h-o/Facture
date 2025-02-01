@@ -1,79 +1,99 @@
-<!--<p>formulaire-inscription works!</p>-->
 <div class="form-container">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <h2>Inscription Parents</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-title">Inscription Parents</h2>
 
-      <div class="form-group">
-        <label for="firstName">Prénom</label>
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <div class="input-container">
         <input
           type="text"
           id="firstName"
           formControlName="firstName"
           [class.invalid]="submitted && f['firstName'].errors"
+          placeholder="Entrez le prénom"
         />
-        <div *ngIf="submitted && f['firstName'].errors" class="error-message">
-          <span *ngIf="f['firstName'].errors['required']">Le prénom est requis.</span>
-        </div>
+        <i class="icon fas fa-user"></i>
       </div>
-  
-      <div class="form-group">
-        <label for="lastName">Nom</label>
+      <div *ngIf="submitted && f['firstName'].errors" class="error-message">
+        <span *ngIf="f['firstName'].errors['required']">Le prénom est requis.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <div class="input-container">
         <input
           type="text"
           id="lastName"
           formControlName="lastName"
           [class.invalid]="submitted && f['lastName'].errors"
+          placeholder="Entrez le nom"
         />
-        <div *ngIf="submitted && f['lastName'].errors" class="error-message">
-          <span *ngIf="f['lastName'].errors['required']">Le nom est requis.</span>
-        </div>
+        <i class="icon fas fa-user"></i>
       </div>
-  
-      <div class="form-group">
-        <label for="email">Email</label>
+      <div *ngIf="submitted && f['lastName'].errors" class="error-message">
+        <span *ngIf="f['lastName'].errors['required']">Le nom est requis.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <div class="input-container">
         <input
           type="email"
           id="email"
           formControlName="email"
           [class.invalid]="submitted && f['email'].errors"
+          placeholder="Entrez l'email"
         />
-        <div *ngIf="submitted && f['email'].errors" class="error-message">
-          <span *ngIf="f['email'].errors['required']">L'email est requis.</span>
-          <span *ngIf="f['email'].errors['email']">L'email n'est pas valide.</span>
-        </div>
+        <i class="icon fas fa-envelope"></i>
       </div>
+      <div *ngIf="submitted && f['email'].errors" class="error-message">
+        <span *ngIf="f['email'].errors['required']">L'email est requis.</span>
+        <span *ngIf="f['email'].errors['email']">L'email n'est pas valide.</span>
+      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <div class="input-container">
         <input
           type="text"
           id="adresse"
           formControlName="address"
           [class.invalid]="submitted && f['address'].errors"
+          placeholder="Entrez l'adresse"
         />
-        <div *ngIf="submitted && f['address'].errors" class="error-message">
-          <span *ngIf="f['address'].errors['required']">L'adresse est requise.</span>
-        </div>
+        <i class="icon fas fa-home"></i>
       </div>
+      <div *ngIf="submitted && f['address'].errors" class="error-message">
+        <span *ngIf="f['address'].errors['required']">L'adresse est requise.</span>
+      </div>
+    </div>
 
-      <!-- Liste déroulante pour la situation -->
+    <!-- Liste déroulante pour la situation -->
     <div class="form-group">
       <label for="situation">Situation</label>
-      <select
-        id="situation"
-        formControlName="situation"
-        [class.invalid]="submitted && f['situation'].errors"
-      >
-        <option value="" disabled selected>Choisissez une situation</option>
-        <option value="Marié">Marié</option>
-        <option value="Divorcé">Divorcé</option>
-        <option value="Veuve">Veuve</option>
-      </select>
+      <div class="select-container">
+        <select
+          id="situation"
+          formControlName="situation"
+          [class.invalid]="submitted && f['situation'].errors"
+        >
+          <option value="" disabled selected>Choisissez une situation</option>
+          <option value="Marié">Marié</option>
+          <option value="Divorcé">Divorcé</option>
+          <option value="Veuve">Veuve</option>
+        </select>
+        <i class="icon fas fa-users"></i>
+      </div>
       <div *ngIf="submitted && f['situation'].errors" class="error-message">
         <span *ngIf="f['situation'].errors['required']">La situation est requise.</span>
       </div>
     </div>
-  
-      <button type="submit">Suivant</button>
-    </form>
-  </div>
+
+    <button type="submit" class="submit-btn">
+      Suivant <i class="fas fa-arrow-right"></i>
+    </button>
+  </form>
+</div>

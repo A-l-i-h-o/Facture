@@ -1,46 +1,62 @@
 <div class="form-container">
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <h2>Inscription Enfant</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-title">Inscription Enfant</h2>
 
-      <div class="form-group">
-        <label for="firstName">Prénom</label>
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <div class="input-container">
         <input
           type="text"
           id="firstName"
           formControlName="firstName"
           [class.invalid]="submitted && f['firstName'].errors"
+          placeholder="Entrez le prénom"
         />
-        <div *ngIf="submitted && f['firstName'].errors" class="error-message">
-          <span *ngIf="f['firstName'].errors['required']">Le prénom est requis.</span>
-        </div>
+        <i class="icon fas fa-user"></i>
       </div>
-  
-      <div class="form-group">
-        <label for="lastName">Nom</label>
+      <div *ngIf="submitted && f['firstName'].errors" class="error-message">
+        <span *ngIf="f['firstName'].errors['required']">Le prénom est requis.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <div class="input-container">
         <input
           type="text"
           id="lastName"
           formControlName="lastName"
           [class.invalid]="submitted && f['lastName'].errors"
+          placeholder="Entrez le nom"
         />
-        <div *ngIf="submitted && f['lastName'].errors" class="error-message">
-          <span *ngIf="f['lastName'].errors['required']">Le nom est requis.</span>
-        </div>
+        <i class="icon fas fa-user"></i>
       </div>
-  
-      <div class="form-group">
-        <label for="age">Age</label>
+      <div *ngIf="submitted && f['lastName'].errors" class="error-message">
+        <span *ngIf="f['lastName'].errors['required']">Le nom est requis.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Âge</label>
+      <div class="input-container">
         <input
           type="number"
           id="age"
           formControlName="age"
           [class.invalid]="submitted && f['age'].errors"
+          placeholder="Entrez l'âge"
         />
-        <div *ngIf="submitted && f['age'].errors" class="error-message">
-          <span *ngIf="f['age'].errors['required']">L'age est requis.</span>
-        </div>
+        <i class="icon fas fa-calendar"></i>
       </div>
-  
-      <button type="submit">Suivant</button>
-    </form>
-  </div>
+      <div *ngIf="submitted && f['age'].errors" class="error-message">
+        <span *ngIf="f['age'].errors['required']">L'âge est requis.</span>
+        <span *ngIf="f['age'].errors['min']">L'âge ne peut pas être négatif.</span>
+        <span *ngIf="f['age'].errors['max']">L'âge ne peut pas dépasser 18 ans.</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Suivant <i class="fas fa-arrow-right"></i>
+    </button>
+  </form>
+</div>

@@ -21,6 +21,7 @@ export class FamilleDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id')); // Récupérer l'ID de la famille depuis l'URL
     this.facturesService.getFamilleAllInfo(id).subscribe((famille) => {
+      famille.id = id;
       this.famille = famille;
     });
   }
