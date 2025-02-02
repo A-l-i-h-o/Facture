@@ -60,7 +60,7 @@ export class UtilisateursComponent implements OnInit {
 
   // Fonction pour créer une famille pour un utilisateur sans ID famille
   creerFamille(utilisateur: Utilisateur): void {
-    alert(`Création d'une famille pour ${utilisateur.login}`);
+    this.router.navigate(['/formulaire-inscription', utilisateur.id]);
   }
 
   // Fonction pour ajouter un nouvel utilisateur

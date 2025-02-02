@@ -24,14 +24,11 @@ export class CreationReductionComponent implements OnInit {
     this.initForm();
   }
 
-  initForm(): void {
+  private initForm(): void {
     this.reductionForm = this.formBuilder.group({
-      idFamille: [null, Validators.required],
-      idEnfant: [null],
       pourcentage: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
       montant: [null, [Validators.required, Validators.min(0)]],
-      description: [''],
-      archive: [false]
+      description: ['']
     });
   }
 
@@ -42,18 +39,16 @@ export class CreationReductionComponent implements OnInit {
       return;
     }
 
-    const reduction: Reduction = {
-      ...this.reductionForm.value
-    };
+    const reduction: Reduction = { ...this.reductionForm.value };
 
     this.factureService.creationReduction(reduction).subscribe({
-      next: (createdReduction) => {
-        console.log('Reduction created successfully', createdReduction);
-        this.router.navigate(['/reductions']);
+      next: (data) => {
+        console.log(data);
+        this.router.navigate(['/listeReductions']);
       },
       error: (err) => {
-        this.error = 'Failed to create reduction. Please try again.';
-        console.error('Error creating reduction', err);
+        this.error = 'Échec de la création de la réduction. Veuillez réessayer.';
+        console.error('Erreur lors de la création', err);
       }
     });
   }

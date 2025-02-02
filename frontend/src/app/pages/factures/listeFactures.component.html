@@ -4,8 +4,13 @@
     <button class="creation" (click)="creation()">Créer une facture</button>
   </div>
 
+  <div class="filter-buttons">
+    <button (click)="filtrerFactures(false)">Les factures actives</button>
+    <button (click)="filtrerFactures(true)">Factures Archivées</button>
+  </div>
+
   <ul class="facture-list">
-    <li *ngFor="let facture of factures" class="facture-item">
+    <li *ngFor="let facture of listeFacturesFiltres" class="facture-item" [ngClass]="{'archived': facture.archive}">
       <span><strong>ID Facture :</strong> {{ facture.id }}</span>
       <span><strong>ID Famille :</strong> {{ facture.idFamille }}</span>
       <span><strong>Date de création :</strong> {{ facture.dateCreation }}</span>
@@ -14,10 +19,14 @@
       <span><strong>Montant total :</strong> {{ calculMontantTotal(facture) }} €</span>
       <span><strong>Montant restant :</strong> {{ calculMontantRestant(facture) }} €</span>
       <span><strong>Description :</strong> {{ facture.description }}</span>
-
+      <!-- Message d'archivage -->
+      <div *ngIf="facture.archive" class="archive-message">
+        Cette facture est archivée.
+      </div>
       <div class="buttons">
         <button (click)="afficherDetail(facture.id)">Voir Détail</button>
-        <button class="archiver" (click)="archiver(facture.id)">Archiver</button>
+        <button class="archiver" (click)="archiverFacture(facture)" *ngIf="!facture.archive">Archiver</button>
+        <button class="desarchiver" (click)="desarchiverFacture(facture)" *ngIf="facture.archive">Désarchiver</button>
       </div>
     </li>
   </ul>

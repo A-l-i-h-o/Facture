@@ -10,7 +10,7 @@ export interface Facture {
     idPeriode?:number;
     periode?:string;
     debiteur?:string;
-    archive?:boolean;
+    archive:boolean;
     listeFrais?:Frais[];
     dateEcheance?:Date;
     listePaiement?:Paiement[];

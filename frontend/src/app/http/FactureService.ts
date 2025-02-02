@@ -123,6 +123,7 @@ export class FactureService {
   // Reduction //
 
   creationReduction(reduction:Reduction): Observable<Reduction> {
+    console.log(reduction);
     return this.http.post<Reduction>(`${this.apiUrl}reduction/creation`,reduction,{ observe: 'body'});
   }
 

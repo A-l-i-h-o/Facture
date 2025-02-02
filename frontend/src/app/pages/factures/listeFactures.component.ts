@@ -12,20 +12,26 @@ import { Router } from '@angular/router';
 export class ListeFacturesComponent implements OnInit {
 
   factures: Facture[] = []; // Liste des factures récupérées depuis l'API
-
+  listeFacturesFiltres: Facture[] = []; 
   constructor(private factureService: FactureService,private router: Router) { }
 
   ngOnInit(): void {
+    this.actualise();
+  }
+
+  actualise(){
     this.factureService.getAllFacture().subscribe(
       (data) => {
-
+        this.factures = [];
+        this.listeFacturesFiltres = [];
         data.forEach(info=>{
           var id:number = +info["id"];
-
+          var archiveEtat: boolean = info["archive"];
           this.factureService.getFactureAllInfo(id).subscribe(
             (data2) => {
               data2["id"] = id;
               data2["idFamille"] = id;
+              data2["archive"] = archiveEtat;
               this.factures.push(data2);
             },
             (error) => {
@@ -63,12 +69,40 @@ export class ListeFacturesComponent implements OnInit {
     this.router.navigate(['/facture', id]); // Navigue vers la page de détail en passant l'ID de la facture
   }
   
-  
-  retour(){
-    this.router.navigate(["accueil"]);
-  }
-  archiver(id:number){
+
+  // Archiver une facture
+  archiverFacture(facture: Facture): void {
     
+    this.factureService.archiverFacture(facture.id).subscribe(
+      (response) => {
+        this.actualise();
+        console.log('Facture archivée', response);
+      },
+      (error) => {
+        console.error('Erreur lors de l\'archivage de la facture', error);
+      }
+    );
+  }
+  
+  // Désarchiver une facture
+  desarchiverFacture(facture: Facture): void {
+    this.factureService.desarchiverFacture(facture.id).subscribe(
+      (response) => {
+        this.actualise();
+        console.log('Facture désarchivée', response);
+      },
+      (error) => {
+        console.error('Erreur lors de la désarchivage de la facture', error);
+      }
+    );
+  }
+
+  filtrerFactures(archived: boolean | null = null): void {
+    if (archived === null) {
+      this.listeFacturesFiltres = [...this.factures];
+    } else {
+      this.listeFacturesFiltres = this.factures.filter(facture => facture.archive === archived);
+    }
   }
 
   creation(){
