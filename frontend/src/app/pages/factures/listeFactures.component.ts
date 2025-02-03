@@ -105,5 +105,7 @@ export class ListeFacturesComponent implements OnInit {
     }
   }
 
-  creation(){}
+  creation(){
+    this.router.navigate(["creation-facture"]);
+  }
 }
