@@ -30,10 +30,11 @@ export class CreationFactureComponent implements OnInit {
       description: ['', Validators.required],
       creancier: ['', Validators.required],
       dateCreation: ['', Validators.required],
-      idPeriode: [null, Validators.required],
-      periode: [''],
+      periode: ['', Validators.required],
       debiteur: ['', Validators.required],
-      dateEcheance: ['', Validators.required]
+      dateEcheance: ['', Validators.required],
+      etatPaiement: ['', Validators.required],
+      idReduction: [null, Validators.required],
     });
   }
 
@@ -51,9 +52,9 @@ export class CreationFactureComponent implements OnInit {
     this.factureService.creationFacture(newFacture).subscribe({
       next: (createdFacture) => {
         console.log('Facture created successfully', createdFacture);
-        this.router.navigate(['/factures']);
+        this.router.navigate(['/listeFactures']);
       },
-      error: (err) => {
+      error: (err) => { 
         this.error = 'Failed to create facture. Please try again.';
         console.error('Error creating facture', err);
       }

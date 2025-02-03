@@ -1,4 +1,6 @@
-<form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
+
+<div class="form-container">
+  <form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="description">Description</label>
       <input 
@@ -41,17 +43,24 @@
       </div>
     </div>
   
+    <!-- Liste déroulante pour l'état de paiement -->
     <div class="form-group">
-      <label for="idPeriode">Period ID</label>
-      <input 
-        type="number" 
-        id="idPeriode" 
-        formControlName="idPeriode" 
-        class="form-control" 
-        [class.is-invalid]="submitted && f['idPeriode'].errors"
-      >
-      <div *ngIf="submitted && f['idPeriode'].errors" class="invalid-feedback">
-        <div *ngIf="f['idPeriode'].errors['required']">Period ID is required</div>
+      <label for="periode">Periode</label>
+      <div class="select-container">
+        <select
+          id="periode"
+          formControlName="periode"
+          [class.invalid]="submitted && f['periode'].errors"
+        >
+          <option value="" disabled selected>Choisissez une periode</option>
+          <option value="Marié">Marié</option>
+          <option value="Divorcé">Divorcé</option>
+          <option value="Veuve">Veuve</option>
+        </select>
+        <i class="icon fas fa-users"></i>
+      </div>
+      <div *ngIf="submitted && f['periode'].errors" class="error-message">
+        <span *ngIf="f['periode'].errors['required']">La periode est requise.</span>
       </div>
     </div>
   
@@ -82,11 +91,47 @@
         <div *ngIf="f['dateEcheance'].errors['required']">Due date is required</div>
       </div>
     </div>
+
+    <!-- Liste déroulante pour l'état de paiement -->
+    <div class="form-group">
+      <label for="etatPaiement">Etat de paiement</label>
+      <div class="select-container">
+        <select
+          id="etatPaiement"
+          formControlName="etatPaiement"
+          [class.invalid]="submitted && f['etatPaiement'].errors"
+        >
+          <option value="" disabled selected>Choisissez un état de paiement</option>
+          <option value="Marié">Marié</option>
+          <option value="Divorcé">Divorcé</option>
+          <option value="Veuve">Veuve</option>
+        </select>
+        <i class="icon fas fa-users"></i>
+      </div>
+      <div *ngIf="submitted && f['etatPaiement'].errors" class="error-message">
+        <span *ngIf="f['etatPaiement'].errors['required']">L'état de paiement est requis.</span>
+      </div>
+    </div>
   
+    <div class="form-group">
+      <label for="idReduction">Reduction ID</label>
+      <input 
+        type="number" 
+        id="idReduction" 
+        formControlName="idReduction" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idReduction'].errors"
+      >
+      <div *ngIf="submitted && f['idReduction'].errors" class="invalid-feedback">
+        <div *ngIf="f['idReduction'].errors['required']">Reduction ID is required</div>
+      </div>
+    </div>
+
     <div *ngIf="error" class="alert alert-danger">
       {{ error }}
     </div>
   
     <button type="submit" class="btn btn-primary">Create Invoice</button>
   </form>
+</div>
   

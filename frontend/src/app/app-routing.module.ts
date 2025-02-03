@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'creation-reduction', component: CreationReductionComponent },
   { path: 'creation-utilisateur', component: CreationUtilisateurComponent},
   { path: 'formulaire-inscription/:id', component: FormulaireInscriptionComponent},
+  { path: 'formulaire-inscription', component: FormulaireInscriptionComponent},
   { path: 'formulaire-inscription-enfant/:id', component: FormulaireInscriptionEnfantComponent},
   { path: 'facture/:id', component: FactureDetailComponent },
   { path: 'famille/:id', component: FamilleDetailComponent },
