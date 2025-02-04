@@ -30,7 +30,6 @@
   
         <!-- Boutons d'actions -->
         <div class="action-buttons">
-          <button *ngIf="!utilisateur.archive" (click)="modifierUtilisateur(utilisateur)" class="modifier">Modifier</button>
           <button *ngIf="!utilisateur.archive" (click)="confirmerArchivage(utilisateur)" class="archiver">Archiver</button>
           <button *ngIf="!utilisateur.idFamille" (click)="creerFamille(utilisateur)" class="creation-famille">Créer une famille</button>
           
