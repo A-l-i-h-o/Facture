@@ -123,7 +123,21 @@
         [class.is-invalid]="submitted && f['idReduction'].errors"
       >
       <div *ngIf="submitted && f['idReduction'].errors" class="invalid-feedback">
-        <div *ngIf="f['idReduction'].errors['required']">Reduction ID is required</div>
+        <div *ngIf="f['idReduction'].errors['required']">Reduction ID est requis</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="idFamille">Famille ID</label>
+      <input 
+        type="number" 
+        id="idFamille" 
+        formControlName="idFamille" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idFamille'].errors"
+      >
+      <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
+        <div *ngIf="f['idFamille'].errors['required']">Famille ID est requis</div>
       </div>
     </div>
 

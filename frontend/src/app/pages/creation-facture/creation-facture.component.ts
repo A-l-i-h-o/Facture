@@ -35,6 +35,7 @@ export class CreationFactureComponent implements OnInit {
       dateEcheance: ['', Validators.required],
       etatPaiement: ['', Validators.required],
       idReduction: [null, Validators.required],
+      idFamille: [null, Validators.required]
     });
   }
 
@@ -52,7 +53,17 @@ export class CreationFactureComponent implements OnInit {
     this.factureService.creationFacture(newFacture).subscribe({
       next: (createdFacture) => {
         console.log('Facture created successfully', createdFacture);
-        this.router.navigate(['/listeFactures']);
+        newFacture.id = createdFacture.id;
+        this.factureService.liaisonFamilleFacture(newFacture).subscribe({
+          next: (result) => {
+            console.log('Facture linked successfully', result);
+            this.router.navigate(['/creation-frais', createdFacture.id]);
+          },
+          error: (err) => {
+            this.error = 'Failed to create liaison. Please try again.';
+            console.error('Error creating liaison', err);
+          }
+        });
       },
       error: (err) => { 
         this.error = 'Failed to create facture. Please try again.';

@@ -226,7 +226,7 @@ export class FactureService {
   } 
     
   liaisonFamilleFacture(facture:Facture): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}facture/liaison_facture`,facture,{ observe: 'body'});
+    return this.http.post<any>(`${this.apiUrl}facture/liaison_famille`,facture,{ observe: 'body'});
   }
 
   archiverFacture(id:number): Observable<Facture> {
