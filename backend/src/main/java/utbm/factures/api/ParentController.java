@@ -60,10 +60,26 @@ public class ParentController {
 
         String procedureCall = "{CALL modification_parent(?,?,?,?,?,?)}";
         Object[] entrees = {parent.getId(), parent.getStatut(), parent.getNom(), parent.getPrenom(),parent.getAdresse(), parent.getAdresseEmail()};
-        int[] sorties = {};
-        String[] nomSorties = {};
+        //int[] sorties = {};
+        //String[] nomSorties = {};
+        // Ajout des sorties pour récupérer les nouvelles données
+    JSONObject result = this.bdService.procedure(procedureCall, entrees, new int[]{}, new String[]{});
 
-        return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
+    if (result != null && result.containsKey("id_parent")) {
+        Parent updatedParent = new Parent();
+        updatedParent.setId((Integer) result.get("id_parent"));
+        updatedParent.setStatut((String) result.get("libelle_statut_parent"));
+        updatedParent.setNom((String) result.get("nom_parent"));
+        updatedParent.setPrenom((String) result.get("prenom_parent"));
+        updatedParent.setAdresse((String) result.get("adresse_parent"));
+        updatedParent.setAdresseEmail((String) result.get("adresse_email_parent"));
+
+        return ResponseEntity.ok(updatedParent);
+    }
+
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
+        //return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
     }
 
     @PostMapping(value = "/")
