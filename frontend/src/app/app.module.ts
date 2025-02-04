@@ -16,7 +16,10 @@ import { ListeFamillesComponent } from './pages/familles/listeFamilles.component
 import { ListeServicesComponent } from './pages/services/listeServices.component';
 import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
+import { CreationFactureComponent } from './pages/creation-facture/creation-facture.component';
+import { CreationFraisComponent } from './pages/creation-frais/creation-frais.component';
 import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
+import { CreationUtilisateurComponent } from './pages/creation-utilisateur/creation-utilisateur.component';
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
 import { FormulaireInscriptionComponent } from './pages/formulaire-inscription/formulaire-inscription/formulaire-inscription.component';
 
@@ -25,7 +28,6 @@ import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-
 import { EnteteComponent } from './pages/entete/entete.component';
 import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
 import { FamilleEditComponent } from './pages/famille-edit/famille-edit.component';
-
 
 @NgModule({
   declarations: [
@@ -36,7 +38,10 @@ import { FamilleEditComponent } from './pages/famille-edit/famille-edit.componen
     ListeFamillesComponent,
     ListeServicesComponent,
     ListeReductionsComponent,
+    CreationFactureComponent,
+    CreationFraisComponent,
     CreationReductionComponent,
+    CreationUtilisateurComponent,
     FormulaireInscriptionComponent,
     FormulaireInscriptionEnfantComponent,
     FactureDetailComponent,

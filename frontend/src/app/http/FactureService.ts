@@ -237,7 +237,7 @@ connexion(utilisateur: Utilisateur): Observable<Utilisateur> {
   } 
     
   liaisonFamilleFacture(facture:Facture): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}facture/liaison_facture`,facture,{ observe: 'body'});
+    return this.http.post<any>(`${this.apiUrl}facture/liaison_famille`,facture,{ observe: 'body'});
   }
 
   archiverFacture(id:number): Observable<Facture> {
@@ -246,6 +246,10 @@ connexion(utilisateur: Utilisateur): Observable<Utilisateur> {
 
   desarchiverFacture(id:number): Observable<Facture> {
     return this.http.get<Facture>(`${this.apiUrl}facture/desarchiver?id_facture=${id}`);
+  }
+
+  payerFacture(id:number): Observable<Facture> {
+    return this.http.get<Facture>(`${this.apiUrl}facture/payer?id_facture=${id}`);
   }
     
   ///////////

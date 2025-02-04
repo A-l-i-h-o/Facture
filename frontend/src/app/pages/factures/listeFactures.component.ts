@@ -78,7 +78,6 @@ export class ListeFacturesComponent implements OnInit {
   afficherDetail(id: number): void {
     this.router.navigate(['/facture', id]); // Navigue vers la page de détail en passant l'ID de la facture
   }
-  
 
   // Archiver une facture
   archiverFacture(facture: Facture): void {
@@ -107,6 +106,18 @@ export class ListeFacturesComponent implements OnInit {
     );
   }
 
+  payerFacture(facture: Facture): void {
+    this.factureService.payerFacture(facture.id).subscribe(
+      (response) => {
+        this.actualise();
+        console.log('Facture payée', response);
+      },
+      (error) => {
+        console.error('Erreur lors du paiement de la facture', error);
+      }
+    );
+  }
+
   filtrerFactures(archived: boolean | null = null): void {
     if (archived === null) {
       this.listeFacturesFiltres = [...this.factures];
@@ -115,5 +126,7 @@ export class ListeFacturesComponent implements OnInit {
     }
   }
 
-  creation(){}
+  creation(){
+    this.router.navigate(["creation-facture"]);
+  }
 }

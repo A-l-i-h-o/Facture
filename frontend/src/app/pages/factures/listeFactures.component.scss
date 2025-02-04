@@ -57,6 +57,13 @@
 }
 
 /* Boutons */
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
 button {
   background-color: #28a745;
   color: white;
@@ -72,6 +79,15 @@ button {
 button:hover {
   background-color: #218838;
   transform: scale(1.05);
+}
+
+button.payer {
+  background-color: #ffc107;
+  color: black;
+}
+
+button.payer:hover {
+  background-color: #d39e00;
 }
 
 button.archiver {

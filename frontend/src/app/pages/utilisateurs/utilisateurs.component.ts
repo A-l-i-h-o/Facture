@@ -65,7 +65,7 @@ export class UtilisateursComponent implements OnInit {
 
   // Fonction pour ajouter un nouvel utilisateur
   creationUtilisateur(): void {
-    alert('Ajout d’un nouvel utilisateur');
+    this.router.navigate(['/creation-utilisateur']);
   }
 
 }

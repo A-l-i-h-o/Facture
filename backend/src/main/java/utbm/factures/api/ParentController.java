@@ -8,7 +8,9 @@ package utbm.factures.api;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import utbm.factures.model.Parent;
 import utbm.factures.services.BDService;
@@ -60,26 +62,15 @@ public class ParentController {
 
         String procedureCall = "{CALL modification_parent(?,?,?,?,?,?)}";
         Object[] entrees = {parent.getId(), parent.getStatut(), parent.getNom(), parent.getPrenom(),parent.getAdresse(), parent.getAdresseEmail()};
-        //int[] sorties = {};
-        //String[] nomSorties = {};
-        // Ajout des sorties pour récupérer les nouvelles données
-    JSONObject result = this.bdService.procedure(procedureCall, entrees, new int[]{}, new String[]{});
+        int[] sorties = {};
+        String[] nomSorties = {};
+        JSONObject retour = this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
 
-    if (result != null && result.containsKey("id_parent")) {
-        Parent updatedParent = new Parent();
-        updatedParent.setId((Integer) result.get("id_parent"));
-        updatedParent.setStatut((String) result.get("libelle_statut_parent"));
-        updatedParent.setNom((String) result.get("nom_parent"));
-        updatedParent.setPrenom((String) result.get("prenom_parent"));
-        updatedParent.setAdresse((String) result.get("adresse_parent"));
-        updatedParent.setAdresseEmail((String) result.get("adresse_email_parent"));
-
-        return ResponseEntity.ok(updatedParent);
-    }
-
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-
-        //return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
+        try{
+            return this.get(""+parent.getId());
+        }catch (Exception e){
+            return retour;
+        }
     }
 
     @PostMapping(value = "/")

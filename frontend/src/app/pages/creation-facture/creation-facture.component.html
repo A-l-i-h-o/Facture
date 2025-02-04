@@ -1,0 +1,153 @@
+
+<div class="form-container">
+  <form [formGroup]="factureForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-title">Création Facture</h2>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input 
+        type="text" 
+        id="description" 
+        formControlName="description" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['description'].errors"
+      >
+      <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+        <div *ngIf="f['description'].errors['required']">Description is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="creancier">Creditor</label>
+      <input 
+        type="text" 
+        id="creancier" 
+        formControlName="creancier" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['creancier'].errors"
+      >
+      <div *ngIf="submitted && f['creancier'].errors" class="invalid-feedback">
+        <div *ngIf="f['creancier'].errors['required']">Creditor is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="dateCreation">Creation Date</label>
+      <input 
+        type="date" 
+        id="dateCreation" 
+        formControlName="dateCreation" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['dateCreation'].errors"
+      >
+      <div *ngIf="submitted && f['dateCreation'].errors" class="invalid-feedback">
+        <div *ngIf="f['dateCreation'].errors['required']">Creation date is required</div>
+      </div>
+    </div>
+  
+    <!-- Liste déroulante pour l'état de paiement -->
+    <div class="form-group">
+      <label for="periode">Periode</label>
+      <div class="select-container">
+        <select
+          id="periode"
+          formControlName="periode"
+          [class.invalid]="submitted && f['periode'].errors"
+        >
+          <option value="" disabled selected>Choisissez une periode</option>
+          <option value="1er trimèstre">1er trimèstre</option>
+          <option value="2ème trimèstre">2ème trimèstre</option>
+          <option value="3ème trimèstre">3ème trimèstre</option>
+        </select>
+        <i class="icon fas fa-users"></i>
+      </div>
+      <div *ngIf="submitted && f['periode'].errors" class="error-message">
+        <span *ngIf="f['periode'].errors['required']">La periode est requise.</span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="debiteur">Debtor</label>
+      <input 
+        type="text" 
+        id="debiteur" 
+        formControlName="debiteur" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['debiteur'].errors"
+      >
+      <div *ngIf="submitted && f['debiteur'].errors" class="invalid-feedback">
+        <div *ngIf="f['debiteur'].errors['required']">Debtor is required</div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="dateEcheance">Due Date</label>
+      <input 
+        type="date" 
+        id="dateEcheance" 
+        formControlName="dateEcheance" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['dateEcheance'].errors"
+      >
+      <div *ngIf="submitted && f['dateEcheance'].errors" class="invalid-feedback">
+        <div *ngIf="f['dateEcheance'].errors['required']">Due date is required</div>
+      </div>
+    </div>
+
+    <!-- Liste déroulante pour l'état de paiement -->
+    <div class="form-group">
+      <label for="etatPaiement">Etat de paiement</label>
+      <div class="select-container">
+        <select
+          id="etatPaiement"
+          formControlName="etatPaiement"
+          [class.invalid]="submitted && f['etatPaiement'].errors"
+        >
+          <option value="" disabled selected>Choisissez un état de paiement</option>
+          <option value="Non payé">Non payée</option>
+          <option value="En partie payé">Partiellement payée</option>
+          <option value="Payé">Payée</option>
+        </select>
+        <i class="icon fas fa-users"></i>
+      </div>
+      <div *ngIf="submitted && f['etatPaiement'].errors" class="error-message">
+        <span *ngIf="f['etatPaiement'].errors['required']">L'état de paiement est requis.</span>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="idReduction">Reduction ID</label>
+      <input 
+        type="number" 
+        id="idReduction" 
+        formControlName="idReduction" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idReduction'].errors"
+      >
+      <div *ngIf="submitted && f['idReduction'].errors" class="invalid-feedback">
+        <div *ngIf="f['idReduction'].errors['required']">Reduction ID est requis</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="idFamille">Famille ID</label>
+      <input 
+        type="number" 
+        id="idFamille" 
+        formControlName="idFamille" 
+        class="form-control" 
+        [class.is-invalid]="submitted && f['idFamille'].errors"
+      >
+      <div *ngIf="submitted && f['idFamille'].errors" class="invalid-feedback">
+        <div *ngIf="f['idFamille'].errors['required']">Famille ID est requis</div>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Create Invoice</button>
+  </form>
+</div>
+  

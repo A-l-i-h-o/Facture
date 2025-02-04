@@ -63,26 +63,16 @@ public class EnfantController {
 
         String procedureCall = "{CALL modification_enfant(?, ?)}";
         Object[] entrees = {enfant.getId(), enfant.getAge()};
-        //int[] sorties = {};
-        //String[] nomSorties = {};
-        // Appel de la procédure stockée
-    JSONObject result = this.bdService.procedure(procedureCall, entrees, new int[]{}, new String[]{});
+        int[] sorties = {};
+        String[] nomSorties = {};
 
-    // Vérification et conversion des données retournées
-    if (result != null && result.containsKey("id_enfant")) {
-        Enfant updatedEnfant = new Enfant();
-        updatedEnfant.setId((Integer) result.get("id_enfant"));
-        updatedEnfant.setNom((String) result.get("nom_enfant"));
-        updatedEnfant.setPrenom((String) result.get("prenom_enfant"));
-        updatedEnfant.setAge((Integer) result.get("age_enfant"));
+        JSONObject retour = this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
 
-        return ResponseEntity.ok(updatedEnfant);
-    }
-
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-
-
-        //return this.bdService.procedure(procedureCall, entrees, sorties, nomSorties);
+        try{
+            return this.get(""+enfant.getId());
+        }catch (Exception e){
+            return retour;
+        }
     }
 
     @PostMapping(value = "/")
