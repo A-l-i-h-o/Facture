@@ -1,4 +1,7 @@
-<form [formGroup]="utilisateurForm" (ngSubmit)="onSubmit()">
+<div class="form-container">
+  <form [formGroup]="utilisateurForm" (ngSubmit)="onSubmit()">
+    <h2 class="form-title">Création Utilisateur</h2>
+
     <div class="form-group">
       <label for="nom">Nom</label>
       <input type="text" id="nom" formControlName="nom" class="form-control" [class.is-invalid]="submitted && f['nom'].errors">
@@ -51,4 +54,5 @@
   
     <button type="submit" class="btn btn-primary">Créer Utilisateur</button>
   </form>
+</div>
   
