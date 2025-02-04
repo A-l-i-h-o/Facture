@@ -68,7 +68,10 @@ export class ListeFacturesComponent implements OnInit {
   afficherDetail(id: number): void {
     this.router.navigate(['/facture', id]); // Navigue vers la page de détail en passant l'ID de la facture
   }
-  
+
+  modifierFacture(facture: Facture): void {
+    // this.router.navigate(['/creation-facture', facture.id]);
+  }
 
   // Archiver une facture
   archiverFacture(facture: Facture): void {
