@@ -16,6 +16,7 @@ import { ListeServicesComponent } from './pages/services/listeServices.component
 import { ListeFacturesComponent } from './pages/factures/listeFactures.component';
 import { ListeReductionsComponent } from './pages/reductions/listeReductions.component';
 import { CreationFactureComponent } from './pages/creation-facture/creation-facture.component';
+import { CreationFraisComponent } from './pages/creation-frais/creation-frais.component';
 import { CreationReductionComponent } from './pages/creation-reduction/creation-reduction.component';
 import { CreationUtilisateurComponent } from './pages/creation-utilisateur/creation-utilisateur.component';
 import { FormulaireInscriptionEnfantComponent } from './pages/formulaire-inscription/formulaire-inscription-enfant/formulaire-inscription-enfant.component';
@@ -25,7 +26,6 @@ import { FactureDetailComponent } from './pages/factures/facture-detail/facture-
 import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
 import { EnteteComponent } from './pages/entete/entete.component';
 import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
-
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.compone
     ListeServicesComponent,
     ListeReductionsComponent,
     CreationFactureComponent,
+    CreationFraisComponent,
     CreationReductionComponent,
     CreationUtilisateurComponent,
     FormulaireInscriptionComponent,

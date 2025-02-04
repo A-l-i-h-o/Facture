@@ -41,7 +41,7 @@ export class CreationUtilisateurComponent implements OnInit {
     const utilisateur: Utilisateur = this.utilisateurForm.value;
 
     this.factureService.creationCompte(utilisateur).subscribe({
-      next: () => this.router.navigate(['/utilisateurs']),
+      next: () => this.router.navigate(['/listeUtilisateurs']),
       error: (err) => {
         this.error = 'Failed to create user. Please try again.';
         console.error('Error creating user', err);

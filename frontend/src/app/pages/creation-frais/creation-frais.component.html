@@ -1,0 +1,75 @@
+<div class="form-container">
+    <form [formGroup]="fraisForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="montant">Montant</label>
+        <input 
+          type="number" 
+          id="montant" 
+          formControlName="montant" 
+          class="form-control" 
+          [class.is-invalid]="submitted && f['montant'].errors"
+        >
+        <div *ngIf="submitted && f['montant'].errors" class="invalid-feedback">
+          <div *ngIf="f['montant'].errors['required']">Le montant est requis</div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input 
+          type="text" 
+          id="description" 
+          formControlName="description" 
+          class="form-control" 
+          [class.is-invalid]="submitted && f['description'].errors"
+        >
+        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+          <div *ngIf="f['description'].errors['required']">La description est requise</div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input 
+          type="text" 
+          id="type" 
+          formControlName="type" 
+          class="form-control" 
+          [class.is-invalid]="submitted && f['type'].errors"
+        >
+        <div *ngIf="submitted && f['type'].errors" class="invalid-feedback">
+          <div *ngIf="f['type'].errors['required']">Le type est requis</div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="dateCreation">Date de création</label>
+        <input 
+          type="date" 
+          id="dateCreation" 
+          formControlName="dateCreation" 
+          class="form-control" 
+          [class.is-invalid]="submitted && f['dateCreation'].errors"
+        >
+        <div *ngIf="submitted && f['dateCreation'].errors" class="invalid-feedback">
+          <div *ngIf="f['dateCreation'].errors['required']">La date de création est requise</div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="idReduction">ID Réduction</label>
+        <input 
+          type="number" 
+          id="idReduction" 
+          formControlName="idReduction" 
+          class="form-control" 
+        >
+      </div>
+    
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Créer Frais</button>
+    </form>
+  </div>
