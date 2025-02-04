@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FactureService } from 'src/app/http/FactureService';
 import { Parent } from 'src/app/model/Parent.model';
+import { Famille } from 'src/app/model/Famille.model';
 import { Utilisateur } from 'src/app/model/Utilisateur.model';
 import { switchMap } from 'rxjs/operators';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-formulaire-inscription',
@@ -16,6 +18,7 @@ export class FormulaireInscriptionComponent implements OnInit {
   submitted = false;
   id_user!: number;
   newUser!: Utilisateur;
+  @Input() famille: Famille | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +49,7 @@ export class FormulaireInscriptionComponent implements OnInit {
   }
 
   generateUsername(firstName: string, lastName: string): string {
-    return (firstName ? firstName.charAt(0) : '') + (lastName || '').toLowerCase();
+    return ((firstName ? firstName.charAt(0) : '') + (lastName || '')).toLowerCase();
   }
 
   onSubmit(): void {

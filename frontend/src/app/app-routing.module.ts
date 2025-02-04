@@ -15,6 +15,7 @@ import { ListeReductionsComponent } from './pages/reductions/listeReductions.com
 import { FactureDetailComponent } from './pages/factures/facture-detail/facture-detail.component';
 import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
 import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
+import { FamilleEditComponent } from './pages/famille-edit/famille-edit.component';
 
 const routes: Routes = [
   { path: '', component: ConnexionComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'formulaire-inscription-enfant/:id', component: FormulaireInscriptionEnfantComponent},
   { path: 'facture/:id', component: FactureDetailComponent },
   { path: 'famille/:id', component: FamilleDetailComponent },
+  { path: 'famille-edit/:id', component: FamilleEditComponent },
 ];
 
 @NgModule({

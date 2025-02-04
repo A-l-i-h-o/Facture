@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FactureService } from 'src/app/http/FactureService';
 import { Enfant } from 'src/app/model/Enfant.model';
+import { Famille } from 'src/app/model/Famille.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-formulaire-inscription-enfant',
@@ -14,6 +16,7 @@ export class FormulaireInscriptionEnfantComponent implements OnInit {
   signupForm: FormGroup;
   submitted = false;
   idFamille!: number;
+  @Input() famille: Famille | undefined;
 
   constructor(
     private fb: FormBuilder,

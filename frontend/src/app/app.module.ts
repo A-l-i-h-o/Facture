@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -26,6 +27,7 @@ import { FactureDetailComponent } from './pages/factures/facture-detail/facture-
 import { FamilleDetailComponent } from './pages/familles/famille-detail/famille-detail.component';
 import { EnteteComponent } from './pages/entete/entete.component';
 import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.component';
+import { FamilleEditComponent } from './pages/famille-edit/famille-edit.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.compone
     FactureDetailComponent,
     FamilleDetailComponent,
     EnteteComponent,
-    UtilisateursComponent
+    UtilisateursComponent,
+    FamilleEditComponent
     
   ],
   imports: [
@@ -55,7 +58,11 @@ import { UtilisateursComponent } from './pages/utilisateurs/utilisateurs.compone
     HttpClientModule,
     FormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule
+  ],
+  exports:[
+    RouterModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

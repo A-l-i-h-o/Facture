@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FactureService } from 'src/app/http/FactureService'; // Import du service
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Famille } from 'src/app/model/Famille.model';
+import { Parent } from 'src/app/model/Parent.model';
+import { Enfant } from 'src/app/model/Enfant.model';
 
 @Component({
   selector: 'app-liste-famille',
@@ -63,7 +66,7 @@ export class ListeFamillesComponent implements OnInit {
 
   // Modifier les informations d'une famille
   modifierFamille(famille: Famille): void {
-    this.router.navigate(['/famille/modifier', famille.id]);
+    this.router.navigate(['/famille-edit', famille.id]);
   }
 
   // Archiver une famille

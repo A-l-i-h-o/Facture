@@ -256,6 +256,18 @@ export class FactureService {
   desarchiverFamille(id:number): Observable<Famille> {
     return this.http.get<Famille>(`${this.apiUrl}famille/desarchiver?id_famille=${id}`);
   }
+  
+  updateFamille(familleId: number, familleData: Famille): Observable<Famille> {
+    return this.http.put<Famille>(`${this.apiUrl}famille/${familleId}`, familleData);
+  }
+
+  modifierFamille(famille: Famille): Observable<any> {
+    return this.http.put(`${this.apiUrl}/familles/${famille.id}`, famille);
+  }
+
+  getFamille(id: number): Observable<Famille> {
+    return this.http.get<Famille>(`${this.apiUrl}/famille/${id}`);
+  }
 
   ///////////
 
