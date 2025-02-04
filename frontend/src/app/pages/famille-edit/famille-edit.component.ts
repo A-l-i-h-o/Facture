@@ -336,7 +336,6 @@ submit(): void {
     //let observables: Observable<any>[] = [];
 
     parents.forEach((parent: Parent) => {
-      console.log('Données parent envoyées:', parent); // Debug
       parent.idFamille = this.familleId;
       this.factureService.modificationParent(parent).subscribe(
         response => console.log('Parent mis à jour:', response),
@@ -346,7 +345,6 @@ submit(): void {
     });
 
     enfants.forEach((enfant: Enfant) => {
-      console.log('Données enfant envoyées:', enfant); // Debug
       if (!enfant.idFamille) {
         enfant.idFamille = this.familleId; // Assurer que l'ID famille est bien défini
       }

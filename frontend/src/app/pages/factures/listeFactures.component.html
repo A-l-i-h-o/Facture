@@ -26,6 +26,7 @@
       </div>
       <div class="buttons">
         <button (click)="afficherDetail(facture.id)">Voir Détail</button>
+        <button class="payer" (click)="payerFacture(facture)" *ngIf="!facture.archive && facture.idEtatPaiement !== 3">Payer</button>
         <button class="archiver" (click)="archiverFacture(facture)" *ngIf="!facture.archive">Archiver</button>
         <button class="desarchiver" (click)="desarchiverFacture(facture)" *ngIf="facture.archive">Désarchiver</button>
       </div>

@@ -237,8 +237,8 @@ export class FactureService {
     return this.http.get<Facture>(`${this.apiUrl}facture/desarchiver?id_facture=${id}`);
   }
 
-  payerFacture(facture:Facture): Observable<Facture> {
-    return this.http.post<Facture>(`${this.apiUrl}facture/payer`,facture,{ observe: 'body'});
+  payerFacture(id:number): Observable<Facture> {
+    return this.http.get<Facture>(`${this.apiUrl}facture/payer?id_facture=${id}`);
   }
     
   ///////////
