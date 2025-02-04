@@ -1,8 +1,16 @@
-<div class="content">
-    <button (click)="navigateTo('/listeUtilisateurs')" class="content-btn">Utilisateurs</button>
+<!--<div class="content">
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeUtilisateurs')" class="content-btn">Utilisateurs</button>
     <button (click)="navigateTo('/listeFactures')" class="content-btn">Factures</button>
-    <button (click)="navigateTo('/listeFamilles')" class="content-btn">Familles</button>
-    <button (click)="navigateTo('/listeServices')" class="content-btn">Service</button>
-    <button (click)="navigateTo('/listeReductions')" class="content-btn">Réduction</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeFamilles')" class="content-btn">Familles</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeServices')" class="content-btn">Service</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeReductions')" class="content-btn">Réduction</button>
+  </div>-->
+
+  <div class="content">
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeUtilisateurs')" class="content-btn">Utilisateurs</button>
+    <button (click)="navigateTo('/listeFactures')" class="content-btn">Factures</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeFamilles')" class="content-btn">Familles</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeServices')" class="content-btn">Service</button>
+    <button *ngIf="utilisateur?.admin" (click)="navigateTo('/listeReductions')" class="content-btn">Réduction</button>
   </div>
   

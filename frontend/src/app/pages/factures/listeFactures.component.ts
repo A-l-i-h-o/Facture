@@ -3,6 +3,7 @@ import { FactureService } from 'src/app/http/FactureService'; // Import du servi
 import { Observable } from 'rxjs';
 import { Facture } from 'src/app/model/Facture.model';
 import { Router } from '@angular/router';
+import { Utilisateur } from 'src/app/model/Utilisateur.model';
 
 @Component({
   selector: 'app-liste-facture',
@@ -13,9 +14,12 @@ export class ListeFacturesComponent implements OnInit {
 
   factures: Facture[] = []; // Liste des factures récupérées depuis l'API
   listeFacturesFiltres: Facture[] = []; 
+  utilisateur!: Utilisateur | null; //nouveau
   constructor(private factureService: FactureService,private router: Router) { }
 
   ngOnInit(): void {
+    this.utilisateur = JSON.parse(localStorage.getItem('utilisateur') || '{}'); //nouveau
+    console.log("Utilisateur connecté :", this.utilisateur); //nouveau
     this.actualise();
   }
 
@@ -32,7 +36,13 @@ export class ListeFacturesComponent implements OnInit {
               data2["id"] = id;
               data2["idFamille"] = id;
               data2["archive"] = archiveEtat;
-              this.factures.push(data2);
+
+              // Filtrage : Un admin voit tout, un utilisateur voit SEULEMENT ses factures
+              if (this.utilisateur?.admin || data2["idFamille"] === this.utilisateur?.idFamille) { //nouveau
+                this.factures.push(data2);
+              }
+              // Appliquer le filtre actuel
+              this.filtrerFactures(); //nouveau
             },
             (error) => {
               console.error('Erreur lors de la récupération des factures', error);
