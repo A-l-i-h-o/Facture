@@ -3,7 +3,16 @@ Projet facturation. Ce projet est une application web conçue pour gérer les fa
 
 # Run backend
 
-```bash
-cd backend/src/
-python -m uvicorn Application:app --host 0.0.0.0 --port 9392 --reload
-```
+Dans le backend, démarrez start.bat
+
+# Run frontend
+
+Run la commande "npm start" dans le dossier frontend.
+
+# Run la base de données
+
+Avec MySQL, exécutez les codes SQL présents dans le dossier 'bd'.
+
+Le données de connexion pour tester le site sont : 
+login : admin
+mot de passe : admin

@@ -14,6 +14,7 @@ import { TypeFrais } from '../model/TypeFrais.model';
 import { StatutParent } from '../model/StatutParent.model';
 import { Periode } from '../model/Periode.model';
 import { EtatPaiement } from '../model/EtatPaiement.model';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -29,11 +30,21 @@ export class FactureService {
   listeUtilisateurs(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>(`${this.apiUrl}utilisateur/all`);
   }
-
+/*
   connexion(utilisateur:Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/connexion`, utilisateur,{ observe: 'body'});
   }
+*/
 
+connexion(utilisateur: Utilisateur): Observable<Utilisateur> {
+  return this.http.post<Utilisateur>(`${this.apiUrl}utilisateur/connexion`, utilisateur, { observe: 'body' }).pipe(
+    tap(user => {
+      if (user.connexion) {  // Vérifie si la connexion a réussi
+        localStorage.setItem('utilisateur', JSON.stringify(user)); // Stocke l'utilisateur
+      }
+    })
+  );
+}
   deconnexion(): Observable<any> {
     return this.http.get(`${this.apiUrl}utilisateur/deconnexion`);
   }
