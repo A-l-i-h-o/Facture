@@ -1,8 +1,3 @@
-/**
- * Classe UsersController : Elle fait partie de l'api. Elle permet de réceptionner les requêtes, de les traîter et de renvoyer des informations.
- * Elle traîte toutes les requêtes liées au jeu.
- */
-
 package utbm.factures.api;
 
 import org.json.simple.JSONArray;

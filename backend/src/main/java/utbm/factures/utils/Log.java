@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 /**
  * La classe Log est utilisé comme classe statique.
- * Elle permet d'écrire les évènements du programme dans plusieurs fichier.
+ * Elle permet d'écrire les évènements du programme dans plusieurs fichiers.
  */
 public class Log {
 

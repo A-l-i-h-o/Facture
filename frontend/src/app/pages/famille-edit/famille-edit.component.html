@@ -1,29 +1,3 @@
-<!--<div class="container">
-    <h2>Modifier la Famille</h2>
-    
-    <form [formGroup]="familleForm" (ngSubmit)="onSubmit()">
-      
-      <div class="form-group">
-        <label>Parents :</label>
-        <div *ngFor="let parent of familleForm.value.listeParent; let i = index">
-          <input class="form-control" type="text" [value]="parent.nom" disabled>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label>Enfants :</label>
-        <div *ngFor="let enfant of familleForm.value.listeEnfant; let i = index">
-          <input class="form-control" type="text" [value]="enfant.nom" disabled>
-        </div>
-      </div>
-      
-      <div class="buttons">
-        <button type="submit" class="btn btn-primary" [disabled]="familleForm.invalid">Modifier</button>
-        <button type="button" class="btn btn-secondary" (click)="retour()">Annuler</button>
-      </div>
-    </form>
-  </div>-->
-
   <div class="famille-edit-container">
     <h2 class="form-title">Modifier la Famille</h2>
   

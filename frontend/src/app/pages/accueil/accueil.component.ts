@@ -9,20 +9,6 @@ import { Utilisateur } from 'src/app/model/Utilisateur.model';
   styleUrls: ['./accueil.component.scss']
 })
 
-/*
-export class AccueilComponent {
-
-  isAdmin = 0;
-  factureService!: FactureService;
-
-  constructor(private router: Router, factureService: FactureService) {}
-
-  // Fonction pour rediriger vers les pages
-  navigateTo(route: string): void {
-    this.router.navigate([route]);
-  }
-}
-*/
 
 export class AccueilComponent implements OnInit {
   utilisateur!: Utilisateur | null;

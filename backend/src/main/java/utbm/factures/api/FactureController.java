@@ -1,8 +1,3 @@
-/**
- * Classe UsersController : Elle fait partie de l'api. Elle permet de réceptionner les requêtes, de les traîter et de renvoyer des informations.
- * Elle traîte toutes les requêtes liées au jeu.
- */
-
 package utbm.factures.api;
 
 import org.json.simple.JSONArray;
@@ -10,10 +5,10 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import utbm.factures.model.Facture;
 import utbm.factures.services.BDService;
 
-import org.springframework.web.client.RestTemplate;
 import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
