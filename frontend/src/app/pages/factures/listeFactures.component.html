@@ -1,12 +1,13 @@
 <div class="facture-container">
   <div class="header">
     <h2>Nombre de factures: {{ factures.length }}</h2>
-    <button class="creation" (click)="creation()">Créer une facture</button>
+    <button *ngIf="utilisateur?.admin" class="creation" (click)="creation()">Créer une facture</button>
   </div>
 
   <div class="filter-buttons">
     <button (click)="filtrerFactures(false)">Les factures actives</button>
-    <button (click)="filtrerFactures(true)">Factures Archivées</button>
+    <button *ngIf="!utilisateur?.admin">Factures Payés</button>
+    <button *ngIf="utilisateur?.admin" (click)="filtrerFactures(true)">Factures Archivées</button>
   </div>
 
   <ul class="facture-list">
